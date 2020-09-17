@@ -73,9 +73,7 @@
         <form action = "/instructor/grades" method = "post">
           <div id="main">
             <div id="mycourses">
-              <% for(var i=0; i < courselist.length; i++){ %>
-              <button type="submit" name = "assigngrade" class="course" id="courseid" value="<%= courselist[i].course_ID %>"><%= courselist[i].course_name %> &#40;<%= courselist[i].section %>&#41;</button>
-              <% } %>
+              <button type="button" name = "assigngrade" class="course" id="courseid" value="<%= courselist[i].course_ID %>" onclick="window.location='{{ route('instructor.coursegrades')}}'"><%= courselist[i].course_name %> &#40;<%= courselist[i].section %>&#41;</button>
             </div>
           </div>
         </form>
