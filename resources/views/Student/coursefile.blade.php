@@ -86,9 +86,7 @@
             <button class="filebutton" onclick="fileshowpanel(2,'#004981')">Assignments</button>
           </div>
           <div class="filePanel">
-            <a href="../Assets/Upload/lab.pdf" download>
-              <img src="../Assets/Upload/fileicon.png" width="40" height="40">
-            </a>
+            <a href="../Assets/Upload/lab.pdf" style="font-size: 20px; margin-left: -700px;" download>File name</a>
           </div>
           <div class="filePanel">
             <div id="light">
@@ -99,13 +97,11 @@
             </div>
             <div id="fade" onClick="videoclose();"></div>
             <div>
-              <a href="#" onclick="videoopen();" style="font-size: 20px;">Watch video</a>
+              <a href="#" onclick="videoopen();" style="font-size: 20px; margin-left: -700px;">Watch video(Video name)</a>
             </div>
           </div>
           <div class="filePanel">
-            <a href="../Assets/Upload/Assessment.docx" download>
-              <img src="../Assets/Upload/fileicon.png" width="40" height="40">
-            </a>
+            <a href="google.com" style="font-size: 20px; margin-left: -700px;" download>File name</a>
           </div>
         </div>
       </div>

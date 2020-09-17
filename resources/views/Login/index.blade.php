@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div class="loginform">
-      <a class="logo" href="../Home/">EduBee</a>
+      <a class="logo" href="/home">EduBee</a>
 			<h1>Login</h1>
 			<hr class="line">
 			<form action="" method="POST" onsubmit="return validate()">

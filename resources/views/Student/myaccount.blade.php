@@ -75,13 +75,13 @@
       </div>
     </nav>
     <div id="main">
-      <div class="myaccount">
-        <img class="profilepic " src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
-        <h1 class="studentname" style="font-size: 35px;"><%= uname %></h1>
-        <h1 class="studentid" style="font-size: 25px;">......</h1>
-        <h1 class="department">Department: <span>Computer Science and Engineering</span></h1>
-        <h1 class="email">E-mail: <span><%= uname %>@edubee.com</span></h1>
-        <h1 class="cgpa">CGPA: <span>*.**</span></h1>
+      <div class="myaccount" style="margin-top: 200px; width: 350; height: 400; background: #304b7e">
+        <h1 class="name" style="font-size: 35px; margin-top: -70px; color: white;">ahmed munrtasd dscsc scsc</h1>
+        <h1 class="id" style="font-size: 25px; color: white;color: white;">17-*****-2</h1>
+        <div class="myaccountsub" style="margin-top: 20px; width: 350; height: 200; background: white">
+          <h1 class="department" style="margin-top: 20px; font-size: 20px; text-align: left;">Department: <span>Computer Science and Engineering</span></h1>
+          <h1 class="email" style="margin-top: 20px; font-size: 20px; text-align: left;">E-mail: <span>name@edubee.com</span></h1>
+        </div>
       </div>
     </div>
   </section>

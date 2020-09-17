@@ -74,6 +74,9 @@
                       <div class="col-sm-6">
                         <h2>Student <b>List</b></h2>
                        </div>
+                       <div class="col-sm-6">
+                        <a href="" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
+                      </div>
                   </div>
               </div>
               <table id="table" class="table table-striped table-hover">

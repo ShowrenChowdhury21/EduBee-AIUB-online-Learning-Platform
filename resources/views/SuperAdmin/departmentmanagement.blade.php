@@ -109,6 +109,9 @@
                       </tr>
                   </tbody>
               </table>
+              <div class="col-sm-6" style="margin-top: 50px;">
+                <a href="" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
+              </div>
           </div>
       </div>
 

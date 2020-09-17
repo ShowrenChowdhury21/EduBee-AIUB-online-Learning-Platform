@@ -1,8 +1,7 @@
   window.onscroll = function() {myFunction()};
   var navbar = document.getElementById("navbar");
   var sticky = navbar.offsetTop;
-  var slideIndex = 1;
-  showSlides(slideIndex);
+  
 
   function myFunction() {
   if (window.pageYOffset >= sticky) {
@@ -11,6 +10,11 @@
     navbar.classList.remove("sticky");
   }
   }
+
+  
+
+  var slideIndex = 1;
+    showSlides(slideIndex);
 
   function plusSlides(n) {
     showSlides(slideIndex += n);
@@ -35,8 +39,6 @@
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
   }
-
-
 
   var slideIndex1 = 0;
   carousel();

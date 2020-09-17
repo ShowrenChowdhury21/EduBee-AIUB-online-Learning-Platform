@@ -29,19 +29,19 @@
     </ul>
   </nav>
   <div class="slideshow-container">
-    <div class="Slides fade">
-      <img src="{{ asset('asset/img/image1.png') }}" style="width:100%">
+    <div class="Slides">
+      <img src="{{asset('asset/img/image1.png') }}" style="width:100%">
     </div>
-    <div class="Slides fade">
+    <div class="Slides">
       <img src="{{ asset('asset/img/image2.jpg') }}" style="width:100%">
     </div>
-    <div class="Slides fade">
+    <div class="Slides">
       <img src="{{ asset('asset/img/image3.jpg') }}" style="width:100%">
     </div>
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
-  <br>
+  <br><br>
   <div style="text-align:center">
     <span class="dot" onclick="currentSlide(1)"></span>
     <span class="dot" onclick="currentSlide(2)"></span>

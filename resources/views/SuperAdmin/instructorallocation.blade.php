@@ -89,17 +89,17 @@
               <table class="table table-striped table-hover">
                 <thead>
                   <tr>
-                          <th>Id</th>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Courses</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Course Id</th>
+                    <th>Course Name</th>
+                    <th>Section</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
                       
-                  </tbody>
+                </tbody>
               </table>
           </div>
       </div>
