@@ -122,7 +122,7 @@
    <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "/superadmin/saveadmin" method = "post">
+      <form action = "{{ route('superadmin.addadmin') }}" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">Add Admin</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -154,8 +154,8 @@
         </div>
        </div>
        <div class="modal-footer">
-        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <input type="submit" class="btn btn-success" value="Add">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" >
+        <input type="submit" class="btn btn-success" value="Add" >
        </div>
       </form>
      </div>
@@ -165,7 +165,7 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "/superadmin/updateadmin" method = "post">
+      <form action = "{{ route('superadmin.updateadmin') }}" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">Edit Admin</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -204,7 +204,7 @@
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "deleteadmin" method = "post">
+      <form action = "{{ route('superadmin.deleteadmin') }}" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">Delete Admin</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

@@ -135,8 +135,16 @@
          <input type="text" class="form-control" required>
         </div>
         <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>CGPA</label>
+          <input type="text" class="form-control" required>
+        </div>
+        <div class="form-group">
          <label>Course Id</label>
-         <input type="email" class="form-control" required>
+         <input type="text" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Course Name</label>

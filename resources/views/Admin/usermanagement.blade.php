@@ -159,6 +159,10 @@
              <input type="Phone" class="form-control" name="Phone" required>
             </div>
             <div class="form-group">
+              <label>CGPA</label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
              <label>Password</label>
              <input type="Password" class="form-control" name="Password" required>
             </div>
@@ -210,6 +214,10 @@
               </div>
               <div class="form-group">
                 <label>Phone</label>
+                <input type="text" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>CGPA</label>
                 <input type="text" class="form-control" required>
               </div>
             </div>

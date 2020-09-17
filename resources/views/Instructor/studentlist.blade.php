@@ -85,7 +85,6 @@
                           <th>Id</th>
                           <th>Name</th>
                           <th>Email</th>
-                          <th>Phone</th>
                           <th>CGPA</th>
                     </tr>
                 </thead>

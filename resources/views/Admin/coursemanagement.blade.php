@@ -138,12 +138,8 @@
              <input type="text" name="name" class="form-control" required>
             </div>
             <div class="form-group">
-             <label>Section</label>
-             <input type="text" name="section" class="form-control" required>
-            </div>
-            <div class="form-group">
-             <label>instructor</label>
-             <input type="text" name="instructor" class="form-control" required>
+             <label>Department</label>
+             <input type="text" name="department" class="form-control" required>
             </div>
            </div>
            <div class="modal-footer">
@@ -173,12 +169,8 @@
          <input type="text" name="name" class="form-control" required>
         </div>
         <div class="form-group">
-         <label>Section</label>
-         <input type="text" name="section" class="form-control" required>
-        </div>
-        <div class="form-group">
-         <label>instructor</label>
-         <input type="text" name="instructor" class="form-control" required>
+         <label>Department</label>
+         <input type="text" name="department" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
