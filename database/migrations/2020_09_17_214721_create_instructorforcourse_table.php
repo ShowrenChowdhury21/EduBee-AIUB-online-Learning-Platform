@@ -13,12 +13,12 @@ class CreateInstructorforcourseTable extends Migration
      */
     public function up()
     {
-        Schema::create('instructorforcourse', function (Blueprint $table) {
-            $table->string(id);
-            $table->string(name);
-            $table->string(courseid);
-            $table->string(coursename);
-            $table->string(section);
+        Schema::create('instructorforcourses', function (Blueprint $table) {
+            $table->string('id');
+            $table->string('name');
+            $table->string('courseid');
+            $table->string('coursename');
+            $table->string('section');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateInstructorforcourseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instructorforcourse');
+        Schema::dropIfExists('instructorforcourses');
     }
 }

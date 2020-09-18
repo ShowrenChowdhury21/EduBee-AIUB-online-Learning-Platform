@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class CourseforStudent extends Model
 {
+    public $table = 'courseforstudents';
     public $timestamps = false;
 }

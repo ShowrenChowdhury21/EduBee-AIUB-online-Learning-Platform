@@ -16,7 +16,6 @@
     <div class="side-nav" id="show-side-navigation1">
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
-        <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
           <h3><a href="/superadmin"><%= uname %></a></h3>
           <p>17-*****-2</p>
@@ -75,7 +74,7 @@
         </div>
       </nav>
       <div>
-        <input type="text" class="search" id="search" onkeyup="search()" placeholder="Search using ID, Name or Email" style="width: 1090px; height: 40px; margin-left: 140px; margin-top: 30px; font-size: 20px; font-family: sans-serif;color: #004981; border: 2px solid gray; background: white; padding: 0 15px; font-weight: 500;">
+        <input type="text" class="search" id="search" onkeyup="search()" placeholder="Search using ID, Name" style="width: 1090px; height: 40px; margin-left: 140px; margin-top: 30px; font-size: 20px; font-family: sans-serif;color: #004981; border: 2px solid gray; background: white; padding: 0 15px; font-weight: 500;">
       </div>
       <div class="container">
           <div class="table-wrapper">
@@ -98,19 +97,21 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                          <td>212</td>
-                          <td>Computer Science And Enginnering</td>
-                          <td>CSE</td>
-                          <td>
-                              <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                          </td>
-                      </tr>
+                    @for($i=0; $i != count($depts); $i++)
+                    <tr>
+                      <td>{{$depts[$i]->id}}</td>
+                      <td>{{$depts[$i]->name}}</td>
+                      <td>{{$depts[$i]->tag}}</td>
+                        <td>
+                            <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                   @endfor
                   </tbody>
               </table>
               <div class="col-sm-6" style="margin-top: 50px;">
-                <a href="" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
+                <a href="/superadmin/departmentmanagement/downloadDept" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
               </div>
           </div>
       </div>
@@ -118,7 +119,7 @@
    <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action = "/superadmin/departmentmanagement/adddept" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">Add Department</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -126,15 +127,15 @@
        <div class="modal-body">
          <div class="form-group">
           <label>Id</label>
-          <input type="text" class="form-control" required>
+          <input type="text" name="id" class="form-control" required>
          </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" class="form-control" required>
+         <input type="text" name="name" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Tag</label>
-         <input type="text" class="form-control" required>
+         <input type="text" name="tag" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -149,23 +150,19 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action = "/superadmin/departmentmanagement/updatedept" method = "post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Department</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
        </div>
        <div class="modal-body">
-         <div class="form-group">
-          <label>Id</label>
-          <input type="text" class="form-control" required>
-         </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" class="form-control" required>
+         <input type="text" name="name" id="name" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Tag</label>
-         <input type="text" class="form-control" required>
+         <input type="text" name="tag" id="tag" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -180,7 +177,7 @@
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action = "/superadmin/departmentmanagement/deletedept" method = "post" id="deleteform">
        <div class="modal-header">
         <h4 class="modal-title">Delete Department</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -191,7 +188,7 @@
        </div>
        <div class="modal-footer">
         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <input type="submit" class="btn btn-danger" value="Delete">
+        <button type="submit" id = "delete_button" class="btn btn-danger" value="Delete">Delete</button>
        </div>
       </form>
      </div>
@@ -201,33 +198,54 @@
   </body>
 </html>
 
-<script>
-$(document).ready(function(){
-    $('tbody').on('click', 'a', function(){
-        var value_id = $(this).closest('tr').find('td').first().text();
-        document.getElementById("delete_button").value = value_id;
-    });
-});
-function search() {
-  var input = document.getElementById("search");
-  var filter = input.value.toUpperCase();
-  var table = document.getElementById("table");
-  var tr = table.getElementsByTagName("tr");
-
-  for (i = 0; i < tr.length; i++){
-    td1 = tr[i].getElementsByTagName("td")[0];
-    td2 = tr[i].getElementsByTagName("td")[1];
-    td3 = tr[i].getElementsByTagName("td")[2];
-    if (td1 || td2) {
-      var txtValue1 = td1.textContent || td1.innerText;
-      var txtValue2 = td2.textContent || td2.innerText;
-      var txtValue3 = td3.textContent || td3.innerText;
-      if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
-          tr[i].style.display = "";
-      } else {
-          tr[i].style.display = "none";
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('tbody').on('click', 'a', function(){
+          var value_id = $(this).closest('tr').find('td').first().text();
+          document.getElementById("delete_button").value = value_id;
+  
+          $('#deleteform').attr('action','/superadmin/departmentmanagement/deletedept/'+value_id);
+      });
+  });
+  
+  function search() {
+    var input = document.getElementById("search");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("table");
+    var tr = table.getElementsByTagName("tr");
+  
+    for (i = 0; i < tr.length; i++){
+      td1 = tr[i].getElementsByTagName("td")[0];
+      td2 = tr[i].getElementsByTagName("td")[1];
+      td3 = tr[i].getElementsByTagName("td")[2];
+      if (td1 || td2) {
+        var txtValue1 = td1.textContent || td1.innerText;
+        var txtValue2 = td2.textContent || td2.innerText;
+        var txtValue3 = td3.textContent || td3.innerText;
+        if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
       }
     }
   }
-}
-</script>
+  
+  $(document).ready(function(){
+  
+    $(".edit").on('click',function(){
+        $tr = $(this).closest('tr');
+        var editdata = $tr.children('td').map(function(){
+          return $(this).text();
+        }).get();
+  
+        console.log(editdata);
+  
+        $('#name').val(editdata[1]);
+        $('#tag').val(editdata[2]);
+  
+        $('#editform').attr('action','/superadmin/departmentmanagement/updatedept/'+editdata[0]);
+    });
+  });
+  
+  </script>

@@ -23,14 +23,49 @@ Route::get('/login', 'HomeController@login');
 
 //superadmin
 Route::get('/superadmin', 'SuperadminController@index');
-Route::get('/superadmin/adminmanagement', 'SuperadminController@adminmanagement');
-Route::get('/superadmin/moderatormanagement', 'SuperadminController@moderatormanagement');
-Route::get('/superadmin/usermanagement', 'SuperadminController@usermanagement');
-Route::get('/superadmin/departmentmanagement', 'SuperadminController@departmentmanagement');
-Route::get('/superadmin/coursemanagement', 'SuperadminController@coursemanagement');
-Route::get('/superadmin/courseforstudent', 'SuperadminController@courseforstudent');
-Route::get('/superadmin/instructorallocation', 'SuperadminController@instructorallocation');
-Route::get('/superadmin/announcements', 'SuperadminController@announcements');
+
+Route::get('/superadmin/adminmanagement', 'SuperadminController@adminmanagement')->name('Superadmin.adminmanagement');
+Route::post('/superadmin/adminmanagement/addadmin', 'SuperadminController@addadmin');
+Route::post('/superadmin/adminmanagement/updateadmin/{id}', 'SuperadminController@updateadmin');
+Route::post('/superadmin/adminmanagement/deleteadmin/{id}', 'SuperadminController@deleteadmin');
+Route::post('/superadmin/adminmanagement/searchadmin', 'SuperadminController@searchadmin')->name('Superadmin.searchadmin');
+
+Route::get('/superadmin/moderatormanagement', 'SuperadminController@moderatormanagement')->name('Superadmin.moderatormanagement');
+Route::post('/superadmin/moderatormanagement/addmoderator', 'SuperadminController@addmoderator');
+Route::post('/superadmin/moderatormanagement/updatemoderator/{id}', 'SuperadminController@updatemoderator');
+Route::post('/superadmin/moderatormanagement/deletemoderator/{id}', 'SuperadminController@deletemoderator');
+Route::post('/superadmin/adminmanagement/searchmoderator', 'SuperadminController@searchmoderator')->name('Superadmin.searchmoderator');
+
+Route::get('/superadmin/usermanagement', 'SuperadminController@usermanagement')->name('Superadmin.usermanagement');
+Route::post('/superadmin/usermanagement/adduser', 'SuperadminController@adduser');
+Route::post('/superadmin/usermanagement/updateuser/{id}', 'SuperadminController@updateuser');
+Route::post('/superadmin/usermanagement/deleteuser/{id}', 'SuperadminController@deleteuser');
+
+Route::get('/superadmin/departmentmanagement', 'SuperadminController@departmentmanagement')->name('Superadmin.departmentmanagement');
+Route::post('/superadmin/departmentmanagement/adddept', 'SuperadminController@adddept');
+Route::post('/superadmin/departmentmanagement/updatedept/{id}', 'SuperadminController@updatedept');
+Route::post('/superadmin/departmentmanagement/deletedept/{id}', 'SuperadminController@deletedept');
+Route::get('/superadmin/departmentmanagement/downloadDept', 'SuperadminController@departmentPdf');
+
+Route::get('/superadmin/coursemanagement', 'SuperadminController@coursemanagement')->name('Superadmin.coursemanagement');
+Route::post('/superadmin/coursemanagement/addcourse', 'SuperadminController@addcourse');
+Route::post('/superadmin/coursemanagement/updatecourse/{id}', 'SuperadminController@updatecourse');
+Route::post('/superadmin/coursemanagement/deletecourse/{id}', 'SuperadminController@deletecourse');
+Route::get('/superadmin/coursemanagement/downloadCourse', 'SuperadminController@coursePdf');
+
+Route::get('/superadmin/courseforstudent', 'SuperadminController@courseforstudent')->name('Superadmin.courseforstudent');
+Route::post('/superadmin/courseforstudent/addcourseforstudent', 'SuperadminController@addcourseforstudent');
+Route::post('/superadmin/courseforstudent/updatecourseforstudent/{id}', 'SuperadminController@updatecourseforstudent');
+Route::post('/superadmin/courseforstudent/deletecourseforstudent/{id}', 'SuperadminController@deletecourseforstudent');
+
+Route::get('/superadmin/instructorallocation', 'SuperadminController@instructorallocation')->name('Superadmin.instructorallocation');
+Route::post('/superadmin/instructorallocation/addinstructor', 'SuperadminController@addinstructor');
+Route::post('/superadmin/instructorallocation/updateinstructor/{id}', 'SuperadminController@updateinstructor');
+Route::post('/superadmin/instructorallocation/deleteinstructor/{id}', 'SuperadminController@deleteinstructor');
+
+Route::get('/superadmin/announcements', 'SuperadminController@announcements')->name('Superadmin.announcements');
+Route::post('/superadmin/announcements/addannouncement', 'SuperadminController@addannouncement');
+
 Route::get('/superadmin/profilesettings', 'SuperadminController@profilesettings');
 Route::get('/superadmin/security', 'SuperadminController@security');
 Route::get('/superadmin/myaccount', 'SuperadminController@myaccount');

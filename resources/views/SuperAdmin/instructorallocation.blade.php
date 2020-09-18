@@ -74,6 +74,9 @@
           </div>
         </div>
       </nav>
+      <div>
+        <input type="text" class="search" id="search" onkeyup="search()" placeholder="Search using ID, Name or Email" style="width: 1135px; height: 40px; margin-left: 140px; margin-top: 30px; font-size: 20px; font-family: sans-serif;color: #004981; border: 2px solid gray; background: white; padding: 0 15px; font-weight: 500;">
+      </div>
       <div class="container">
           <div class="table-wrapper">
               <div class="table-title">
@@ -86,11 +89,11 @@
                        </div>
                   </div>
               </div>
-              <table class="table table-striped table-hover">
+              <table id="table" class="table table-striped table-hover">
                 <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>Name</th>
+                    <th>Instructor Id</th>
+                    <th>Instructor Name</th>
                     <th>Course Id</th>
                     <th>Course Name</th>
                     <th>Section</th>
@@ -98,7 +101,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                      
+                  @for($i=0; $i != count($instructor); $i++)
+                  <tr>
+                    <td>{{$instructor[$i]->id}}</td>
+                    <td>{{$instructor[$i]->name}}</td>
+                    <td>{{$instructor[$i]->courseid}}</td>
+                    <td>{{$instructor[$i]->coursename}}</td>
+                    <td>{{$instructor[$i]->section}}</td>
+                      <td>
+                          <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                          <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                      </td>
+                  </tr>
+                  @endfor
                 </tbody>
               </table>
           </div>
@@ -107,7 +122,7 @@
    <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "/superadmin/addInstructor" method = "post">
+      <form action = "/superadmin/instructorallocation/addinstructor" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">New Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -122,20 +137,16 @@
          <input type="text" name="name" class="form-control" required>
         </div>
         <div class="form-group">
-         <label>Email</label>
-         <input type="email" name="email" class="form-control" required>
-        </div>
-        <div class="form-group">
-         <label>Phone Number</label>
-         <input type="text" name="phone" class="form-control" required>
+         <label>Course Id</label>
+         <input type="text" name="courseid" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Course Name</label>
-         <textarea class="form-control" name="course" required></textarea>
+         <input type="text" name="coursename" class="form-control" required>
         </div>
         <div class="form-group">
-         <label>Password</label>
-         <input type="text" class="form-control" name="Password" required>
+         <label>Section</label>
+         <input type="text" name="section" class="form-control" name="section" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -150,31 +161,23 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action="/superadmin/instructorallocation/updateinstructor" method="post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
        </div>
        <div class="modal-body">
-         <div class="form-group">
-          <label>Id</label>
-          <input type="text" class="form-control" required>
-         </div>
-        <div class="form-group">
-         <label>Name</label>
-         <input type="text" class="form-control" required>
-        </div>
         <div class="form-group">
          <label>Course Id</label>
-         <input type="email" class="form-control" required>
+         <input type="text" name="courseid" id="courseid" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Course Name</label>
-         <textarea class="form-control" required></textarea>
+         <input type="text" name="coursename" id="coursename" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Section</label>
-         <input type="text" class="form-control" required>
+         <input name="section" id="section" type="text" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -189,7 +192,7 @@
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action="/superadmin/instructorallocation/deleteinstructor" method="post" id="deleteform">
        <div class="modal-header">
         <h4 class="modal-title">Delete Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -200,7 +203,7 @@
        </div>
        <div class="modal-footer">
         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <input type="submit" class="btn btn-danger" value="Delete">
+        <button type="submit" id="delete_button" class="btn btn-danger" value="Delete">Delete</button>
        </div>
       </form>
      </div>
@@ -209,3 +212,55 @@
   </section>
   </body>
 </html>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('tbody').on('click', 'a', function(){
+          var value_id = $(this).closest('tr').find('td').first().text();
+          document.getElementById("delete_button").value = value_id;
+  
+          $('#deleteform').attr('action','/superadmin/instructorallocation/deleteinstructor/'+value_id);
+      });
+  });
+  
+  function search() {
+    var input = document.getElementById("search");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("table");
+    var tr = table.getElementsByTagName("tr");
+  
+    for (i = 0; i < tr.length; i++){
+      td1 = tr[i].getElementsByTagName("td")[0];
+      td2 = tr[i].getElementsByTagName("td")[1];
+      td3 = tr[i].getElementsByTagName("td")[2];
+      if (td1 || td2) {
+        var txtValue1 = td1.textContent || td1.innerText;
+        var txtValue2 = td2.textContent || td2.innerText;
+        var txtValue3 = td3.textContent || td3.innerText;
+        if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  
+  $(document).ready(function(){
+  
+    $(".edit").on('click',function(){
+        $tr = $(this).closest('tr');
+        var editdata = $tr.children('td').map(function(){
+          return $(this).text();
+        }).get();
+  
+        console.log(editdata);
+        $('#courseid').val(editdata[2]);
+        $('#coursename').val(editdata[3]);
+        $('#section').val(editdata[4]);
+  
+        $('#editform').attr('action','/superadmin/instructorallocation/updateinstructor/'+editdata[0]);
+    });
+  });
+  
+  </script>

@@ -13,16 +13,16 @@ class CreateCourseforstudentTable extends Migration
      */
     public function up()
     {
-        Schema::create('courseforstudent', function (Blueprint $table) {
-            $table->string(id);
-            $table->string(name);
-            $table->string(email);
-            $table->float(cgpa);
-            $table->string(courseid);
-            $table->string(coursename);
-            $table->string(section);
-            $table->string(marks);
-            $table->string(grades);
+        Schema::create('courseforstudents', function (Blueprint $table) {
+            $table->string('id');
+            $table->string('name');
+            $table->string('email');
+            $table->float('cgpa');
+            $table->string('courseid');
+            $table->string('coursename');
+            $table->string('section');
+            $table->string('marks')->nullable();
+            $table->string('grades')->nullable();
         });
     }
 
@@ -33,6 +33,6 @@ class CreateCourseforstudentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courseforstudent');
+        Schema::dropIfExists('courseforstudents');
     }
 }

@@ -16,7 +16,6 @@
     <div class="side-nav" id="show-side-navigation1">
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
-        <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
           <h3><a href="/superadmin"><%= uname %></a></h3>
           <p>17-*****-2</p>
@@ -75,7 +74,7 @@
         </div>
       </nav>
       <div>
-        <input type="text" class="search" id="search" onkeyup="search()" placeholder="Search using ID, Name or Email" style="width: 1135px; height: 40px; margin-left: 140px; margin-top: 30px; font-size: 20px; font-family: sans-serif;color: #004981; border: 2px solid gray; background: white; padding: 0 15px; font-weight: 500;">
+        <input type="text" class="search" id="search" placeholder="Search using ID or Name" style="width: 1135px; height: 40px; margin-left: 140px; margin-top: 30px; font-size: 20px; font-family: sans-serif;color: #004981; border: 2px solid gray; background: white; padding: 0 15px; font-weight: 500;">
       </div>
       <div class="container">
           <div class="table-wrapper">
@@ -90,7 +89,7 @@
                   </div>
               </div>
               <table id = "table" class="table table-striped table-hover">
-                <thead>
+                 <thead>
                   <tr>
                           <th>Id</th>
                           <th>Name</th>
@@ -98,22 +97,22 @@
                           <th>Address</th>
                           <th>Phone</th>
                           <th>Actions</th>
-                      </tr>
+                  </tr>
                   </thead>
-                  <tbody>
-                      <% for(var i=0; i < userlist.length; i++){ %>
+                  <tbody id="tablebody">
+                    @for($i=0; $i != count($users); $i++)
                       <tr>
-                          <td><%= userlist[i].ID %></td>
-                          <td><%= userlist[i].name %></td>
-                          <td><%= userlist[i].email %></td>
-                          <td><%= userlist[i].address %></td>
-                          <td><%= userlist[i].phone_number %></td>
+                        <td>{{$users[$i]->id}}</td>
+                        <td>{{$users[$i]->name}}</td>
+                        <td>{{$users[$i]->email}}</td>
+                        <td>{{$users[$i]->address}}</td>
+                        <td>{{$users[$i]->phone}}</td>
                           <td>
                               <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                               <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                           </td>
                       </tr>
-                      <% } %>
+                   @endfor
                   </tbody>
               </table>
           </div>
@@ -122,7 +121,7 @@
    <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "{{ route('superadmin.addadmin') }}" method = "post">
+      <form action = "/superadmin/adminmanagement/addadmin" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">Add Admin</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -130,7 +129,7 @@
        <div class="modal-body">
          <div class="form-group">
           <label>Id</label>
-          <input type="text" name = "id" class="form-control" required>
+          <input type="text" name="id" class="form-control" required>
          </div>
         <div class="form-group">
          <label>Name</label>
@@ -150,7 +149,7 @@
         </div>
         <div class="form-group">
          <label>Password</label>
-         <input type="text" name = "password" class="form-control" required>
+         <input type="password" name = "password" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -165,31 +164,27 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "{{ route('superadmin.updateadmin') }}" method = "post">
+      <form action = "/superadmin/adminmanagement/updateadmin" method = "post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Admin</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
        </div>
        <div class="modal-body">
-         <div class="form-group">
-          <label>Id</label>
-          <input type="text" name = "id" class="form-control" required>
-         </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name = "name" class="form-control" required>
+         <input type="text" name = "name" id="name" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Email</label>
-         <input type="email" name = "email" class="form-control" required>
+         <input type="email" name = "email" id="email" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Address</label>
-         <textarea class="form-control" name = "address" required></textarea>
+         <textarea class="form-control"  id="address" name = "address" required></textarea>
         </div>
         <div class="form-group">
          <label>Phone</label>
-         <input type="text" name = "phone" class="form-control" required>
+         <input type="text" name = "phone"  id="phone" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -204,7 +199,7 @@
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "{{ route('superadmin.deleteadmin') }}" method = "post">
+      <form action = "/superadmin/adminmanagement/deleteadmin" method = "post" id="deleteform">
        <div class="modal-header">
         <h4 class="modal-title">Delete Admin</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -215,42 +210,70 @@
        </div>
        <div class="modal-footer">
         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <button type="submit" id = "delete_button" name = "delete_button" class="btn btn-danger" value=value_id>Delete</button>
+        <button type="submit" id = "delete_button" name = "delete_button" class="btn btn-danger" value="value_id">Delete</button>
        </div>
       </form>
      </div>
     </div>
    </div>
   </section>
-  </body>
+</body>
 </html>
-<script>
+
+<script type="text/javascript">
+
 $(document).ready(function(){
     $('tbody').on('click', 'a', function(){
         var value_id = $(this).closest('tr').find('td').first().text();
         document.getElementById("delete_button").value = value_id;
+
+        $('#deleteform').attr('action','/superadmin/adminmanagement/deleteadmin/'+value_id);
     });
 });
-function search() {
-  var input = document.getElementById("search");
-  var filter = input.value.toUpperCase();
-  var table = document.getElementById("table");
-  var tr = table.getElementsByTagName("tr");
 
-  for (i = 0; i < tr.length; i++){
-    td1 = tr[i].getElementsByTagName("td")[0];
-    td2 = tr[i].getElementsByTagName("td")[1];
-    td3 = tr[i].getElementsByTagName("td")[2];
-    if (td1 || td2) {
-      var txtValue1 = td1.textContent || td1.innerText;
-      var txtValue2 = td2.textContent || td2.innerText;
-      var txtValue3 = td3.textContent || td3.innerText;
-      if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
-          tr[i].style.display = "";
-      } else {
-          tr[i].style.display = "none";
-      }
+
+$(document).ready(function(){
+
+  $(".edit").on('click',function(){
+      $tr = $(this).closest('tr');
+      var editdata = $tr.children('td').map(function(){
+        return $(this).text();
+      }).get();
+
+      console.log(editdata);
+
+      $('#name').val(editdata[1]);
+      $('#email').val(editdata[2]);
+      $('#address').val(editdata[3]);
+      $('#phone').val(editdata[4]);
+
+      $('#editform').attr('action','/superadmin/adminmanagement/updateadmin/'+editdata[0]);
+  });
+});
+
+
+$('body').on('keyup','#search', function(){
+  var search = $(this).val();
+
+  $.ajax({
+    method: 'POST',
+    url: "{{ route('Superadmin.searchadmin') }}",
+    dataType:'json',
+    data: {
+      
+      search: search,
+    },
+    success: function(res){
+      var tbrow = '';
+      $('#tablebody').html('');
+
+      $.each(res,function(index,value){
+        tbrow = '<tr><td>'+value.id+'</td><td>'+value.name+'</td><td>'+value.email+'</td><td>'+value.address+'</td><td>'+value.phone+'</td><td><a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a><a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td></tr>';
+        
+        $('#tablebody').append(tbrow);
+      });
     }
-  }
-}
+  });
+});
+
 </script>

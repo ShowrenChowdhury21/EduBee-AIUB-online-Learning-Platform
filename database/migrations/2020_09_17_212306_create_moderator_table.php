@@ -13,12 +13,12 @@ class CreateModeratorTable extends Migration
      */
     public function up()
     {
-        Schema::create('moderator', function (Blueprint $table) {
-            $table->string(id);
-            $table->string(name);
-            $table->string(email);
-            $table->string(address);
-            $table->string(phone);
+        Schema::create('moderators', function (Blueprint $table) {
+            $table->string('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('address');
+            $table->string('phone');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateModeratorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moderator');
+        Schema::dropIfExists('moderators');
     }
 }

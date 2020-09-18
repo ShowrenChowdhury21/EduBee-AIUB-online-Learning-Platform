@@ -13,11 +13,12 @@ class CreateLoginTable extends Migration
      */
     public function up()
     {
-        Schema::create('login', function (Blueprint $table) {
-            $table->string(id);
-            $table->string(name);
-            $table->string(password);
-            $table->string(type);
+        Schema::create('logins', function (Blueprint $table) {
+            $table->string('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('type');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateLoginTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('login');
+        Schema::dropIfExists('logins');
     }
 }

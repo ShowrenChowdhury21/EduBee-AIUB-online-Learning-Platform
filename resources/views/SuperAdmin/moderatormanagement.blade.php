@@ -75,7 +75,7 @@
         </div>
       </nav>
       <div>
-        <input type="text" class="search" id="search" onkeyup="search()" placeholder="Search using ID, Name or Email" style="width: 1135px; height: 40px; margin-left: 140px; margin-top: 30px; font-size: 20px; font-family: sans-serif;color: #004981; border: 2px solid gray; background: white; padding: 0 15px; font-weight: 500;">
+        <input type="text" class="search" id="search" onkeyup="search()" placeholder="Search using ID or Name" style="width: 1135px; height: 40px; margin-left: 140px; margin-top: 30px; font-size: 20px; font-family: sans-serif;color: #004981; border: 2px solid gray; background: white; padding: 0 15px; font-weight: 500;">
       </div>
       <div class="container">
           <div class="table-wrapper">
@@ -100,20 +100,20 @@
                           <th>Actions</th>
                       </tr>
                   </thead>
-                  <tbody>
-                    <% for(var i=0; i < userlist.length; i++){ %>
-                    <tr>
-                        <td><%= userlist[i].ID %></td>
-                        <td><%= userlist[i].name %></td>
-                        <td><%= userlist[i].email %></td>
-                        <td><%= userlist[i].address %></td>
-                        <td><%= userlist[i].phone_number %></td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <% } %>
+                  <tbody id="tablebody">
+                    @for($i=0; $i != count($users); $i++)
+                      <tr>
+                        <td>{{$users[$i]->id}}</td>
+                        <td>{{$users[$i]->name}}</td>
+                        <td>{{$users[$i]->email}}</td>
+                        <td>{{$users[$i]->address}}</td>
+                        <td>{{$users[$i]->phone}}</td>
+                          <td>
+                              <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                              <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                          </td>
+                      </tr>
+                   @endfor
                   </tbody>
               </table>
           </div>
@@ -122,7 +122,7 @@
    <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "/superadmin/addModerator" method = "post">
+      <form action = "/superadmin/moderatormanagement/addmoderator" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">Add Moderator</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -146,7 +146,7 @@
         </div>
         <div class="form-group">
          <label>Phone</label>
-         <input type="text" class="form-control" name="Phone" required>
+         <input type="text" class="form-control" name="phone" required>
         </div>
         <div class="form-group">
          <label>Password</label>
@@ -165,31 +165,27 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "/superadmin/updateModerator" method = "post">
+      <form action = "/superadmin/moderatormanagement/updatemoderator" method = "post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Moderator</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
        </div>
        <div class="modal-body">
-         <div class="form-group">
-          <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
-         </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name="name" class="form-control" required>
+         <input type="text" name="name" id="name" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Email</label>
-         <input type="email" class="form-control" name="email" required>
+         <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="form-group">
          <label>Address</label>
-         <textarea class="form-control" name="address" required></textarea>
+         <textarea class="form-control" name="address"  id="address" required></textarea>
         </div>
         <div class="form-group">
          <label>Phone</label>
-         <input type="text" class="form-control" name="Phone" required>
+         <input type="text" class="form-control" id="phone" name="phone" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -204,7 +200,7 @@
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "deleteModerator" method = "post">
+      <form action = "/superadmin/moderatormanagement/deletemoderator" method = "post" id="deleteform">
        <div class="modal-header">
         <h4 class="modal-title">Delete Moderator</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -215,7 +211,7 @@
        </div>
        <div class="modal-footer">
         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <button type="submit" id = "delete_button" name = "delete_button" class="btn btn-danger" value=value_id>Delete</button>
+        <button type="submit" id = "delete_button" name = "delete_button" class="btn btn-danger" value="Delete">Delete</button>
        </div>
       </form>
      </div>
@@ -224,33 +220,57 @@
     </section>
   </body>
 </html>
-<script>
-$(document).ready(function(){
-    $('tbody').on('click', 'a', function(){
-        var value_id = $(this).closest('tr').find('td').first().text();
-        document.getElementById("delete_button").value = value_id;
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('tbody').on('click', 'a', function(){
+          var value_id = $(this).closest('tr').find('td').first().text();
+          document.getElementById("delete_button").value = value_id;
+  
+          $('#deleteform').attr('action','/superadmin/moderatormanagement/deletemoderator/'+value_id);
+      });
+  });
+  
+  $(document).ready(function(){
+  
+    $(".edit").on('click',function(){
+        $tr = $(this).closest('tr');
+        var editdata = $tr.children('td').map(function(){
+          return $(this).text();
+        }).get();
+  
+        console.log(editdata);
+  
+        $('#name').val(editdata[1]);
+        $('#email').val(editdata[2]);
+        $('#address').val(editdata[3]);
+        $('#phone').val(editdata[4]);
+  
+        $('#editform').attr('action','/superadmin/moderatormanagement/updatemoderator/'+editdata[0]);
     });
-});
-function search() {
-  var input = document.getElementById("search");
-  var filter = input.value.toUpperCase();
-  var table = document.getElementById("table");
-  var tr = table.getElementsByTagName("tr");
+  });
+  
+  $('body').on('keyup','#search', function(){
+  var search = $(this).val();
 
-  for (i = 0; i < tr.length; i++){
-    td1 = tr[i].getElementsByTagName("td")[0];
-    td2 = tr[i].getElementsByTagName("td")[1];
-    td3 = tr[i].getElementsByTagName("td")[2];
-    if (td1 || td2) {
-      var txtValue1 = td1.textContent || td1.innerText;
-      var txtValue2 = td2.textContent || td2.innerText;
-      var txtValue3 = td3.textContent || td3.innerText;
-      if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
-          tr[i].style.display = "";
-      } else {
-          tr[i].style.display = "none";
-      }
+  $.ajax({
+    method: 'POST',
+    url: "{{ route('Superadmin.searchmoderator') }}",
+    dataType:'json',
+    data: {
+      
+      search: search,
+    },
+    success: function(res){
+      var tbrow = '';
+      $('#tablebody').html('');
+
+      $.each(res,function(index,value){
+        tbrow = '<tr><td>'+value.id+'</td><td>'+value.name+'</td><td>'+value.email+'</td><td>'+value.address+'</td><td>'+value.phone+'</td><td><a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a><a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td></tr>';
+        
+        $('#tablebody').append(tbrow);
+      });
     }
-  }
-}
+  });
+});
+
 </script>

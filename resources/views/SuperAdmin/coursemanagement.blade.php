@@ -94,28 +94,25 @@
                   <tr>
                           <th>courese ID</th>
                           <th>Name</th>
-                          <th>section</th>
-                          <th>instructor</th>
+                          <th>Department</th>
                       </tr>
                   </thead>
                   <tbody>
-                    <% for(var i=0; i < courselist.length; i++){ %>
+                    @for($i=0; $i != count($course); $i++)
                     <tr>
-                        <td><%= courselist[i].course_ID %></td>
-                        <td><%= courselist[i].course_name %></td>
-                        <td><%= courselist[i].section %></td>
-                        <td><%= courselist[i].instructor %></td>
+                      <td>{{$course[$i]->id}}</td>
+                      <td>{{$course[$i]->name}}</td>
+                      <td>{{$course[$i]->department}}</td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
-                    <% } %>
-                      </tr>
+                   @endfor
                   </tbody>
               </table>
               <div class="col-sm-6" style="margin-top: 50px;">
-                <a href="" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
+                <a href="/superadmin/coursemanagement/downloadCourse" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
               </div>
           </div>
       </div>
@@ -123,7 +120,7 @@
    <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "/superadmin/addCourse" method = "post">
+      <form action = "/superadmin/coursemanagement/addcourse" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">Add Course</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -154,27 +151,19 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "/superadmin/updateCourse" method = "post">
+      <form action = "/superadmin/coursemanagement/updatecourse" method = "post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Course</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
        </div>
        <div class="modal-body">
-         <div class="form-group">
-          <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
-         </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name="name" class="form-control" required>
+         <input type="text" name="name" id="name" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Section</label>
-         <input type="text" name="section" class="form-control" required>
-        </div>
-        <div class="form-group">
-         <label>instructor</label>
-         <input type="text" name="instructor" class="form-control" required>
+         <input type="text" name="department" id="department" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -189,7 +178,7 @@
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action = "deleteCourse" method = "post">
+      <form action = "/superadmin/coursemanagement/deletecourse" method = "post" id="deleteform">
        <div class="modal-header">
         <h4 class="modal-title">Delete Course</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -200,7 +189,7 @@
        </div>
        <div class="modal-footer">
         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <button type="submit" id = "delete_button" name = "delete_button" class="btn btn-danger" value=value_id>Delete</button>
+        <button type="submit" id = "delete_button" name = "delete_button" class="btn btn-danger" value="Delete">Delete</button>
        </div>
       </form>
      </div>
@@ -209,33 +198,56 @@
     </section>
   </body>
 </html>
-<script>
-  $(document).ready(function(){
-    $('tbody').on('click', 'a', function(){
-        var value_id = $(this).closest('tr').find('td').first().text();
-        document.getElementById("delete_button").value = value_id;
-    });
-});
-function search() {
-  var input = document.getElementById("search");
-  var filter = input.value.toUpperCase();
-  var table = document.getElementById("table");
-  var tr = table.getElementsByTagName("tr");
 
-  for (i = 0; i < tr.length; i++){
-    td1 = tr[i].getElementsByTagName("td")[0];
-    td2 = tr[i].getElementsByTagName("td")[1];
-    td3 = tr[i].getElementsByTagName("td")[2];
-    if (td1 || td2) {
-      var txtValue1 = td1.textContent || td1.innerText;
-      var txtValue2 = td2.textContent || td2.innerText;
-      var txtValue3 = td3.textContent || td3.innerText;
-      if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
-          tr[i].style.display = "";
-      } else {
-          tr[i].style.display = "none";
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('tbody').on('click', 'a', function(){
+          var value_id = $(this).closest('tr').find('td').first().text();
+          document.getElementById("delete_button").value = value_id;
+  
+          $('#deleteform').attr('action','/superadmin/coursemanagement/deletecourse/'+value_id);
+      });
+  });
+  
+  function search() {
+    var input = document.getElementById("search");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("table");
+    var tr = table.getElementsByTagName("tr");
+  
+    for (i = 0; i < tr.length; i++){
+      td1 = tr[i].getElementsByTagName("td")[0];
+      td2 = tr[i].getElementsByTagName("td")[1];
+      td3 = tr[i].getElementsByTagName("td")[2];
+      if (td1 || td2) {
+        var txtValue1 = td1.textContent || td1.innerText;
+        var txtValue2 = td2.textContent || td2.innerText;
+        var txtValue3 = td3.textContent || td3.innerText;
+        if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
       }
     }
   }
-}
-</script>
+  
+  $(document).ready(function(){
+  
+    $(".edit").on('click',function(){
+        $tr = $(this).closest('tr');
+        var editdata = $tr.children('td').map(function(){
+          return $(this).text();
+        }).get();
+  
+        console.log(editdata);
+  
+        $('#name').val(editdata[1]);
+        $('#department').val(editdata[2]);
+  
+        $('#editform').attr('action','/superadmin/coursemanagement/updatecourse/'+editdata[0]);
+    });
+  });
+  
+  </script>
