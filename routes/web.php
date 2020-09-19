@@ -23,7 +23,7 @@ Route::get('/login', 'LoginController@index')->name('login.index');
 Route::post('/login', 'LoginController@verify');
 
 //superadmin
-Route::get('/superadmin', 'SuperadminController@index');
+Route::get('/superadmin', 'SuperadminController@index')->name('Superadmin.index');
 
 Route::get('/superadmin/adminmanagement', 'SuperadminController@adminmanagement')->name('Superadmin.adminmanagement');
 Route::post('/superadmin/adminmanagement/addadmin', 'SuperadminController@addadmin');
@@ -74,7 +74,7 @@ Route::get('/superadmin/myinbox', 'SuperadminController@myinbox');
 
 
 //admin
-Route::get('/admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index')->name('Admin.index');
 Route::get('/admin/moderatormanagement', 'AdminController@moderatormanagement');
 Route::get('/admin/usermanagement', 'AdminController@usermanagement');
 Route::get('/admin/coursemanagement', 'AdminController@coursemanagement');
@@ -88,7 +88,7 @@ Route::get('/admin/myinbox', 'AdminController@myinbox');
 
 
 //moderator
-Route::get('/moderator', 'ModeratorController@index');
+Route::get('/moderator', 'ModeratorController@index')->name('Moderator.index');
 Route::get('/moderator/usermanagement', 'ModeratorController@usermanagement');
 Route::get('/moderator/useractivity', 'ModeratorController@useractivity');
 Route::get('/discussionforum', 'ModeratorController@discussionforum');
@@ -100,7 +100,7 @@ Route::get('/moderator/myaccount', 'ModeratorController@myaccount');
 Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
 
 //instructor
-Route::get('/instructor', 'InstructorController@index');
+Route::get('/instructor', 'InstructorController@index')->name('Instructor.index');
 Route::get('/instructor/classes', 'InstructorController@classes');
 Route::get('/instructor/coursefile', 'InstructorController@coursefile');
 Route::get('/instructor/coursegrades', 'InstructorController@coursegrades')->name('instructor.coursegrades');;
@@ -115,7 +115,7 @@ Route::get('/instructor/discussionforum', 'InstructorController@discussionforum'
 
 
 //student
-Route::get('/student', 'StudentController@index');
+Route::get('/student', 'StudentController@index')->name('Student.index');
 Route::get('/student/consultation', 'StudentController@consultation');
 Route::get('/student/coursefile', 'StudentController@coursefile');
 //Route::get('/discussionforum', 'StudentController@discussionforum');
