@@ -10,6 +10,6 @@ class HomeController extends Controller
         return view('Home.index');
     }
     function login(){
-        return view('Login.index');
+        return redirect('Login.index');
     }
 }
