@@ -25,19 +25,19 @@ class LoginController extends Controller
           $request->session()->put('type', $data[0]->type);
 
           if($data[0]->type == "superadmin"){
-              return redirect('/superadmin');
+              return redirect()->route('Superadmin.index');
           }
           elseif($data[0]->type == "admin"){
-              return redirect('/admin');
+              return redirect()->route('Admin.index');
           }
           elseif($data[0]->type == "moderator"){
-              return redirect('/moderator');
+              return redirect()->route('Moderator.index');
           }
           elseif($data[0]->type == "instructor"){
-              return redirect('/instructor');
+              return redirect()->route('Instructor.index');
           }
           elseif($data[0]->type == "student"){
-              return redirect('/student');
+              return redirect()->route('Student.index');
           }
           else{
           $request->session()->flash('msg', 'invalid username/password');
