@@ -19,7 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', 'HomeController@index');
-Route::get('/login', 'HomeController@login');
+Route::get('/login', 'LoginController@index')->name('login.index');
+Route::post('/login', 'LoginController@verify');
 
 //superadmin
 Route::get('/superadmin', 'SuperadminController@index');
