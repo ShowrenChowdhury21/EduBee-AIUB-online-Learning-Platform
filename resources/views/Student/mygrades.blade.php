@@ -17,7 +17,8 @@
     <div class="heading">
       <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
       <div class="info">
-        <h3><a href="/student"><%= uname %></a></h3>
+        <h3><a href="/student">{{Session::get('username')}}</a></h3>
+        <p>{{Session::get('id')}}</p>
       </div>
     </div>
     <ul class="categories" style="margin-top: 60px;">
@@ -78,21 +79,13 @@
       <div id="mygrades">
         <h1 class="gradetitle">Course Grades</h1>
         <hr style="width: 100%; border-top: 2px solid #005aa2;">
-        <div class="resultbox" style="width: 400px; height:160px; background:#005aa2; color: white; margin-left: 420px; margin-bottom: 20px; padding: 6px 20px;">
-            <h1 style="font-size: 25px; color: white;">Data Communication</h1>
-            <h2 style="font-size: 18px; color: white;">Total Marks: </h2>
-            <h2 style="font-size: 18px; color: white;">Grade: </h2>
-        </div>
-        <div class="resultbox" style="width: 400px; height:160px; background:#005aa2; color: white; margin-left: 420px; margin-bottom: 20px; padding: 6px 20px;">
-            <h1 style="font-size: 25px; color: white;">Computer Vision</h1>
-            <h2 style="font-size: 18px; color: white;">Total Marks: </h2>
-            <h2 style="font-size: 18px; color: white;">Grade: </h2>
-        </div>
-        <div class="resultbox" style="width: 400px; height:160px; background:#005aa2; color: white; margin-left: 420px; margin-bottom: 20px; padding: 6px 20px;">
-            <h1 style="font-size: 25px; color: white;">Microprocessor</h1>
-            <h2 style="font-size: 18px; color: white;">Total Marks: </h2>
-            <h2 style="font-size: 18px; color: white;">Grade: </h2>
-        </div>
+        @for($i=0; $i != count($courselist); $i++)
+          <div class="resultbox" style="width: 400px; height:160px; background:#005aa2; color: white; margin-left: 420px; margin-bottom: 20px; padding: 6px 20px;">
+              <h1 style="font-size: 25px; color: white;">{{$courselist[$i]->coursename}}</h1>
+              <h2 style="font-size: 18px; color: white;">Total Marks: {{$courselist[$i]->marks}}</h2>
+              <h2 style="font-size: 18px; color: white;">Grade: {{$courselist[$i]->grades}}</h2>
+          </div>
+        @endfor
       </div>
     </div>
   </section>
