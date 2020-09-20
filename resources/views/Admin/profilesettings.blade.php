@@ -20,8 +20,8 @@
     <div class="heading">
       <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
       <div class="info">
-        <h3><a href="/admin">Showren Chowdhury</a></h3>
-        <p>17-*****-2</p>
+        <h3><a href="/admin">{{Session::get('username')}}</a></h3>
+        <p>{{Session::get('id')}}</p>
       </div>
     </div>
     <ul class="categories" style="margin-top: 60px;">
@@ -79,11 +79,11 @@
         <div class="profile">
           <div class="profiledata" style="margin-left: 120px;">
             <img class="profilepic" style="margin-left: 40px;" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
-            <h3>Showren Chowdhury</h3>
-            <p style="margin-left: 80px;">17-*****-2</p>
+            <h3 style="margin-left: 80px;">{{Session::get('username')}}</h3>
+            <p style="margin-left: 80px;">{{Session::get('id')}}</p>
           </div>
-          <form method="POST" action="">
-            <input type="text" class="profileupdate" placeholder="Enter New E-mail"><br><br>
+          <form method="POST" action="/admin/profilesettings/">
+            <input type="text" class="profileupdate" name='email' placeholder="Enter New E-mail"><br><br>
             <input type="submit" class="profileupdatebtn" value="Update">
           </form>
         </div>
