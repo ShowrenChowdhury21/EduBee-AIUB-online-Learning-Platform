@@ -18,8 +18,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/superadmin"><%= uname %></a></h3>
-          <p>17-*****-2</p>
+          <h3><a href="/superadmin">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -205,17 +205,17 @@
       $('tbody').on('click', 'a', function(){
           var value_id = $(this).closest('tr').find('td').first().text();
           document.getElementById("delete_button").value = value_id;
-  
+
           $('#deleteform').attr('action','/superadmin/coursemanagement/deletecourse/'+value_id);
       });
   });
-  
+
   function search() {
     var input = document.getElementById("search");
     var filter = input.value.toUpperCase();
     var table = document.getElementById("table");
     var tr = table.getElementsByTagName("tr");
-  
+
     for (i = 0; i < tr.length; i++){
       td1 = tr[i].getElementsByTagName("td")[0];
       td2 = tr[i].getElementsByTagName("td")[1];
@@ -232,22 +232,22 @@
       }
     }
   }
-  
+
   $(document).ready(function(){
-  
+
     $(".edit").on('click',function(){
         $tr = $(this).closest('tr');
         var editdata = $tr.children('td').map(function(){
           return $(this).text();
         }).get();
-  
+
         console.log(editdata);
-  
+
         $('#name').val(editdata[1]);
         $('#department').val(editdata[2]);
-  
+
         $('#editform').attr('action','/superadmin/coursemanagement/updatecourse/'+editdata[0]);
     });
   });
-  
+
   </script>

@@ -40,8 +40,8 @@ class LoginController extends Controller
               return redirect()->route('Student.index');
           }
           else{
-          $request->session()->flash('msg', 'invalid username/password');
-          return redirect('/login');
+            $request->session()->flash('msg', 'invalid username/password');
+            return redirect('/login');
           }
         }
       }

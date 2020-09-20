@@ -21,7 +21,7 @@ class SuperadminController extends Controller
     public function index(){
         return view('Superadmin.index');
     }
-    
+
 
     //adminmanagement
     public function adminmanagement(){
@@ -41,6 +41,7 @@ class SuperadminController extends Controller
         $userlogin = new Login();
         $userlogin->id           = $request->id;
         $userlogin->name         = $request->name;
+        $userlogin->email         = $request->email;
         $userlogin->password     = $request->password;
         $userlogin->type         = "admin";
         $userlogin->save();
@@ -55,7 +56,7 @@ class SuperadminController extends Controller
         $user->address      = $request->address;
         $user->phone         = $request->phone;
         $user->save();
-        
+
         $userlogin = Login::find($id);
         $userlogin->name         = $request->name;
         $userlogin->save();
@@ -93,10 +94,11 @@ class SuperadminController extends Controller
         $user->address      = $request->address;
         $user->phone        = $request->phone;
         $user->save();
-        
+
         $userlogin = new Login();
         $userlogin->id           = $request->id;
         $userlogin->name         = $request->name;
+        $userlogin->email         = $request->email;
         $userlogin->password     = $request->password;
         $userlogin->type         = "moderator";
         $userlogin->save();
@@ -115,7 +117,7 @@ class SuperadminController extends Controller
         $userlogin = Login::find($id);
         $userlogin->name      = $request->name;
         $userlogin->save();
-  
+
         return redirect()->route('Superadmin.moderatormanagement');
     }
 
@@ -152,6 +154,7 @@ class SuperadminController extends Controller
         $userlogin = new Login();
         $userlogin->id           = $request->id;
         $userlogin->name         = $request->name;
+        $userlogin->email         = $request->email;
         $userlogin->password     = $request->password;
         $userlogin->type         = $request->type;
         $userlogin->save();
@@ -169,7 +172,7 @@ class SuperadminController extends Controller
         $userlogin = Login::find($id);
         $userlogin->name     = $request->name;
         $userlogin->save();
-  
+
         return redirect()->route('Superadmin.usermanagement');
     }
 
@@ -202,7 +205,7 @@ class SuperadminController extends Controller
         $user->name         = $request->name;
         $user->tag        = $request->tag;
         $user->save();
-  
+
         return redirect()->route('Superadmin.departmentmanagement');
     }
 
@@ -239,7 +242,7 @@ class SuperadminController extends Controller
         $user->name         = $request->name;
         $user->department   = $request->department;
         $user->save();
-  
+
         return redirect()->route('Superadmin.coursemanagement');
     }
 
@@ -279,7 +282,7 @@ class SuperadminController extends Controller
         $user = CourseforStudent::find($id);
         $user->section      = $request->section;
         $user->save();
-  
+
         return redirect()->route('Superadmin.courseforstudent');
     }
 
@@ -314,7 +317,7 @@ class SuperadminController extends Controller
         $user->coursename   = $request->coursename;
         $user->section      = $request->section;
         $user->save();
-  
+
         return redirect()->route('Superadmin.instructorallocation');
     }
 
@@ -344,8 +347,40 @@ class SuperadminController extends Controller
     function profilesettings(){
         return view('Superadmin.profilesettings');
     }
+    function saveprofilesettings(Request $request){
+      $user = Admin::find($request->session()->get('id'));
+      //$user->name         = Session::get('username');
+      $user->email        = $request->email;
+      //$user->address      = $request->address;
+      //$user->phone         = $request->phone;
+      $user->save();
+
+      $userlogin = Login::find($request->session()->get('id'));
+      $userlogin->email         = $request->email;
+      $userlogin->save();
+
+      return redirect()->route('Superadmin.myaccount');
+    }
+
     function security(){
-        return view('Superadmin.security');
+      return view('Superadmin.security')->with(['password_does_not_match' => '', 'old_password_not_match' => '']);
+    }
+    function savesecurity(Request $request){
+      if($request->current_password == $request->session()->get('password')){
+        if($request->new_password == $request->confirm_password){
+          $userlogin = Login::find($request->session()->get('id'));
+          $userlogin->password         = $request->confirm_password;
+          $userlogin->save();
+
+          return redirect()->route('Superadmin.myaccount');
+        }
+        else{
+          return view('Superadmin.security')->with(['password_does_not_match' => 'password does not match', 'old_password_not_match' => '']);
+        }
+      }
+      else{
+        return view('Superadmin.security')->with(['password_does_not_match' => '', 'old_password_not_match' => 'password does not match with old password']);
+      }
     }
     function myaccount(){
         return view('Superadmin.myaccount');
@@ -354,5 +389,5 @@ class SuperadminController extends Controller
         return view('Superadmin.myinbox');
     }
 
-    
+
 }
