@@ -18,8 +18,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/superadmin"><%= uname %></a></h3>
-          <p>17-*****-2</p>
+          <h3><a href="/superadmin">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -225,30 +225,30 @@
       $('tbody').on('click', 'a', function(){
           var value_id = $(this).closest('tr').find('td').first().text();
           document.getElementById("delete_button").value = value_id;
-  
+
           $('#deleteform').attr('action','/superadmin/moderatormanagement/deletemoderator/'+value_id);
       });
   });
-  
+
   $(document).ready(function(){
-  
+
     $(".edit").on('click',function(){
         $tr = $(this).closest('tr');
         var editdata = $tr.children('td').map(function(){
           return $(this).text();
         }).get();
-  
+
         console.log(editdata);
-  
+
         $('#name').val(editdata[1]);
         $('#email').val(editdata[2]);
         $('#address').val(editdata[3]);
         $('#phone').val(editdata[4]);
-  
+
         $('#editform').attr('action','/superadmin/moderatormanagement/updatemoderator/'+editdata[0]);
     });
   });
-  
+
   $('body').on('keyup','#search', function(){
   var search = $(this).val();
 
@@ -257,7 +257,7 @@
     url: "{{ route('Superadmin.searchmoderator') }}",
     dataType:'json',
     data: {
-      
+
       search: search,
     },
     success: function(res){
@@ -266,7 +266,7 @@
 
       $.each(res,function(index,value){
         tbrow = '<tr><td>'+value.id+'</td><td>'+value.name+'</td><td>'+value.email+'</td><td>'+value.address+'</td><td>'+value.phone+'</td><td><a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a><a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td></tr>';
-        
+
         $('#tablebody').append(tbrow);
       });
     }

@@ -15,8 +15,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/superadmin"><%= uname %></a></h3>
-          <p>17-*****-2</p>
+          <h3><a href="/superadmin">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -76,13 +76,15 @@
             <div class="profile">
               <div class="profiledata" style="margin-left: 120px;">
                 <img class="profilepic" style="margin-left: 40px;" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
-                  <h3><%= uname %></h3>
-                  <p style="margin-left: 80px;">17-*****-2</p>
+                  <h3>{{Session::get('username')}}</h3>
+                  <p style="margin-left: 80px;">{{Session::get('id')}}</p>
               </div>
-              <form method="POST" action="">
-                <input type="text" class="securtiy" placeholder="Enter Currenrt password"><br><br>
-                <input type="text" class="securtiy" placeholder="Enter New password"><br><br>
-                <input type="text" class="securtiy" placeholder="Confirm New password"><br><br>
+              <form method="POST" action="/superadmin/security">
+                <input type="text" class="securtiy" name="current_password" placeholder="Enter Currenrt password"><br>
+                <h4>{{$old_password_not_match}}</h4>
+                <input type="text" class="securtiy" name="new_password" placeholder="Enter New password"><br><br>
+                <input type="text" class="securtiy" name="confirm_password" placeholder="Confirm New password"><br>
+                <h4>{{$password_does_not_match}}</h4>
                 <input type="submit" class="securitybtn" value="Update">
               </form>
             </div>

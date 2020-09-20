@@ -67,23 +67,57 @@ Route::post('/superadmin/instructorallocation/deleteinstructor/{id}', 'Superadmi
 Route::get('/superadmin/announcements', 'SuperadminController@announcements')->name('Superadmin.announcements');
 Route::post('/superadmin/announcements/addannouncement', 'SuperadminController@addannouncement');
 
-Route::get('/superadmin/profilesettings', 'SuperadminController@profilesettings');
-Route::get('/superadmin/security', 'SuperadminController@security');
-Route::get('/superadmin/myaccount', 'SuperadminController@myaccount');
+Route::get('/superadmin/profilesettings', 'SuperadminController@profilesettings')->name('Superadmin.profilesettings');
+Route::post('/superadmin/profilesettings', 'SuperadminController@saveprofilesettings');
+
+Route::get('/superadmin/security', 'SuperadminController@security')->name('Superadmin.security');
+Route::post('/superadmin/security', 'SuperadminController@savesecurity');
+
+Route::get('/superadmin/myaccount', 'SuperadminController@myaccount')->name('Superadmin.myaccount');
 Route::get('/superadmin/myinbox', 'SuperadminController@myinbox');
 
 
 //admin
 Route::get('/admin', 'AdminController@index')->name('Admin.index');
-Route::get('/admin/moderatormanagement', 'AdminController@moderatormanagement');
-Route::get('/admin/usermanagement', 'AdminController@usermanagement');
+
+Route::get('/admin/moderatormanagement', 'AdminController@moderatormanagement')->name('Admin.moderatormanagement');
+Route::post('/admin/moderatormanagement/addmoderator', 'AdminController@addmoderator');
+Route::post('/admin/moderatormanagement/updatemoderator/{id}', 'AdminController@updatemoderator');
+Route::post('/admin/moderatormanagement/deletemoderator/{id}', 'AdminController@deletemoderator');
+Route::post('/admin/adminmanagement/searchmoderator', 'AdminController@searchmoderator')->name('Admin.searchmoderator');
+
+Route::get('/admin/usermanagement', 'AdminController@usermanagement')->name('Admin.usermanagement');
+Route::post('/admin/usermanagement/adduser', 'AdminController@adduser');
+Route::post('/admin/usermanagement/updateuser/{id}', 'AdminController@updateuser');
+Route::post('/admin/usermanagement/deleteuser/{id}', 'AdminController@deleteuser');
+
 Route::get('/admin/coursemanagement', 'AdminController@coursemanagement');
-Route::get('/admin/courseforstudent', 'AdminController@courseforstudent');
-Route::get('/admin/instructorallocation', 'AdminController@instructorallocation');
-Route::get('/admin/announcements', 'AdminController@announcements');
-Route::get('/admin/profilesettings', 'AdminController@profilesettings');
-Route::get('/admin/security', 'AdminController@security');
-Route::get('/admin/myaccount', 'AdminController@myaccount');
+Route::get('/admin/coursemanagement', 'AdminController@coursemanagement')->name('Admin.coursemanagement');
+Route::post('/admin/coursemanagement/addcourse', 'AdminController@addcourse');
+Route::post('/admin/coursemanagement/updatecourse/{id}', 'AdminController@updatecourse');
+Route::post('/admin/coursemanagement/deletecourse/{id}', 'AdminController@deletecourse');
+Route::get('/admin/coursemanagement/downloadCourse', 'AdminController@coursePdf');
+
+Route::get('/admin/courseforstudent', 'AdminController@courseforstudent')->name('Admin.courseforstudent');
+Route::post('/admin/courseforstudent/addcourseforstudent', 'AdminController@addcourseforstudent');
+Route::post('/admin/courseforstudent/updatecourseforstudent/{id}', 'AdminController@updatecourseforstudent');
+Route::post('/admin/courseforstudent/deletecourseforstudent/{id}', 'AdminController@deletecourseforstudent');
+
+Route::get('/admin/instructorallocation', 'AdminController@instructorallocation')->name('Admin.instructorallocation');
+Route::post('/admin/instructorallocation/addinstructor', 'AdminController@addinstructor');
+Route::post('/admin/instructorallocation/updateinstructor/{id}', 'AdminController@updateinstructor');
+Route::post('/admin/instructorallocation/deleteinstructor/{id}', 'AdminController@deleteinstructor');
+
+Route::get('/admin/announcements', 'AdminController@announcements')->name('Admin.announcements');
+
+Route::get('/admin/profilesettings', 'AdminController@profilesettings')->name('Admin.profilesettings');
+Route::post('/admin/profilesettings', 'AdminController@saveprofilesettings');
+
+Route::get('/admin/security', 'AdminController@security')->name('Admin.security');
+Route::post('/admin/security', 'AdminController@savesecurity');
+
+Route::get('/admin/myaccount', 'AdminController@myaccount')->name('Admin.myaccount');
+
 Route::get('/admin/myinbox', 'AdminController@myinbox');
 
 

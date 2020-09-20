@@ -17,8 +17,8 @@
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
         <div class="info">
-          <h3><a href="/superadmin"><%= uname %></a></h3>
-          <p>17-*****-2</p>
+          <h3><a href="/superadmin">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -260,7 +260,7 @@ $('body').on('keyup','#search', function(){
     url: "{{ route('Superadmin.searchadmin') }}",
     dataType:'json',
     data: {
-      
+
       search: search,
     },
     success: function(res){
@@ -269,7 +269,7 @@ $('body').on('keyup','#search', function(){
 
       $.each(res,function(index,value){
         tbrow = '<tr><td>'+value.id+'</td><td>'+value.name+'</td><td>'+value.email+'</td><td>'+value.address+'</td><td>'+value.phone+'</td><td><a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a><a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td></tr>';
-        
+
         $('#tablebody').append(tbrow);
       });
     }

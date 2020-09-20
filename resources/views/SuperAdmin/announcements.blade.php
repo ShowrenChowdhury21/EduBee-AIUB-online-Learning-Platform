@@ -17,8 +17,8 @@
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
         <div class="info">
-          <h3><a href="/superadmin"><%= uname %></a></h3>
-          <p>17-*****-2</p>
+          <h3><a href="/superadmin">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">

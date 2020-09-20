@@ -20,8 +20,8 @@
     <div class="heading">
       <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
       <div class="info">
-        <h3><a href="/admin">Showren Chowdhury</a></h3>
-        <p>17-*****-2</p>
+        <h3><a href="/admin">{{Session::get('username')}}</a></h3>
+        <p>{{Session::get('id')}}</p>
       </div>
     </div>
     <ul class="categories" style="margin-top: 60px;">
@@ -76,11 +76,11 @@
     </nav>
     <div id="main">
       <div class="myaccount" style="margin-top: 200px; width: 350; height: 400; background: #304b7e">
-        <h1 class="name" style="font-size: 35px; margin-top: -70px; color: white;">ahmed munrtasd dscsc scsc</h1>
-        <h1 class="id" style="font-size: 25px; color: white;color: white;">17-*****-2</h1>
+        <h1 class="name" style="font-size: 35px; margin-top: -70px; color: white;">{{Session::get('username')}}</h1>
+        <h1 class="id" style="font-size: 25px; color: white;color: white;">{{Session::get('id')}}</h1>
         <div class="myaccountsub" style="margin-top: 20px; width: 350; height: 200; background: white">
           <h1 class="department" style="margin-top: 20px; font-size: 20px; text-align: left;">Department: <span>Computer Science and Engineering</span></h1>
-          <h1 class="email" style="margin-top: 20px; font-size: 20px; text-align: left;">E-mail: <span>name@edubee.com</span></h1>
+          <h1 class="email" style="margin-top: 20px; font-size: 20px; text-align: left;">E-mail: <span>{{Session::get('email')}}</span></h1>
         </div>
       </div>
     </div>
