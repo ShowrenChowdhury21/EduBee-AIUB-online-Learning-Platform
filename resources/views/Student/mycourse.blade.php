@@ -17,7 +17,8 @@
     <div class="heading">
       <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
       <div class="info">
-        <h3><a href="/student"><%= uname %></a></h3>
+        <h3><a href="/student">{{Session::get('username')}}</a></h3>
+        <p>{{Session::get('id')}}</p>
       </div>
     </div>
     <ul class="categories" style="margin-top: 60px;">
@@ -79,10 +80,9 @@
         <div id="mycourses">
           <h1 class="coursetitle">My Courses</h1>
           <hr style="width: 100%; border-top: 2px solid #005aa2;">
-          <input type="button" class="course" id="courseid" value="Advance Programming in Web Technology" onclick="window.location.href='/student/coursefile';">
-          <input type="button" class="course" id="courseid" value="Computer Vision and Pattern Recognition" onclick="window.location.href='/student/coursefile';">
-          <input type="button" class="course" id="courseid" value="Microprocessor and Embedded System" onclick="window.location.href='/student/coursefile';">
-          <input type="button" class="course" id="courseid" value="Data Communication" onclick="window.location.href='coursefile.html';">
+          @for($i=0; $i != count($courselist); $i++)
+            <input type="button" class="course" id="courseid" value="{{$courselist[$i]->name}}" onclick="window.location.href='/student/coursefile';">
+          @endfor
         </div>
       </div>
     </form>

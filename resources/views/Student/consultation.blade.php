@@ -18,7 +18,8 @@
     <div class="heading">
       <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
       <div class="info">
-        <h3><a href="/student"><%= uname %></a></h3>
+        <h3><a href="/student">{{Session::get('username')}}</a></h3>
+        <p>{{Session::get('id')}}</p>
       </div>
     </div>
     <ul class="categories" style="margin-top: 60px;">
@@ -95,16 +96,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>15-333358-2</td>
-              <td>ATP3</td>
-              <td>A</td>
-              <td>Md Al-Amin</td>
-              <td>
-                <a href="#editEmployeeModal" class="audicall" data-toggle="modal"><i class="fa fa-phone" style="font-size:30px;" data-toggle="tooltip" title="audioCall"></i></a> &nbsp;&nbsp;
-                <a href="#deleteEmployeeModal" class="videocall" data-toggle="modal"><i class="fa fa-play-circle" style="font-size:30px;" data-toggle="tooltip" title="videoCall"></i></a>
-              </td>
-            </tr>
+            @for($i=0; $i != count($courselist); $i++)
+              <tr>
+                <td>{{$instructor[$i]->id}}</td>
+                <td>{{$courselist[$i]->coursename}}</td>
+                <td>{{$courselist[$i]->section}}</td>
+                <td>{{$instructor[$i]->name}}</td>
+                <td>
+                  <a href="#editEmployeeModal" class="audicall" data-toggle="modal"><i class="fa fa-phone" style="font-size:30px;" data-toggle="tooltip" title="audioCall"></i></a> &nbsp;&nbsp;
+                  <a href="#deleteEmployeeModal" class="videocall" data-toggle="modal"><i class="fa fa-play-circle" style="font-size:30px;" data-toggle="tooltip" title="videoCall"></i></a>
+                </td>
+              </tr>
+            @endfor
           </tbody>
         </table>
       </div>

@@ -17,7 +17,8 @@
     <div class="heading">
       <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
       <div class="info">
-        <h3><a href="/student"><%= uname %></a></h3>
+        <h3><a href="/student">{{Session::get('username')}}</a></h3>
+        <p>{{Session::get('id')}}</p>
       </div>
     </div>
     <ul class="categories" style="margin-top: 60px;">
