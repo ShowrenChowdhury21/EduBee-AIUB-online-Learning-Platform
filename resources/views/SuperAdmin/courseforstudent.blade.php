@@ -119,6 +119,7 @@
                       </tr>
                     @endfor
                  </tbody>
+               </table>
           </div>
       </div>
 

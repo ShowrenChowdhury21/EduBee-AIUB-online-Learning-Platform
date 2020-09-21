@@ -18,8 +18,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/moderator">Showren Chowdhury</a></h3>
-          <p>17-*****-2</p>
+          <h3><a href="/moderator">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -74,7 +74,7 @@
       <div class="introcontainer">
         <h1 class="logo">EduBee</h1>
         <div class="Intro">
-          <h1 class="welcome">Welcome <span style="font-size: 30px; font-weight: 300;">Showren</span></h1>
+          <h1 class="welcome">Welcome <span style="font-size: 30px; font-weight: 300;">{{Session::get('username')}}</span></h1>
           <p style="text-align:center; font-size: 15px;">As a Moderator you should follow University rules while taking decisions.</p>
         </div>
      </div>

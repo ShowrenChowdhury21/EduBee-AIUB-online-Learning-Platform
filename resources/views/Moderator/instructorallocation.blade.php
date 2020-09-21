@@ -18,8 +18,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/moderator">Showren Chowdhury</a></h3>
-          <p>17-*****-2</p>
+          <h3><a href="/moderator">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -89,27 +89,29 @@
               <table id="table" class="table table-striped table-hover">
                 <thead>
                   <tr>
-                          <th>Id</th>
-                          <th>Name</th>
-                          <th>Course Id</th>
-                          <th>Course Name</th>
-                          <th>Section</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>15-333358-2</td>
-                          <td>Md Al-min</td>
-                          <td>CS101</td>
-                          <td>Advance Programming in web Technology</td>
-                          <td>A</td>
-                          <td>
-                              <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                              <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                          </td>
-                      </tr>
-                  </tbody>
+                    <th>Instructor Id</th>
+                    <th>Instructor Name</th>
+                    <th>Course Id</th>
+                    <th>Course Name</th>
+                    <th>Section</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for($i=0; $i != count($instructor); $i++)
+                  <tr>
+                    <td>{{$instructor[$i]->id}}</td>
+                    <td>{{$instructor[$i]->name}}</td>
+                    <td>{{$instructor[$i]->courseid}}</td>
+                    <td>{{$instructor[$i]->coursename}}</td>
+                    <td>{{$instructor[$i]->section}}</td>
+                      <td>
+                          <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                          <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                      </td>
+                  </tr>
+                  @endfor
+                </tbody>
               </table>
           </div>
       </div>
@@ -117,7 +119,7 @@
    <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action = "/moderator/instructorallocation/addinstructor" method = "post">
        <div class="modal-header">
         <h4 class="modal-title">New Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -125,23 +127,23 @@
        <div class="modal-body">
          <div class="form-group">
           <label>Id</label>
-          <input type="text" class="form-control" required>
+          <input type="text" name="id" class="form-control" required>
          </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" class="form-control" required>
+         <input type="text" name="name" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Course Id</label>
-         <input type="email" class="form-control" required>
+         <input type="text" name="courseid" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Course Name</label>
-         <textarea class="form-control" required></textarea>
+         <input type="text" name="coursename" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Section</label>
-         <input type="text" class="form-control" required>
+         <input type="text" name="section" class="form-control" name="section" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -156,31 +158,23 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action="/moderator/instructorallocation/updateinstructor" method="post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
        </div>
        <div class="modal-body">
-         <div class="form-group">
-          <label>Id</label>
-          <input type="text" class="form-control" required>
-         </div>
-        <div class="form-group">
-         <label>Name</label>
-         <input type="text" class="form-control" required>
-        </div>
         <div class="form-group">
          <label>Course Id</label>
-         <input type="email" class="form-control" required>
+         <input type="text" name="courseid" id="courseid" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Course Name</label>
-         <textarea class="form-control" required></textarea>
+         <input type="text" name="coursename" id="coursename" class="form-control" required>
         </div>
         <div class="form-group">
          <label>Section</label>
-         <input type="text" class="form-control" required>
+         <input name="section" id="section" type="text" class="form-control" required>
         </div>
        </div>
        <div class="modal-footer">
@@ -195,7 +189,7 @@
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form>
+      <form action="/moderator/instructorallocation/deleteinstructor" method="post" id="deleteform">
        <div class="modal-header">
         <h4 class="modal-title">Delete Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -206,7 +200,7 @@
        </div>
        <div class="modal-footer">
         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <input type="submit" class="btn btn-danger" value="Delete">
+        <button type="submit" id="delete_button" class="btn btn-danger" value="Delete">Delete</button>
        </div>
       </form>
      </div>
@@ -215,27 +209,54 @@
   </section>
   </body>
 </html>
-<script>
-  function search() {
-  var input = document.getElementById("search");
-  var filter = input.value.toUpperCase();
-  var table = document.getElementById("table");
-  var tr = table.getElementsByTagName("tr");
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('tbody').on('click', 'a', function(){
+          var value_id = $(this).closest('tr').find('td').first().text();
+          document.getElementById("delete_button").value = value_id;
 
-  for (i = 0; i < tr.length; i++){
-    td1 = tr[i].getElementsByTagName("td")[0];
-    td2 = tr[i].getElementsByTagName("td")[1];
-    td3 = tr[i].getElementsByTagName("td")[2];
-    if (td1 || td2) {
-      var txtValue1 = td1.textContent || td1.innerText;
-      var txtValue2 = td2.textContent || td2.innerText;
-      var txtValue3 = td3.textContent || td3.innerText;
-      if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
-          tr[i].style.display = "";
-      } else {
-          tr[i].style.display = "none";
+          $('#deleteform').attr('action','/moderator/instructorallocation/deleteinstructor/'+value_id);
+      });
+  });
+
+  function search() {
+    var input = document.getElementById("search");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementById("table");
+    var tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++){
+      td1 = tr[i].getElementsByTagName("td")[0];
+      td2 = tr[i].getElementsByTagName("td")[1];
+      td3 = tr[i].getElementsByTagName("td")[2];
+      if (td1 || td2) {
+        var txtValue1 = td1.textContent || td1.innerText;
+        var txtValue2 = td2.textContent || td2.innerText;
+        var txtValue3 = td3.textContent || td3.innerText;
+        if (txtValue1.toUpperCase().indexOf(filter) > -1 || (txtValue2.toUpperCase().indexOf(filter) > -1)|| (txtValue3.toUpperCase().indexOf(filter) > -1)) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
       }
     }
   }
-}
-</script>
+
+  $(document).ready(function(){
+
+    $(".edit").on('click',function(){
+        $tr = $(this).closest('tr');
+        var editdata = $tr.children('td').map(function(){
+          return $(this).text();
+        }).get();
+
+        console.log(editdata);
+        $('#courseid').val(editdata[2]);
+        $('#coursename').val(editdata[3]);
+        $('#section').val(editdata[4]);
+
+        $('#editform').attr('action','/moderator/instructorallocation/updateinstructor/'+editdata[0]);
+    });
+  });
+
+  </script>

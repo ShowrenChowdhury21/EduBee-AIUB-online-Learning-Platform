@@ -123,13 +123,36 @@ Route::get('/admin/myinbox', 'AdminController@myinbox');
 
 //moderator
 Route::get('/moderator', 'ModeratorController@index')->name('Moderator.index');
-Route::get('/moderator/usermanagement', 'ModeratorController@usermanagement');
+Route::get('/moderator/usermanagement', 'ModeratorController@usermanagement')->name('Moderator.usermanagement');;
+
+Route::post('/moderator/usermanagement/adduser', 'ModeratorController@adduser');
+Route::post('/moderator/usermanagement/updateuser/{id}', 'ModeratorController@updateuser');
+Route::post('/moderator/usermanagement/deleteuser/{id}', 'ModeratorController@deleteuser');
+
+
+
 Route::get('/moderator/useractivity', 'ModeratorController@useractivity');
 Route::get('/discussionforum', 'ModeratorController@discussionforum');
-Route::get('/moderator/courseforstudent', 'ModeratorController@courseforstudent');
-Route::get('/moderator/instructorallocation', 'ModeratorController@instructorallocation');
-Route::get('/moderator/profilesettings', 'ModeratorController@profilesettings');
-Route::get('/moderator/security', 'ModeratorController@security');
+
+Route::get('/moderator/courseforstudent', 'ModeratorController@courseforstudent')->name('Moderator.courseforstudent');
+Route::post('/moderator/courseforstudent/addcourseforstudent', 'ModeratorController@addcourseforstudent');
+Route::post('/moderator/courseforstudent/updatecourseforstudent/{id}', 'ModeratorController@updatecourseforstudent');
+Route::post('/moderator/courseforstudent/deletecourseforstudent/{id}', 'ModeratorController@deletecourseforstudent');
+
+
+Route::get('/moderator/instructorallocation', 'ModeratorController@instructorallocation')->name('Moderator.instructorallocation');
+Route::post('/moderator/instructorallocation/addinstructor', 'ModeratorController@addinstructor');
+Route::post('/moderator/instructorallocation/updateinstructor/{id}', 'ModeratorController@updateinstructor');
+Route::post('/moderator/instructorallocation/deleteinstructor/{id}', 'ModeratorController@deleteinstructor');
+
+
+Route::get('/moderator/profilesettings', 'ModeratorController@profilesettings')->name('Moderator.profilesettings');
+Route::post('/superadmin/profilesettings', 'ModeratorController@saveprofilesettings');
+
+Route::get('/moderator/security', 'ModeratorController@security')->name('Moderator.security');
+Route::post('/moderator/security', 'ModeratorController@savesecurity');
+
+
 Route::get('/moderator/myaccount', 'ModeratorController@myaccount');
 Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
 
