@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
-  function index(){
+  function index(Request $request){
+    $request->session()->flush('key');
     return view('login.index');
   }
 
