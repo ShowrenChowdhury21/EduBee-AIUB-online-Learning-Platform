@@ -35,8 +35,8 @@ class StudentController extends Controller
     function discussionforum(){
         return view('forum');
     }
-    function mygrades(){
-      $courselist = DB::table('courseforstudents')->get();
+    function mygrades(Request $request){
+      $courselist = DB::table('courseforstudents')->where('id', $request->session()->get('id'))->get();
         return view('Student.mygrades')->with('courselist', $courselist);
     }
     function profilesettings(){
