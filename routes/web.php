@@ -152,7 +152,6 @@ Route::post('/superadmin/profilesettings', 'ModeratorController@saveprofilesetti
 Route::get('/moderator/security', 'ModeratorController@security')->name('Moderator.security');
 Route::post('/moderator/security', 'ModeratorController@savesecurity');
 
-
 Route::get('/moderator/myaccount', 'ModeratorController@myaccount');
 Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
 
@@ -160,12 +159,15 @@ Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
 Route::get('/instructor', 'InstructorController@index')->name('Instructor.index');
 Route::get('/instructor/classes', 'InstructorController@classes');
 Route::get('/instructor/coursefile', 'InstructorController@coursefile');
-Route::get('/instructor/coursegrades', 'InstructorController@coursegrades')->name('instructor.coursegrades');;
-Route::get('/instructor/grades', 'InstructorController@grades');
+Route::get('/instructor/coursegrades/{coursename}/{section}', 'InstructorController@coursegrades')->name('Instructor.coursegrades');
+Route::post('/instructor/coursegrades/updatecourseforstudent/{coursename}/{section}/{id}', 'InstructorController@updatecourseforstudent');
+Route::get('/instructor/grades', 'InstructorController@grades')->name('Instructor.grades');
 Route::get('/instructor/studentlist', 'InstructorController@studentlist');
 Route::get('/instructor/profilesettings', 'InstructorController@profilesettings');
-Route::get('/instructor/security', 'InstructorController@security');
-Route::get('/instructor/myaccount', 'InstructorController@myaccount');
+Route::post('/instructor/profilesettings', 'InstructorController@saveprofilesettings');
+Route::get('/instructor/security', 'InstructorController@security')->name('Instructor.security');
+Route::post('/instructor/security', 'InstructorController@savesecurity');
+Route::get('/instructor/myaccount', 'InstructorController@myaccount')->name('Instructor.myaccount');
 Route::get('/instructor/myinbox', 'InstructorController@myinbox');
 Route::get('/instructor/discussionforum', 'InstructorController@discussionforum');
 

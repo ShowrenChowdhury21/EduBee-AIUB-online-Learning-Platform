@@ -18,7 +18,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/instructor"><%= uname %></a></h3>
+          <h3><a href="/instructor">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -92,42 +93,36 @@
                       </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>11121</td>
-                      <td>Sajid</td>
-                      <td>92</td>
-                      <td>A+</td>
-                      <td>
-                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                      </td>
-                    </tr>
+                    @for($i=0; $i != count($courselist); $i++)
+                      <tr>
+                        <td>{{$courselist[$i]->id}}</td>
+                        <td>{{$courselist[$i]->name}}</td>
+                        <td>{{$courselist[$i]->marks}}</td>
+                        <td>{{$courselist[$i]->grades}}</td>
+                        <td>
+                          <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                        </td>
+                      </tr>
+                    @endfor
                   </tbody>
               </table>
           </div>
           <div id="editEmployeeModal" class="modal fade">
             <div class="modal-dialog">
               <div class="modal-content">
-                <form>
+                <form action = "/instructor/coursegrades/updatecourseforstudent/{{$coursename}}/{{$section}}" method = "post" id="editform">
                   <div class="modal-header">
                     <h4 class="modal-title">Edit Allocation</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   </div>
                   <div class="modal-body">
                     <div class="form-group">
-                      <label>Id</label>
-                      <input type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                      <label>Name</label>
-                      <input type="text" class="form-control" required>
-                    </div>
-                    <div class="form-group">
                       <label>Total Marks</label>
-                      <input type="email" class="form-control" required>
+                      <input type="text" name = 'marks' id = 'marks' class="form-control" required>
                     </div>
                     <div class="form-group">
                       <label>Grade</label>
-                      <textarea class="form-control" required></textarea>
+                      <textarea class="form-control" name = 'grades' id = 'grades' required></textarea>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -167,4 +162,22 @@ function search() {
     }
   }
 }
+
+$(document).ready(function(){
+
+  $(".edit").on('click',function(){
+      $tr = $(this).closest('tr');
+      var editdata = $tr.children('td').map(function(){
+        return $(this).text();
+      }).get();
+
+      console.log(editdata);
+        $('#marks').val(editdata[2]);
+        $('#grades').val(editdata[3]);
+
+      $('#editform').attr('action','/instructor/coursegrades/updatecourseforstudent/{{$coursename}}/{{$section}}/'+editdata[0]);
+  });
+});
+
+
 </script>

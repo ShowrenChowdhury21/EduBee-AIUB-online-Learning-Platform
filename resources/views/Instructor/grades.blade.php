@@ -18,7 +18,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/instructor"><%= uname %></a></h3>
+          <h3><a href="/instructor">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -73,7 +74,9 @@
         <form action = "/instructor/grades" method = "post">
           <div id="main">
             <div id="mycourses">
-              <button type="button" name = "assigngrade" class="course" id="courseid" value="<%= courselist[i].course_ID %>" onclick="window.location='{{ route('instructor.coursegrades')}}'"><%= courselist[i].course_name %> &#40;<%= courselist[i].section %>&#41;</button>
+              @for($i=0; $i != count($courselist); $i++)
+                <input type="button" name = "assigngrade" class="course" id="courseid" value="{{$courselist[$i]->coursename}} ({{$courselist[$i]->section}})" onclick="window.location='{{ route('Instructor.coursegrades', ['coursename'=> $courselist[$i]->coursename, 'section'=> $courselist[$i]->section])}}'">
+              @endfor
             </div>
           </div>
         </form>

@@ -18,7 +18,8 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="/instructor"><%= uname %></a></h3>
+          <h3><a href="/instructor">{{Session::get('username')}}</a></h3>
+          <p>{{Session::get('id')}}</p>
         </div>
       </div>
       <ul class="categories" style="margin-top: 60px;">
@@ -69,9 +70,9 @@
           <div id="mycourses">
             <h1 class="coursetitle">My CLasses</h1>
             <hr style="width: 100%; border-top: 2px solid #005aa2;">
-            <% for(var i=0; i < courselist.length; i++){ %>
-              <input type="button" class="course" id="courseid" value="<%= courselist[i].course_name %> &#40;<%= courselist[i].section %>&#41;" onclick="window.location.href='/instructor/coursefile';">
-            <% } %>
+            @for($i=0; $i != count($courselist); $i++)
+              <input type="button" class="course" id="courseid" value="{{$courselist[$i]->coursename}} ({{$courselist[$i]->section}})" onclick="window.location.href='/instructor/coursefile';">
+            @endfor
           </div>
         </div>
       </form>
