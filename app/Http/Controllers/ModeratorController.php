@@ -96,12 +96,22 @@ class ModeratorController extends Controller
 
         return redirect()->route('Moderator.courseforstudent');
     }
-//instructorallocation
     public function deletecourseforstudent($id, Request $request){
         if(CourseforStudent::destroy($id)){
             return redirect()->route('Moderator.courseforstudent');
         }
     }
+    function printcourseforstudent(){
+      $crsforstdnt = DB::table('courseforstudents')->get();
+      $stdnts = DB::table('users')->where('type', 'student')->select('id','name','email')->get();
+      $courses = DB::table('courses')->select('id','name')->get();
+      $pdf = PDF::loadView('moderator.printcourseforstudent', ['crsforstdnt' => $crsforstdnt,
+                                                  'stdnts' => $stdnts,
+                                                  'courses' => $courses]);
+
+      return $pdf->download('student course allocation list.pdf');
+    }
+
      public function addinstructor(Request $request){
         $user = new Instructorforcourses();
         $user->id           = $request->id;
@@ -136,9 +146,19 @@ class ModeratorController extends Controller
         $instructor = DB::table('instructorforcourses')->get();
         $faculty = DB::table('users')->where('type', 'instructor')->select('id','name')->get();
         $courses = DB::table('courses')->select('id','name')->get();
-        return view('Superadmin.instructorallocation')->with('instructor', $instructor)
+        return view('Moderator.instructorallocation')->with('instructor', $instructor)
                                                   ->with('faculty', $faculty)
                                                   ->with('courses', $courses);
+    }
+    function printinstructorallocation(){
+      $instructor = DB::table('instructorforcourses')->get();
+      $faculty = DB::table('users')->where('type', 'instructor')->select('id','name')->get();
+      $courses = DB::table('courses')->select('id','name')->get();
+      $pdf = PDF::loadView('Moderator.printinstructorallocation', ['instructor' => $instructor,
+                                                                'faculty' => $faculty,
+                                                                'courses' => $courses]);
+
+      return $pdf->download('instructor allocation list.pdf');
     }
     function profilesettings(){
         return view('Moderator.profilesettings');

@@ -296,6 +296,17 @@ class SuperadminController extends Controller
         }
     }
 
+    function printcourseforstudent(){
+      $crsforstdnt = DB::table('courseforstudents')->get();
+      $stdnts = DB::table('users')->where('type', 'student')->select('id','name','email')->get();
+      $courses = DB::table('courses')->select('id','name')->get();
+      $pdf = PDF::loadView('Superadmin.printcourseforstudent', ['crsforstdnt' => $crsforstdnt,
+                                                  'stdnts' => $stdnts,
+                                                  'courses' => $courses]);
+
+      return $pdf->download('student course allocation list.pdf');
+    }
+
 
     //instructorallocation
     function instructorallocation(){
@@ -305,6 +316,17 @@ class SuperadminController extends Controller
         return view('Superadmin.instructorallocation')->with('instructor', $instructor)
                                                   ->with('faculty', $faculty)
                                                   ->with('courses', $courses);
+    }
+
+    function printinstructorallocation(){
+      $instructor = DB::table('instructorforcourses')->get();
+      $faculty = DB::table('users')->where('type', 'instructor')->select('id','name')->get();
+      $courses = DB::table('courses')->select('id','name')->get();
+      $pdf = PDF::loadView('Superadmin.printinstructorallocation', ['instructor' => $instructor,
+                                                                'faculty' => $faculty,
+                                                                'courses' => $courses]);
+
+      return $pdf->download('instructor allocation list.pdf');
     }
 
     public function addinstructor(Request $request){

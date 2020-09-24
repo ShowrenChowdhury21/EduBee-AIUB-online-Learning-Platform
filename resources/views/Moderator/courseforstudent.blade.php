@@ -83,6 +83,7 @@
                        </div>
                        <div class="col-sm-6">
                         <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Allocate</span></a>
+                        <a href="/moderator/printcourseforstudent" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>print</span></a>
                        </div>
                   </div>
               </div>
@@ -151,13 +152,13 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Email</label>  
+              <label>Email</label>
               <select class="form-control" required name="email" >
                 <option value="" selected>Select Student Email</option>
                 @foreach ($stdnts as $std)
                   <option value="{{$std->email}}">{{$std->email}}</option>
                 @endforeach
-              </select>  
+              </select>
             </div>
             <div class="form-group">
               <label>CGPA</label>

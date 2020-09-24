@@ -55,11 +55,13 @@ Route::post('/superadmin/coursemanagement/deletecourse/{id}', 'SuperadminControl
 Route::get('/superadmin/coursemanagement/downloadCourse', 'SuperadminController@coursePdf');
 
 Route::get('/superadmin/courseforstudent', 'SuperadminController@courseforstudent')->name('Superadmin.courseforstudent');
+Route::get('/superadmin/printcourseforstudent', 'SuperadminController@printcourseforstudent')->name('Superadmin.printcourseforstudent');
 Route::post('/superadmin/courseforstudent/addcourseforstudent', 'SuperadminController@addcourseforstudent');
 Route::post('/superadmin/courseforstudent/updatecourseforstudent/{id}', 'SuperadminController@updatecourseforstudent');
 Route::post('/superadmin/courseforstudent/deletecourseforstudent/{id}', 'SuperadminController@deletecourseforstudent');
 
 Route::get('/superadmin/instructorallocation', 'SuperadminController@instructorallocation')->name('Superadmin.instructorallocation');
+Route::get('/superadmin/printinstructorallocation', 'SuperadminController@printinstructorallocation')->name('Superadmin.printinstructorallocation');
 Route::post('/superadmin/instructorallocation/addinstructor', 'SuperadminController@addinstructor');
 Route::post('/superadmin/instructorallocation/updateinstructor/{id}', 'SuperadminController@updateinstructor');
 Route::post('/superadmin/instructorallocation/deleteinstructor/{id}', 'SuperadminController@deleteinstructor');
@@ -99,11 +101,13 @@ Route::post('/admin/coursemanagement/deletecourse/{id}', 'AdminController@delete
 Route::get('/admin/coursemanagement/downloadCourse', 'AdminController@coursePdf');
 
 Route::get('/admin/courseforstudent', 'AdminController@courseforstudent')->name('Admin.courseforstudent');
+Route::get('/admin/printcourseforstudent', 'AdminController@printcourseforstudent')->name('Admin.printcourseforstudent');
 Route::post('/admin/courseforstudent/addcourseforstudent', 'AdminController@addcourseforstudent');
 Route::post('/admin/courseforstudent/updatecourseforstudent/{id}', 'AdminController@updatecourseforstudent');
 Route::post('/admin/courseforstudent/deletecourseforstudent/{id}', 'AdminController@deletecourseforstudent');
 
 Route::get('/admin/instructorallocation', 'AdminController@instructorallocation')->name('Admin.instructorallocation');
+Route::get('/admin/printinstructorallocation', 'AdminController@printinstructorallocation')->name('Admin.printinstructorallocation');
 Route::post('/admin/instructorallocation/addinstructor', 'AdminController@addinstructor');
 Route::post('/admin/instructorallocation/updateinstructor/{id}', 'AdminController@updateinstructor');
 Route::post('/admin/instructorallocation/deleteinstructor/{id}', 'AdminController@deleteinstructor');
@@ -133,11 +137,13 @@ Route::get('/moderator/useractivity', 'ModeratorController@useractivity');
 Route::get('/discussionforum', 'ModeratorController@discussionforum');
 
 Route::get('/moderator/courseforstudent', 'ModeratorController@courseforstudent')->name('Moderator.courseforstudent');
+Route::get('/moderator/printcourseforstudent', 'ModeratorController@printcourseforstudent')->name('Moderator.printcourseforstudent');
 Route::post('/moderator/courseforstudent/addcourseforstudent', 'ModeratorController@addcourseforstudent');
 Route::post('/moderator/courseforstudent/updatecourseforstudent/{id}', 'ModeratorController@updatecourseforstudent');
 Route::post('/moderator/courseforstudent/deletecourseforstudent/{id}', 'ModeratorController@deletecourseforstudent');
 
 Route::get('/moderator/instructorallocation', 'ModeratorController@instructorallocation')->name('Moderator.instructorallocation');
+Route::get('/moderator/printinstructorallocation', 'ModeratorController@printinstructorallocation')->name('Moderator.printinstructorallocation');
 Route::post('/moderator/instructorallocation/addinstructor', 'ModeratorController@addinstructor');
 Route::post('/moderator/instructorallocation/updateinstructor/{id}', 'ModeratorController@updateinstructor');
 Route::post('/moderator/instructorallocation/deleteinstructor/{id}', 'ModeratorController@deleteinstructor');
@@ -180,6 +186,7 @@ Route::get('/student/coursefile/{coursename}/{section}', 'StudentController@cour
 //Route::get('/discussionforum', 'StudentController@discussionforum');
 Route::get('/student/mycourse', 'StudentController@mycourse');
 Route::get('/student/mygrades', 'StudentController@mygrades');
+Route::get('/student/printmygrades', 'StudentController@printmygrades');
 Route::get('/student/profilesettings', 'StudentController@profilesettings');
 Route::post('/student/profilesettings', 'StudentController@saveprofilesettings');
 Route::get('/student/security', 'StudentController@security')->name('Student.security');
