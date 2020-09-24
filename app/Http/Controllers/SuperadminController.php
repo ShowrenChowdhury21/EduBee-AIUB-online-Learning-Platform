@@ -180,7 +180,8 @@ class SuperadminController extends Controller
         'email' => 'required',
         'phone' => 'required',
         'type' => 'required',
-        'password' => 'required',
+        'department' => 'required',
+        'password' => 'required'
       ]);
         $user = new User();
         $user->id           = $request->id;
@@ -188,6 +189,7 @@ class SuperadminController extends Controller
         $user->email        = $request->email;
         $user->phone        = $request->phone;
         $user->type         = $request->type;
+        $user->department        = $request->department;
         $user->save();
 
         $userlogin = new Login();
@@ -205,12 +207,14 @@ class SuperadminController extends Controller
       $request->validate([
         'name' => 'required',
         'email' => 'required',
-        'phone' => 'required'
+        'phone' => 'required',
+        'department' => 'required'
       ]);
         $user = User::find($id);
         $user->name         = $request->name;
         $user->email        = $request->email;
         $user->phone        = $request->phone;
+        $user->department        = $request->department;
         $user->save();
 
         $userlogin = Login::find($id);
