@@ -130,27 +130,33 @@
        <div class="modal-body">
          <div class="form-group">
           <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
+          <input type="text" name="id" class="form-control">
+          <a>{{$errors->first('id')}}</a>
          </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name="name" class="form-control" required>
+         <input type="text" name="name" class="form-control">
+         <a>{{$errors->first('name')}}</a>
         </div>
         <div class="form-group">
          <label>Email</label>
-         <input type="email" name="email" class="form-control" required>
+         <input type="email" name="email" class="form-control">
+         <a>{{$errors->first('email')}}</a>
         </div>
         <div class="form-group">
          <label>Address</label>
-         <textarea class="form-control" name="address" required></textarea>
+         <textarea class="form-control" name="address"></textarea>
+         <a>{{$errors->first('address')}}</a>
         </div>
         <div class="form-group">
          <label>Phone</label>
-         <input type="text" class="form-control" name="phone" required>
+         <input type="text" class="form-control" name="phone">
+         <a>{{$errors->first('phone')}}</a>
         </div>
         <div class="form-group">
          <label>Password</label>
-         <input type="Password" class="form-control" name="password" required>
+         <input type="Password" class="form-control" name="password">
+         <a>{{$errors->first('password')}}</a>
         </div>
        </div>
        <div class="modal-footer">
@@ -173,19 +179,23 @@
        <div class="modal-body">
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name="name" id="name" class="form-control" required>
+         <input type="text" name="name" id="name" class="form-control">
+         <a>{{$errors->first('name')}}</a>
         </div>
         <div class="form-group">
          <label>Email</label>
-         <input type="email" class="form-control" id="email" name="email" required>
+         <input type="email" class="form-control" id="email" name="email">
+         <a>{{$errors->first('email')}}</a>
         </div>
         <div class="form-group">
          <label>Address</label>
-         <textarea class="form-control" name="address"  id="address" required></textarea>
+         <textarea class="form-control" name="address"  id="address"></textarea>
+         <a>{{$errors->first('address')}}</a>
         </div>
         <div class="form-group">
          <label>Phone</label>
-         <input type="text" class="form-control" id="phone" name="phone" required>
+         <input type="text" class="form-control" id="phone" name="phone">
+         <a>{{$errors->first('phone')}}</a>
         </div>
        </div>
        <div class="modal-footer">
@@ -225,52 +235,40 @@
       $('tbody').on('click', 'a', function(){
           var value_id = $(this).closest('tr').find('td').first().text();
           document.getElementById("delete_button").value = value_id;
-
           $('#deleteform').attr('action','/superadmin/moderatormanagement/deletemoderator/'+value_id);
       });
   });
-
   $(document).ready(function(){
-
     $(".edit").on('click',function(){
         $tr = $(this).closest('tr');
         var editdata = $tr.children('td').map(function(){
           return $(this).text();
         }).get();
-
         console.log(editdata);
-
         $('#name').val(editdata[1]);
         $('#email').val(editdata[2]);
         $('#address').val(editdata[3]);
         $('#phone').val(editdata[4]);
-
         $('#editform').attr('action','/superadmin/moderatormanagement/updatemoderator/'+editdata[0]);
     });
   });
-
   $('body').on('keyup','#search', function(){
   var search = $(this).val();
-
   $.ajax({
     method: 'POST',
     url: "{{ route('Superadmin.searchmoderator') }}",
     dataType:'json',
     data: {
-
       search: search,
     },
     success: function(res){
       var tbrow = '';
       $('#tablebody').html('');
-
       $.each(res,function(index,value){
         tbrow = '<tr><td>'+value.id+'</td><td>'+value.name+'</td><td>'+value.email+'</td><td>'+value.address+'</td><td>'+value.phone+'</td><td><a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a><a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td></tr>';
-
         $('#tablebody').append(tbrow);
       });
     }
   });
 });
-
 </script>

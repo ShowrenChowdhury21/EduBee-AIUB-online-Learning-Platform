@@ -129,27 +129,33 @@
        <div class="modal-body">
          <div class="form-group">
           <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
+          <input type="text" name="id" class="form-control" >
+          <a>{{$errors->first('id')}}</a>
          </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name = "name" class="form-control" required>
+         <input type="text" name = "name" class="form-control" >
+         <a>{{$errors->first('name')}}</a>
         </div>
         <div class="form-group">
          <label>Email</label>
-         <input type="email" name = "email" class="form-control" required>
+         <input type="email" name = "email" class="form-control" >
+         <a>{{$errors->first('email')}}</a>
         </div>
         <div class="form-group">
          <label>Address</label>
-         <textarea class="form-control" name = "address" required></textarea>
+         <textarea class="form-control" name = "address" ></textarea>
+         <a>{{$errors->first('address')}}</a>
         </div>
         <div class="form-group">
          <label>Phone</label>
-         <input type="text" name = "phone" class="form-control" required>
+         <input type="text" name = "phone" class="form-control" >
+         <a>{{$errors->first('phone')}}</a>
         </div>
         <div class="form-group">
          <label>Password</label>
-         <input type="password" name = "password" class="form-control" required>
+         <input type="password" name = "password" class="form-control" >
+         <a>{{$errors->first('password')}}</a>
         </div>
        </div>
        <div class="modal-footer">
@@ -172,19 +178,23 @@
        <div class="modal-body">
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name = "name" id="name" class="form-control" required>
+         <input type="text" name = "name" id="name" class="form-control">
+         <a>{{$errors->first('name')}}</a>
         </div>
         <div class="form-group">
          <label>Email</label>
-         <input type="email" name = "email" id="email" class="form-control" required>
+         <input type="email" name = "email" id="email" class="form-control">
+         <a>{{$errors->first('email')}}</a>
         </div>
         <div class="form-group">
          <label>Address</label>
-         <textarea class="form-control"  id="address" name = "address" required></textarea>
+         <textarea class="form-control"  id="address" name = "address"></textarea>
+         <a>{{$errors->first('address')}}</a>
         </div>
         <div class="form-group">
          <label>Phone</label>
-         <input type="text" name = "phone"  id="phone" class="form-control" required>
+         <input type="text" name = "phone"  id="phone" class="form-control">
+         <a>{{$errors->first('phone')}}</a>
         </div>
        </div>
        <div class="modal-footer">

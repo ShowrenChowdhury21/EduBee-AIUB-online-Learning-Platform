@@ -27,36 +27,49 @@ class ModeratorController extends Controller
         //return view('Moderator.usermanagement');
     }
     public function adduser(Request $request){
-        $user = new User();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->phone        = $request->phone;
-        $user->type         = $request->type;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
+        'type' => 'required',
+        'password' => 'required'
+      ]);
+      $user = new User();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->phone        = $request->phone;
+      $user->type         = $request->type;
+      $user->save();
 
-        $userlogin = new Login();
-        $userlogin->id           = $request->id;
-        $userlogin->name         = $request->name;
-        $userlogin->email         = $request->email;
-        $userlogin->password     = $request->password;
-        $userlogin->type         = $request->type;
-        $userlogin->save();
+      $userlogin = new Login();
+      $userlogin->id           = $request->id;
+      $userlogin->name         = $request->name;
+      $userlogin->email         = $request->email;
+      $userlogin->password     = $request->password;
+      $userlogin->type         = $request->type;
+      $userlogin->save();
 
-        return redirect()->route('Moderator.usermanagement');
+      return redirect()->route('Moderator.usermanagement');
     }
     public function updateuser($id, Request $request){
-        $user = User::find($id);
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->phone        = $request->phone;
-        $user->save();
+      $request->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
+      ]);
+      $user = User::find($id);
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->phone        = $request->phone;
+      $user->save();
 
-        $userlogin = Login::find($id);
-        $userlogin->name     = $request->name;
-        $userlogin->save();
+      $userlogin = Login::find($id);
+      $userlogin->name     = $request->name;
+      $userlogin->save();
 
-        return redirect()->route('Moderator.usermanagement');
+      return redirect()->route('Moderator.usermanagement');
     }
 
     public function deleteuser($id, Request $request){
@@ -77,24 +90,35 @@ class ModeratorController extends Controller
                                                   ->with('courses', $courses);
     }
     public function addcourseforstudent(Request $request){
-        $user = new CourseforStudent();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->cgpa         = $request->cgpa;
-        $user->courseid     = $request->courseid;
-        $user->coursename   = $request->coursename;
-        $user->section      = $request->section;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'cgpa' => 'required',
+        'coursename' => 'required',
+        'section' => 'required'
+      ]);
+      $user = new CourseforStudent();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->cgpa         = $request->cgpa;
+      $user->courseid     = $request->courseid;
+      $user->coursename   = $request->coursename;
+      $user->section      = $request->section;
+      $user->save();
 
-        return redirect()->route('Moderator.courseforstudent');
+      return redirect()->route('Moderator.courseforstudent');
     }
     public function updatecourseforstudent($id, Request $request){
-        $user = CourseforStudent::find($id);
-        $user->section      = $request->section;
-        $user->save();
+      $request->validate([
+        'section' => 'required'
+      ]);
+      $user = CourseforStudent::find($id);
+      $user->section      = $request->section;
+      $user->save();
 
-        return redirect()->route('Moderator.courseforstudent');
+      return redirect()->route('Moderator.courseforstudent');
     }
     public function deletecourseforstudent($id, Request $request){
         if(CourseforStudent::destroy($id)){
@@ -113,25 +137,37 @@ class ModeratorController extends Controller
     }
 
      public function addinstructor(Request $request){
-        $user = new Instructorforcourses();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->courseid     = $request->courseid;
-        $user->coursename   = $request->coursename;
-        $user->section      = $request->section;
-        $user->save();
+       $request->validate([
+         'id' => 'required',
+         'name' => 'required',
+         'courseid' => 'required',
+         'coursename' => 'required',
+         'section' => 'required'
+       ]);
+      $user = new Instructorforcourses();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->courseid     = $request->courseid;
+      $user->coursename   = $request->coursename;
+      $user->section      = $request->section;
+      $user->save();
 
-        return redirect()->route('Moderator.instructorallocation');
+      return redirect()->route('Moderator.instructorallocation');
     }
 
     public function updateinstructor($id, Request $request){
-        $user = Instructorforcourses::find($id);
-        $user->courseid     = $request->courseid;
-        $user->coursename   = $request->coursename;
-        $user->section      = $request->section;
-        $user->save();
+      $request->validate([
+        'courseid' => 'required',
+        'coursename' => 'required',
+        'section' => 'required'
+      ]);
+      $user = Instructorforcourses::find($id);
+      $user->courseid     = $request->courseid;
+      $user->coursename   = $request->coursename;
+      $user->section      = $request->section;
+      $user->save();
 
-        return redirect()->route('Moderator.instructorallocation');
+      return redirect()->route('Moderator.instructorallocation');
     }
 
     public function deleteinstructor($id, Request $request){

@@ -128,15 +128,18 @@
        <div class="modal-body">
          <div class="form-group">
           <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
+          <input type="text" name="id" class="form-control">
+          <a>{{$errors->first('id')}}</a>
          </div>
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name="name" class="form-control" required>
+         <input type="text" name="name" class="form-control">
+         <a>{{$errors->first('name')}}</a>
         </div>
         <div class="form-group">
          <label>Department</label>
-         <input type="text" name="department" class="form-control" required>
+         <input type="text" name="department" class="form-control">
+         <a>{{$errors->first('department')}}</a>
         </div>
        </div>
        <div class="modal-footer">
@@ -159,11 +162,13 @@
        <div class="modal-body">
         <div class="form-group">
          <label>Name</label>
-         <input type="text" name="name" id="name" class="form-control" required>
+         <input type="text" name="name" id="name" class="form-control">
+         <a>{{$errors->first('name')}}</a>
         </div>
         <div class="form-group">
-         <label>Section</label>
-         <input type="text" name="department" id="department" class="form-control" required>
+         <label>Department</label>
+         <input type="text" name="department" id="department" class="form-control">
+         <a>{{$errors->first('section')}}</a>
         </div>
        </div>
        <div class="modal-footer">
