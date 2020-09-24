@@ -118,9 +118,6 @@
                     @endfor
                  </tbody>
                </table>
-              <div class="col-sm-6" style="margin-top: 50px;">
-                <a href="" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
-              </div>
           </div>
       </div>
 
@@ -135,56 +132,63 @@
            <div class="modal-body">
              <div class="form-group">
               <label>Student ID</label>
-              <select class="form-control" required name="id" >
+              <select class="form-control" name="id" >
                 <option value="" selected>Select Student Id</option>
                 @foreach ($stdnts as $std)
                 <option value="{{$std->id}}">{{$std->id}}</option>
                 @endforeach
               </select>
+              <a>{{$errors->first('id')}}</a>
             </div>
             <div class="form-group">
              <label>Student Name</label>
-              <select class="form-control" required name="name" >
+              <select class="form-control" name="name" >
                 <option value="" selected>Select Student Name</option>
                 @foreach ($stdnts as $std)
                   <option value="{{$std->name}}">{{$std->name}}</option>
                 @endforeach
               </select>
+              <a>{{$errors->first('name')}}</a>
             </div>
             <div class="form-group">
               <label>Email</label>
-              <select class="form-control" required name="email" >
+              <select class="form-control" name="email" >
                 <option value="" selected>Select Student Email</option>
                 @foreach ($stdnts as $std)
                   <option value="{{$std->email}}">{{$std->email}}</option>
                 @endforeach
               </select>
+              <a>{{$errors->first('email')}}</a>
             </div>
             <div class="form-group">
               <label>CGPA</label>
-              <input type="text" name="cgpa" class="form-control" required>
+              <input type="text" name="cgpa" class="form-control">
+              <a>{{$errors->first('cgpa')}}</a>
             </div>
             <div class="form-group">
              <label>Course Id</label>
-              <select class="form-control" required name="courseid" >
+              <select class="form-control" name="courseid" >
                 <option value="" selected>Select Course Id</option>
                 @foreach ($courses as $course)
                   <option value="{{$course->id}}">{{$course->id}}</option>
                 @endforeach
               </select>
+              <a>{{$errors->first('courseid')}}</a>
             </div>
             <div class="form-group">
              <label>Course Name</label>
-              <select class="form-control" required name="coursename" >
+              <select class="form-control" name="coursename" >
                 <option value="" selected>Select Course Name</option>
                 @foreach ($courses as $course)
                   <option value="{{$course->name}}">{{$course->name}}</option>
                 @endforeach
               </select>
+              <a>{{$errors->first('coursename')}}</a>
             </div>
             <div class="form-group">
              <label>Section</label>
-             <input type="text" name="section" class="form-control" required>
+             <input type="text" name="section" class="form-control">
+             <a>{{$errors->first('section')}}</a>
             </div>
            </div>
            <div class="modal-footer">
@@ -207,7 +211,8 @@
        <div class="modal-body">
         <div class="form-group">
          <label>Section</label>
-         <input type="text" id="section" name="section" class="form-control" required>
+         <input type="text" id="section" name="section" class="form-control">
+         <a>{{$errors->first('section')}}</a>
         </div>
        </div>
        <div class="modal-footer">

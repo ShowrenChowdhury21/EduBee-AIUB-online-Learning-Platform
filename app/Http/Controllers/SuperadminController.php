@@ -30,38 +30,54 @@ class SuperadminController extends Controller
     }
 
     public function addadmin(Request $request){
-        $user = new Admin();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->address      = $request->address;
-        $user->phone         = $request->phone;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'address' => 'required',
+        'phone' => 'required',
+        'password' => 'required',
+      ]);
 
-        $userlogin = new Login();
-        $userlogin->id           = $request->id;
-        $userlogin->name         = $request->name;
-        $userlogin->email         = $request->email;
-        $userlogin->password     = $request->password;
-        $userlogin->type         = "admin";
-        $userlogin->save();
+      $user = new Admin();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->address      = $request->address;
+      $user->phone         = $request->phone;
+      $user->save();
 
-        return redirect()->route('Superadmin.adminmanagement');
+      $userlogin = new Login();
+      $userlogin->id           = $request->id;
+      $userlogin->name         = $request->name;
+      $userlogin->email         = $request->email;
+      $userlogin->password     = $request->password;
+      $userlogin->type         = "admin";
+      $userlogin->save();
+
+      return redirect()->route('Superadmin.adminmanagement');
     }
 
     public function updateadmin($id, Request $request){
-        $user = Admin::find($id);
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->address      = $request->address;
-        $user->phone         = $request->phone;
-        $user->save();
+      $request->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'address' => 'required',
+        'phone' => 'required'
+      ]);
 
-        $userlogin = Login::find($id);
-        $userlogin->name         = $request->name;
-        $userlogin->save();
+      $user = Admin::find($id);
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->address      = $request->address;
+      $user->phone         = $request->phone;
+      $user->save();
 
-        return redirect()->route('Superadmin.adminmanagement');
+      $userlogin = Login::find($id);
+      $userlogin->name         = $request->name;
+      $userlogin->save();
+
+      return redirect()->route('Superadmin.adminmanagement');
     }
 
     public function deleteadmin($id, Request $request){
@@ -87,38 +103,53 @@ class SuperadminController extends Controller
     }
 
     public function addmoderator(Request $request){
-        $user = new Moderator();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->address      = $request->address;
-        $user->phone        = $request->phone;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'address' => 'required',
+        'phone' => 'required',
+        'password' => 'required',
+      ]);
 
-        $userlogin = new Login();
-        $userlogin->id           = $request->id;
-        $userlogin->name         = $request->name;
-        $userlogin->email         = $request->email;
-        $userlogin->password     = $request->password;
-        $userlogin->type         = "moderator";
-        $userlogin->save();
+      $user = new Moderator();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->address      = $request->address;
+      $user->phone        = $request->phone;
+      $user->save();
 
-        return redirect()->route('Superadmin.moderatormanagement');
+      $userlogin = new Login();
+      $userlogin->id           = $request->id;
+      $userlogin->name         = $request->name;
+      $userlogin->email         = $request->email;
+      $userlogin->password     = $request->password;
+      $userlogin->type         = "moderator";
+      $userlogin->save();
+
+      return redirect()->route('Superadmin.moderatormanagement');
     }
 
     public function updatemoderator($id, Request $request){
-        $user = Moderator::find($id);
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->address      = $request->address;
-        $user->phone         = $request->phone;
-        $user->save();
+      $request->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'address' => 'required',
+        'phone' => 'required'
+      ]);
+      $user = Moderator::find($id);
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->address      = $request->address;
+      $user->phone         = $request->phone;
+      $user->save();
 
-        $userlogin = Login::find($id);
-        $userlogin->name      = $request->name;
-        $userlogin->save();
+      $userlogin = Login::find($id);
+      $userlogin->name      = $request->name;
+      $userlogin->save();
 
-        return redirect()->route('Superadmin.moderatormanagement');
+      return redirect()->route('Superadmin.moderatormanagement');
     }
 
     public function deletemoderator($id, Request $request){
@@ -143,6 +174,14 @@ class SuperadminController extends Controller
     }
 
     public function adduser(Request $request){
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
+        'type' => 'required',
+        'password' => 'required',
+      ]);
         $user = new User();
         $user->id           = $request->id;
         $user->name         = $request->name;
@@ -163,6 +202,11 @@ class SuperadminController extends Controller
     }
 
     public function updateuser($id, Request $request){
+      $request->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'phone' => 'required'
+      ]);
         $user = User::find($id);
         $user->name         = $request->name;
         $user->email        = $request->email;
@@ -191,22 +235,33 @@ class SuperadminController extends Controller
     }
 
     public function adddept(Request $request){
-        $user = new Department();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->tag        = $request->tag;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'tag' => 'required'
+      ]);
 
-        return redirect()->route('Superadmin.departmentmanagement');
+      $user = new Department();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->tag        = $request->tag;
+      $user->save();
+
+      return redirect()->route('Superadmin.departmentmanagement');
     }
 
     public function updatedept($id, Request $request){
-        $user = Department::find($id);
-        $user->name         = $request->name;
-        $user->tag        = $request->tag;
-        $user->save();
+      $request->validate([
+        'name' => 'required',
+        'tag' => 'required'
+      ]);
 
-        return redirect()->route('Superadmin.departmentmanagement');
+      $user = Department::find($id);
+      $user->name         = $request->name;
+      $user->tag        = $request->tag;
+      $user->save();
+
+      return redirect()->route('Superadmin.departmentmanagement');
     }
 
     public function deletedept($id, Request $request){
@@ -228,22 +283,33 @@ class SuperadminController extends Controller
     }
 
     public function addcourse(Request $request){
-        $user = new Course();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->department   = $request->department;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'department' => 'required'
+      ]);
 
-        return redirect()->route('Superadmin.coursemanagement');
+      $user = new Course();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->department   = $request->department;
+      $user->save();
+
+      return redirect()->route('Superadmin.coursemanagement');
     }
 
     public function updatecourse($id, Request $request){
-        $user = Course::find($id);
-        $user->name         = $request->name;
-        $user->department   = $request->department;
-        $user->save();
+      $request->validate([
+        'name' => 'required',
+        'department' => 'required'
+      ]);
 
-        return redirect()->route('Superadmin.coursemanagement');
+      $user = Course::find($id);
+      $user->name         = $request->name;
+      $user->department   = $request->department;
+      $user->save();
+
+      return redirect()->route('Superadmin.coursemanagement');
     }
 
     public function deletecourse($id, Request $request){
@@ -269,25 +335,38 @@ class SuperadminController extends Controller
     }
 
     public function addcourseforstudent(Request $request){
-        $user = new CourseforStudent();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->email        = $request->email;
-        $user->cgpa         = $request->cgpa;
-        $user->courseid     = $request->courseid;
-        $user->coursename   = $request->coursename;
-        $user->section      = $request->section;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'cgpa' => 'required',
+        'courseid' => 'required',
+        'coursename' => 'required',
+        'section' => 'required'
+      ]);
 
-        return redirect()->route('Superadmin.courseforstudent');
+      $user = new CourseforStudent();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->email        = $request->email;
+      $user->cgpa         = $request->cgpa;
+      $user->courseid     = $request->courseid;
+      $user->coursename   = $request->coursename;
+      $user->section      = $request->section;
+      $user->save();
+
+      return redirect()->route('Superadmin.courseforstudent');
     }
 
     public function updatecourseforstudent($id, Request $request){
-        $user = CourseforStudent::find($id);
-        $user->section      = $request->section;
-        $user->save();
+      $request->validate([
+        'section' => 'required'
+      ]);
+      $user = CourseforStudent::find($id);
+      $user->section      = $request->section;
+      $user->save();
 
-        return redirect()->route('Superadmin.courseforstudent');
+      return redirect()->route('Superadmin.courseforstudent');
     }
 
     public function deletecourseforstudent($id, Request $request){
@@ -330,25 +409,37 @@ class SuperadminController extends Controller
     }
 
     public function addinstructor(Request $request){
-        $user = new Instructorforcourses();
-        $user->id           = $request->id;
-        $user->name         = $request->name;
-        $user->courseid     = $request->courseid;
-        $user->coursename   = $request->coursename;
-        $user->section      = $request->section;
-        $user->save();
+      $request->validate([
+        'id' => 'required',
+        'name' => 'required',
+        'courseid' => 'required',
+        'coursename' => 'required',
+        'section' => 'required'
+      ]);
+      $user = new Instructorforcourses();
+      $user->id           = $request->id;
+      $user->name         = $request->name;
+      $user->courseid     = $request->courseid;
+      $user->coursename   = $request->coursename;
+      $user->section      = $request->section;
+      $user->save();
 
-        return redirect()->route('Superadmin.instructorallocation');
+      return redirect()->route('Superadmin.instructorallocation');
     }
 
     public function updateinstructor($id, Request $request){
-        $user = Instructorforcourses::find($id);
-        $user->courseid     = $request->courseid;
-        $user->coursename   = $request->coursename;
-        $user->section      = $request->section;
-        $user->save();
+      $request->validate([
+        'courseid' => 'required',
+        'coursename' => 'required',
+        'section' => 'required'
+      ]);
+      $user = Instructorforcourses::find($id);
+      $user->courseid     = $request->courseid;
+      $user->coursename   = $request->coursename;
+      $user->section      = $request->section;
+      $user->save();
 
-        return redirect()->route('Superadmin.instructorallocation');
+      return redirect()->route('Superadmin.instructorallocation');
     }
 
     public function deleteinstructor($id, Request $request){
