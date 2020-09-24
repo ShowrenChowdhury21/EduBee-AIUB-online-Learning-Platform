@@ -133,16 +133,31 @@
        </div>
        <div class="modal-body">
          <div class="form-group">
-          <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
-         </div>
-        <div class="form-group">
-         <label>Name</label>
-         <input type="text" name="name" class="form-control" required>
+          <label>Student ID</label>
+          <select class="form-control" required name="id" >
+            <option value="" selected>Select Student Id</option>
+            @foreach ($stdnts as $std)
+            <option value="{{$std->id}}">{{$std->id}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="email" class="form-control" required>
+         <label>Student Name</label>
+          <select class="form-control" required name="name" >
+            <option value="" selected>Select Student Name</option>
+            @foreach ($stdnts as $std)
+              <option value="{{$std->name}}">{{$std->name}}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Email</label>  
+          <select class="form-control" required name="email" >
+            <option value="" selected>Select Student Email</option>
+            @foreach ($stdnts as $std)
+              <option value="{{$std->email}}">{{$std->email}}</option>
+            @endforeach
+          </select>  
         </div>
         <div class="form-group">
           <label>CGPA</label>
@@ -150,11 +165,21 @@
         </div>
         <div class="form-group">
          <label>Course Id</label>
-         <input type="text" name="courseid" class="form-control" required>
+          <select class="form-control" required name="courseid" >
+            <option value="" selected>Select Course Id</option>
+            @foreach ($courses as $course)
+              <option value="{{$course->id}}">{{$course->id}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
          <label>Course Name</label>
-         <input type="text" name="coursename" class="form-control" required>
+          <select class="form-control" required name="coursename" >
+            <option value="" selected>Select Course Name</option>
+            @foreach ($courses as $course)
+              <option value="{{$course->name}}">{{$course->name}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
          <label>Section</label>

@@ -77,9 +77,9 @@
     </nav>
     <div id="main">
       <div id="course">
-        <h1 class="filetitle" style="margin-top:60px;">Course Name: </h1>
-        <h1 class="filetitle" style="font-size: 15px;">Faculty Name: </h1>
-        <h1 class="filetitle" style="font-size: 10px;">Section: </h1>
+      <h1 class="filetitle" style="margin-top:60px;">Course Name: {{$coursename}}</h1>
+      <h1 class="filetitle" style="font-size: 15px;">Faculty Name:</h1>
+        <h1 class="filetitle" style="font-size: 10px;">Section: {{$section}}</h1>
         <div class="fileContainer">
           <div class="buttonContainer">
             <button class="filebutton" onclick="fileshowpanel(0,'#004981')">Notes</button>
@@ -87,22 +87,30 @@
             <button class="filebutton" onclick="fileshowpanel(2,'#004981')">Assignments</button>
           </div>
           <div class="filePanel">
-            <a href="../Assets/Upload/lab.pdf" style="font-size: 20px; margin-left: -700px;" download>File name</a>
+            @foreach ($notelist as $nl)
+              <a href='storage/uploads/{{$nl->filename}}'style="font-size: 20px; margin-left: -700px; text-align: left;" download>{{$nl->filename}}</a><br>
+            @endforeach
           </div>
           <div class="filePanel">
             <div id="light">
               <a class="boxclose" id="boxclose" onclick="videoclose();"></a>
-              <video id="videocard" width="600" controls>
-                  <source src="../Assets/Upload/demo.mp4" type="video/mp4">
-              </video>
+                @foreach ($videolist as $vl)
+                <video id="videocard" width="600" controls>
+                   <source src='storage/uploads/{{$vl->filename}}' type="video/mp4">
+                </video>
+                @endforeach
             </div>
             <div id="fade" onClick="videoclose();"></div>
             <div>
-              <a href="#" onclick="videoopen();" style="font-size: 20px; margin-left: -700px;">Watch video(Video name)</a>
+              @foreach ($videolist as $vl)
+                <a href='#' onclick="videoopen();" style="font-size: 20px; margin-left: -700px; text-align: left;">{{$vl->filename}}</a><br>
+              @endforeach
             </div>
           </div>
           <div class="filePanel">
-            <a href="google.com" style="font-size: 20px; margin-left: -700px;" download>File name</a>
+            @foreach ($assignmentlist as $al)
+              <a href='storage/uploads/{{$al->filename}}' style="font-size: 20px; margin-left: -700px; text-align: left;" download>{{$al->filename}}</a><br>
+            @endforeach
           </div>
         </div>
       </div>

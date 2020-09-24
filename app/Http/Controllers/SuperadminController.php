@@ -261,7 +261,11 @@ class SuperadminController extends Controller
     //courseforstudent
     function courseforstudent(){
         $crsforstdnt = DB::table('courseforstudents')->get();
-        return view('Superadmin.courseforstudent')->with('crsforstdnt', $crsforstdnt);
+        $stdnts = DB::table('users')->where('type', 'student')->select('id','name','email')->get();
+        $courses = DB::table('courses')->select('id','name')->get();
+        return view('Superadmin.courseforstudent')->with('crsforstdnt', $crsforstdnt)
+                                                  ->with('stdnts', $stdnts)
+                                                  ->with('courses', $courses);
     }
 
     public function addcourseforstudent(Request $request){
@@ -296,7 +300,11 @@ class SuperadminController extends Controller
     //instructorallocation
     function instructorallocation(){
         $instructor = DB::table('instructorforcourses')->get();
-        return view('Superadmin.instructorallocation')->with('instructor', $instructor);
+        $faculty = DB::table('users')->where('type', 'instructor')->select('id','name')->get();
+        $courses = DB::table('courses')->select('id','name')->get();
+        return view('Superadmin.instructorallocation')->with('instructor', $instructor)
+                                                  ->with('faculty', $faculty)
+                                                  ->with('courses', $courses);
     }
 
     public function addinstructor(Request $request){

@@ -15,6 +15,7 @@ use App\CourseforStudent;
 use App\Instructorforcourses;
 use App\Announcement;
 
+
 class AdminController extends Controller
 {
     function index(){
@@ -149,7 +150,11 @@ class AdminController extends Controller
 
     function courseforstudent(){
         $crsforstdnt = DB::table('courseforstudents')->get();
-        return view('Admin.courseforstudent')->with('crsforstdnt', $crsforstdnt);
+        $stdnts = DB::table('users')->where('type', 'student')->select('id','name','email')->get();
+        $courses = DB::table('courses')->select('id','name')->get();
+        return view('Admin.courseforstudent')->with('crsforstdnt', $crsforstdnt)
+                                                  ->with('stdnts', $stdnts)
+                                                  ->with('courses', $courses);
     }
 
     public function addcourseforstudent(Request $request){
@@ -181,7 +186,11 @@ class AdminController extends Controller
     }
     function instructorallocation(){
         $instructor = DB::table('instructorforcourses')->get();
-        return view('Admin.instructorallocation')->with('instructor', $instructor);
+        $faculty = DB::table('users')->where('type', 'instructor')->select('id','name')->get();
+        $courses = DB::table('courses')->select('id','name')->get();
+        return view('Superadmin.instructorallocation')->with('instructor', $instructor)
+                                                  ->with('faculty', $faculty)
+                                                  ->with('courses', $courses);
     }
 
     public function addinstructor(Request $request){

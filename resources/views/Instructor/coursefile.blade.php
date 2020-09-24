@@ -77,22 +77,79 @@
                     <button class="filebutton" onclick="fileshowpanel(2,'#004981')">Assignments</button>
                 </div>
                 <div class="filePanel">
-                  <form method="post" action="/instructor/coursefile" enctype="multipart/form-data">
-                    <input type="file" id="notes" name="files" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
+                  <form method="post" action="/instructor/coursefilenotes/{{$coursename}}/{{$section}}" enctype="multipart/form-data">
+                    <input type="file" id="notes" name="notes" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
                     <input type="submit" name="notebtn" value="Upload" style="width: 150px; height:40px;color: white; background: #004981; border: 3px solid #004981; padding: 5px 15px; margin-top: -40px; margin-left: 550px;"/>
                   </form>
+                  <br><br><br>
+                  <table id = "table" class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>Course Name</th>
+                        <th>Section</th>
+                        <th>File Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for($i=0; $i != count($notelist); $i++)
+                      <tr>
+                        <td>{{$notelist[$i]->coursename}}</td>
+                        <td>{{$notelist[$i]->section}}</td>
+                        <td>{{$notelist[$i]->filename}}</td>
+                      </tr>
+                      @endfor
+                    </tbody>
+                  </table>
                 </div>
                 <div class="filePanel">
-                  <form method="post" action="/instructor/coursefile" enctype="multipart/form-data">
-                    <input type="file" id="videos" name="files" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
+                  <form method="post" action="/instructor/coursefilevideos/{{$coursename}}/{{$section}}" enctype="multipart/form-data">
+                    <input type="file" id="videos" name="videos" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
                     <input type="submit" name="videobtn" value="Upload" style="width: 150px; height:40px;color: white; background: #004981; border: 3px solid #004981; padding: 5px 15px; margin-top: -40px; margin-left: 550px;"/>
                   </form>
+                  <br><br><br>
+                  <table id = "table" class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>Course Name</th>
+                        <th>Section</th>
+                        <th>File Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for($i=0; $i != count($videolist); $i++)
+                      <tr>
+                        <td>{{$videolist[$i]->coursename}}</td>
+                        <td>{{$videolist[$i]->section}}</td>
+                        <td>{{$videolist[$i]->filename}}</td>
+                      </tr>
+                      @endfor
+                    </tbody>
+                  </table>
                 </div>
                 <div class="filePanel">
-                  <form method="post" action="/instructor/coursefile" enctype="multipart/form-data">
-                    <input type="file" id="assessments" name="files" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
+                  <form method="post" action="/instructor/coursefileassignments/{{$coursename}}/{{$section}}" enctype="multipart/form-data">
+                    <input type="file" id="assignments" name="assignments" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
                     <input type="submit" name="assessmentbtn" value="Upload" style="width: 150px; height:40px;color: white; background: #004981; border: 3px solid #004981; padding: 5px 15px; margin-top: -40px; margin-left: 550px;"/>
                   </form>
+                  <br><br><br>
+                  <table id = "table" class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>Course Name</th>
+                        <th>Section</th>
+                        <th>File Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for($i=0; $i != count($assignmentlist); $i++)
+                      <tr>
+                        <td>{{$assignmentlist[$i]->coursename}}</td>
+                        <td>{{$assignmentlist[$i]->section}}</td>
+                        <td>{{$assignmentlist[$i]->filename}}</td>
+                      </tr>
+                      @endfor
+                    </tbody>
+                  </table>
                 </div>
              </div>
           </div>

@@ -14,6 +14,9 @@ use App\Course;
 use App\CourseforStudent;
 use App\Instructorforcourses;
 use App\Announcement;
+use App\Note;
+use App\Video;
+use App\Assignment;
 
 class StudentController extends Controller
 {
@@ -25,11 +28,25 @@ class StudentController extends Controller
       $instructor = DB::table('instructorforcourses')->where('coursename', $courselist[0]->coursename)->get();
       return view('Student.consultation')->with(['courselist' => $courselist, 'instructor' => $instructor]);
     }
-    function coursefile(){
-        return view('Student.coursefile');
+    function coursefile(Request $request,$coursename,$section){
+      $faculty = DB::table('instructorforcourses')->where('coursename', $coursename)
+                                                  ->where('section', $section)->pluck('name');
+      $notelist = DB::table('notes')->where('coursename', $coursename)
+                                    ->where('section', $section)->get();
+      $videolist = DB::table('videos')->where('coursename', $coursename)
+                                      ->where('section', $section)->get();
+      $assignmentlist = DB::table('assignments')->where('coursename', $coursename)
+                                                ->where('section', $section)->get();
+      return view('Student.coursefile')->with(['coursename' => $coursename,
+                                               'section' => $section])
+                                        ->with('notelist', $notelist)
+                                        ->with('videolist', $videolist)
+                                        ->with('assignmentlist', $assignmentlist)
+                                        ->with('faculty',$faculty);
     }
-    function mycourse(){
-      $courselist = DB::table('courses')->get();
+
+    function mycourse(Request $request){
+      $courselist = DB::table('courseforstudents')->where('id', $request->session()->get('id'))->get();
       return view('Student.mycourse')->with('courselist', $courselist);
     }
     function discussionforum(){

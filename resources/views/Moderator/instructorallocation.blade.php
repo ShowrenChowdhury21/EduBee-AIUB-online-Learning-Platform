@@ -116,44 +116,64 @@
           </div>
       </div>
 
-   <div id="addEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-     <div class="modal-content">
-      <form action = "/moderator/instructorallocation/addinstructor" method = "post">
-       <div class="modal-header">
-        <h4 class="modal-title">New Allocation</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-       </div>
-       <div class="modal-body">
-         <div class="form-group">
-          <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
+      <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+         <div class="modal-content">
+          <form action = "/superadmin/instructorallocation/addinstructor" method = "post">
+           <div class="modal-header">
+            <h4 class="modal-title">New Allocation</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           </div>
+           <div class="modal-body">
+             <div class="form-group">
+              <label>Instructor Id</label>
+              <select class="form-control" required name="id" >
+                <option value="" selected>Select Instructor Id</option>
+                @foreach ($faculty as $fclty)
+                <option value="{{$fclty->id}}">{{$fclty->id}}</option>
+                @endforeach
+              </select>
+             </div>
+            <div class="form-group">
+              <label>Instructor name</label>
+              <select class="form-control" required name="name" >
+                <option value="" selected>Select Instructor Id</option>
+                @foreach ($faculty as $fclty)
+                <option value="{{$fclty->name}}">{{$fclty->name}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Course Id</label>
+              <select class="form-control" required name="courseid" >
+                <option value="" selected>Select Course Id</option>
+                @foreach ($courses as $course)
+                  <option value="{{$course->id}}">{{$course->id}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Course Name</label>
+              <select class="form-control" required name="coursename" >
+                <option value="" selected>Select Course Name</option>
+                @foreach ($courses as $course)
+                  <option value="{{$course->name}}">{{$course->name}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+             <label>Section</label>
+             <input type="text" name="section" class="form-control" name="section" required>
+            </div>
+           </div>
+           <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+            <input type="submit" class="btn btn-success" value="Add">
+           </div>
+          </form>
          </div>
-        <div class="form-group">
-         <label>Name</label>
-         <input type="text" name="name" class="form-control" required>
-        </div>
-        <div class="form-group">
-         <label>Course Id</label>
-         <input type="text" name="courseid" class="form-control" required>
-        </div>
-        <div class="form-group">
-         <label>Course Name</label>
-         <input type="text" name="coursename" class="form-control" required>
-        </div>
-        <div class="form-group">
-         <label>Section</label>
-         <input type="text" name="section" class="form-control" name="section" required>
         </div>
        </div>
-       <div class="modal-footer">
-        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-        <input type="submit" class="btn btn-success" value="Add">
-       </div>
-      </form>
-     </div>
-    </div>
-   </div>
 
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
