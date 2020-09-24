@@ -71,6 +71,8 @@ class StudentController extends Controller
       $userlogin->email         = $request->email;
       $userlogin->save();
 
+      $request->session()->put('email', $request->email);
+
       return redirect()->route('Student.myaccount');
     }
     function security(){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+//use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Login;
 use App\Course;
@@ -34,7 +35,6 @@ class InstructorController extends Controller
                                           ->with('notelist', $notelist)
                                           ->with('videolist', $videolist)
                                           ->with('assignmentlist', $assignmentlist);
-
     }
 
     public function coursefilenotes(Request $request, $coursename, $section){
@@ -135,14 +135,20 @@ class InstructorController extends Controller
       return redirect()->route('Instructor.coursegrades', ['coursename'=> $courselist[0]->coursename, 'section'=> $courselist[0]->section]);
     }
 
-    
-    function discussionforum(){
-      return view('forum');
+    function studentlist($coursename, $section){
+      $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+      return view('Instructor.studentlist')->with(['courselist' => $courselist,
+                                                    'coursename' => $coursename,
+                                                    'section' => $section]);
+    }
+    function printstudentlist($coursename, $section){
+      $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+      $pdf = PDF::loadView('Instructor.printstudentlist', ['courselist' => $courselist,
+                                                    'coursename' => $coursename,
+                                                    'section' => $section]);
+      return $pdf->download('student list.pdf');
     }
 
-    function studentlist(){
-        return view('Instructor.studentlist');
-    }
     function profilesettings(){
         return view('Instructor.profilesettings');
     }
@@ -157,6 +163,8 @@ class InstructorController extends Controller
       $userlogin = Login::find($request->session()->get('id'));
       $userlogin->email         = $request->email;
       $userlogin->save();
+
+      $request->session()->put('email', $request->email);
 
       return redirect()->route('Instructor.myaccount');
     }

@@ -65,7 +65,7 @@
           </div>
         </div>
       </nav>
-      <form>
+      <form action = "/instructor/classes" method = "post">
         <div id="main">
           <div id="mycourses">
             <h1 class="coursetitle">My CLasses</h1>
