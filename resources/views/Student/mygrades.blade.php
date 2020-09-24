@@ -5,6 +5,7 @@
   <title>Grades</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src='http://code.jquery.com/jquery-latest.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ asset('asset/css/student.css') }}">
@@ -75,9 +76,11 @@
         </div>
       </div>
     </nav>
+    <table>
     <div id="main">
       <div id="mygrades">
         <h1 class="gradetitle">Course Grades</h1>
+        <a style = "margin-left:1000px" href="/student/printmygrades" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>print</span></a>
         <hr style="width: 100%; border-top: 2px solid #005aa2;">
         @for($i=0; $i != count($courselist); $i++)
           <div class="resultbox" style="width: 400px; height:160px; background:#005aa2; color: white; margin-left: 420px; margin-bottom: 20px; padding: 6px 20px;">
@@ -88,6 +91,7 @@
         @endfor
       </div>
     </div>
+  </table>
   </section>
 </body>
 

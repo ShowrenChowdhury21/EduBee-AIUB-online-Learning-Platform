@@ -56,6 +56,13 @@ class StudentController extends Controller
       $courselist = DB::table('courseforstudents')->where('id', $request->session()->get('id'))->get();
         return view('Student.mygrades')->with('courselist', $courselist);
     }
+    function printmygrades(Request $request){
+      $courselist = DB::table('courseforstudents')->where('id', $request->session()->get('id'))->get();
+      $pdf = PDF::loadView('Student.printmygrades', ['courselist' => $courselist]);
+
+      return $pdf->download('marksheet.pdf');
+    }
+
     function profilesettings(){
         return view('Student.profilesettings');
     }

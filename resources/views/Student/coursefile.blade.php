@@ -96,7 +96,7 @@
               <a class="boxclose" id="boxclose" onclick="videoclose();"></a>
                 @foreach ($videolist as $vl)
                 <video id="videocard" width="600" controls>
-                   <source src='storage/uploads/{{$vl->filename}}' type="video/mp4">
+                   <source src='{{url('storage/uploads/'.$vl->filename)}}' type="video/mp4">
                 </video>
                 @endforeach
             </div>

@@ -86,6 +86,7 @@
                      </div>
                      <div class="col-sm-6">
                       <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Allocate</span></a>
+                      <a href="/admin/printinstructorallocation" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>print</span></a>
                      </div>
                 </div>
             </div>
