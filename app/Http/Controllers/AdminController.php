@@ -241,6 +241,8 @@ class AdminController extends Controller
       $userlogin->email         = $request->email;
       $userlogin->save();
 
+      $request->session()->put('email', $request->email);
+
       return redirect()->route('Admin.myaccount');
     }
 

@@ -158,11 +158,12 @@ Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
 //instructor
 Route::get('/instructor', 'InstructorController@index')->name('Instructor.index');
 Route::get('/instructor/classes', 'InstructorController@classes');
-Route::get('/instructor/coursefile', 'InstructorController@coursefile');
+Route::get('/instructor/coursefile/{coursename}/{section}', 'InstructorController@coursefile')->name('Instructor.coursefile');
 Route::get('/instructor/coursegrades/{coursename}/{section}', 'InstructorController@coursegrades')->name('Instructor.coursegrades');
 Route::post('/instructor/coursegrades/updatecourseforstudent/{coursename}/{section}/{id}', 'InstructorController@updatecourseforstudent');
 Route::get('/instructor/grades', 'InstructorController@grades')->name('Instructor.grades');
-Route::get('/instructor/studentlist', 'InstructorController@studentlist');
+Route::get('/instructor/studentlist/{coursename}/{section}', 'InstructorController@studentlist');
+Route::get('/instructor/printstudentlist/{coursename}/{section}', 'InstructorController@printstudentlist')->name('Instructor.printstudentlist');
 Route::get('/instructor/profilesettings', 'InstructorController@profilesettings');
 Route::post('/instructor/profilesettings', 'InstructorController@saveprofilesettings');
 Route::get('/instructor/security', 'InstructorController@security')->name('Instructor.security');

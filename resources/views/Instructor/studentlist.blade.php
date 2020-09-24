@@ -76,7 +76,7 @@
                         <h2>Student <b>List</b></h2>
                        </div>
                        <div class="col-sm-6">
-                        <a href="" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>Import Report</span></a>
+                        <a href="/instructor/printstudentlist/{{$coursename}}/{{$section}}" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>print</span></a>
                       </div>
                   </div>
               </div>
@@ -90,27 +90,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                      <tr>
-                          <td>1241</td>
-                          <td>Rafat</td>
-                          <td>rafaty@mail.com</td>
-                          <td>0966686371</td>
-                          <td>3.88</td>
-                      </tr>
-                      <tr>
-                          <td>21515</td>
-                          <td>Akash</td>
-                          <td>akash@mail.com</td>
-                          <td>0966686371</td>
-                          <td>3.68</td>
-                      </tr>
-                      <tr>
-                          <td>54513</td>
-                          <td>Shifat</td>
-                          <td>shifat@mail.com</td>
-                          <td>0966686371</td>
-                          <td>3.52</td>
-                      </tr>
+                  @for($i=0; $i != count($courselist); $i++)
+                    <tr>
+                      <td>{{$courselist[$i]->id}}</td>
+                      <td>{{$courselist[$i]->name}}</td>
+                      <td>{{$courselist[$i]->email}}</td>
+                      <td>{{$courselist[$i]->grades}}</td>
+                    </tr>
+                  @endfor
                   </tbody>
               </table>
           </div>
@@ -142,4 +129,20 @@ function search() {
     }
   }
 }
+
+$(document).ready(function(){
+
+  $(".edit").on('click',function(){
+      $tr = $(this).closest('tr');
+      var editdata = $tr.children('td').map(function(){
+        return $(this).text();
+      }).get();
+
+      console.log(editdata);
+        $('#marks').val(editdata[2]);
+        $('#grades').val(editdata[3]);
+
+      $('#editform').attr('action','/instructor/coursefile/updatecourseforstudent/{{$coursename}}/{{$section}}/'+editdata[0]);
+  });
+});
 </script>

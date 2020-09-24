@@ -67,9 +67,9 @@
       </nav>
         <div id="main">
           <div id="course">
-            <h1 class="filetitle" style="margin-top:60px;">Course Name: </h1>
-            <h1 class="filetitle" style="font-size: 10px;">Section: </h1>
-            <a href="/instructor/studentlist" class="studentlist">Student List</a>
+            <h1 class="filetitle" style="margin-top:60px;">Course Name: {{$coursename}}</h1>
+            <h1 class="filetitle" style="font-size: 15px;">Section: {{$section}}</h1>
+            <a href="/instructor/studentlist/{{$coursename}}/{{$section}}" class="studentlist">Student List</a>
               <div class="fileContainer">
                 <div class="buttonContainer">
                     <button class="filebutton" onclick="fileshowpanel(0,'#004981')">Notes</button>

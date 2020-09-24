@@ -149,9 +149,11 @@ class ModeratorController extends Controller
       $userlogin->email         = $request->email;
       $userlogin->save();
 
+      $request->session()->put('email', $request->email);
+
       return redirect()->route('Moderator.myaccount');
     }
-    
+
     function security(){
         return view('Moderator.security')->with(['password_does_not_match' => '', 'old_password_not_match' => '']);
         //return view('Moderator.security');

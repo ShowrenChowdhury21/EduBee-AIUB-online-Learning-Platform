@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+//use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Admin;
 use App\Moderator;
@@ -24,8 +25,11 @@ class InstructorController extends Controller
       $courselist = DB::table('instructorforcourses')->where('id', $request->session()->get('id'))->get();
       return view('Instructor.classes')->with('courselist', $courselist);
     }
-    function coursefile(){
-        return view('Instructor.coursefile');
+    function coursefile($coursename, $section){
+      $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+      return view('Instructor.coursefile')->with(['courselist' => $courselist,
+                                                    'coursename' => $coursename,
+                                                    'section' => $section]);
     }
     function discussionforum(){
         return view('forum');
@@ -49,9 +53,20 @@ class InstructorController extends Controller
       $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
       return redirect()->route('Instructor.coursegrades', ['coursename'=> $courselist[0]->coursename, 'section'=> $courselist[0]->section]);
     }
-    function studentlist(){
-        return view('Instructor.studentlist');
+    function studentlist($coursename, $section){
+      $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+      return view('Instructor.studentlist')->with(['courselist' => $courselist,
+                                                    'coursename' => $coursename,
+                                                    'section' => $section]);
     }
+    function printstudentlist($coursename, $section){
+      $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+      $pdf = PDF::loadView('Instructor.printstudentlist', ['courselist' => $courselist,
+                                                    'coursename' => $coursename,
+                                                    'section' => $section]);
+      return $pdf->download('student list.pdf');
+    }
+
     function profilesettings(){
         return view('Instructor.profilesettings');
     }
@@ -66,6 +81,8 @@ class InstructorController extends Controller
       $userlogin = Login::find($request->session()->get('id'));
       $userlogin->email         = $request->email;
       $userlogin->save();
+
+      $request->session()->put('email', $request->email);
 
       return redirect()->route('Instructor.myaccount');
     }
