@@ -70,8 +70,11 @@ class ModeratorController extends Controller
     }
     function courseforstudent(){
         $crsforstdnt = DB::table('courseforstudents')->get();
-        return view('Moderator.courseforstudent')->with('crsforstdnt', $crsforstdnt);
-        //return view('Moderator.courseforstudent');
+        $stdnts = DB::table('users')->where('type', 'student')->select('id','name','email')->get();
+        $courses = DB::table('courses')->select('id','name')->get();
+        return view('Moderator.courseforstudent')->with('crsforstdnt', $crsforstdnt)
+                                                  ->with('stdnts', $stdnts)
+                                                  ->with('courses', $courses);
     }
     public function addcourseforstudent(Request $request){
         $user = new CourseforStudent();
@@ -131,8 +134,11 @@ class ModeratorController extends Controller
     }
     function instructorallocation(){
         $instructor = DB::table('instructorforcourses')->get();
-        return view('Moderator.instructorallocation')->with('instructor', $instructor);
-        //return view('Moderator.instructorallocation');
+        $faculty = DB::table('users')->where('type', 'instructor')->select('id','name')->get();
+        $courses = DB::table('courses')->select('id','name')->get();
+        return view('Superadmin.instructorallocation')->with('instructor', $instructor)
+                                                  ->with('faculty', $faculty)
+                                                  ->with('courses', $courses);
     }
     function profilesettings(){
         return view('Moderator.profilesettings');

@@ -81,7 +81,7 @@
           <h1 class="coursetitle">My Courses</h1>
           <hr style="width: 100%; border-top: 2px solid #005aa2;">
           @for($i=0; $i != count($courselist); $i++)
-            <input type="button" class="course" id="courseid" value="{{$courselist[$i]->name}}" onclick="window.location.href='/student/coursefile';">
+            <input type="button" class="course" id="courseid" value="{{$courselist[$i]->coursename}} {{$courselist[$i]->section}}" onclick="window.location='{{ route('Student.coursefile', ['coursename'=> $courselist[$i]->coursename, 'section'=> $courselist[$i]->section])}}'">
           @endfor
         </div>
       </div>

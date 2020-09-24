@@ -71,7 +71,7 @@
             <h1 class="coursetitle">My CLasses</h1>
             <hr style="width: 100%; border-top: 2px solid #005aa2;">
             @for($i=0; $i != count($courselist); $i++)
-              <input type="button" class="course" id="courseid" value="{{$courselist[$i]->coursename}} ({{$courselist[$i]->section}})" onclick="window.location.href='/instructor/coursefile';">
+              <input type="button" class="course" id="courseid" value="{{$courselist[$i]->coursename}} ({{$courselist[$i]->section}})" onclick="window.location='{{ route('Instructor.coursefile', ['coursename'=> $courselist[$i]->coursename, 'section'=> $courselist[$i]->section])}}'">
             @endfor
           </div>
         </div>

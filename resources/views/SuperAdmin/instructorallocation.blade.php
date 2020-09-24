@@ -129,20 +129,40 @@
        </div>
        <div class="modal-body">
          <div class="form-group">
-          <label>Id</label>
-          <input type="text" name="id" class="form-control" required>
+          <label>Instructor Id</label>
+          <select class="form-control" required name="id" >
+            <option value="" selected>Select Instructor Id</option>
+            @foreach ($faculty as $fclty)
+            <option value="{{$fclty->id}}">{{$fclty->id}}</option>
+            @endforeach
+          </select>
          </div>
         <div class="form-group">
-         <label>Name</label>
-         <input type="text" name="name" class="form-control" required>
+          <label>Instructor name</label>
+          <select class="form-control" required name="name" >
+            <option value="" selected>Select Instructor Id</option>
+            @foreach ($faculty as $fclty)
+            <option value="{{$fclty->name}}">{{$fclty->name}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
-         <label>Course Id</label>
-         <input type="text" name="courseid" class="form-control" required>
+          <label>Course Id</label>
+          <select class="form-control" required name="courseid" >
+            <option value="" selected>Select Course Id</option>
+            @foreach ($courses as $course)
+              <option value="{{$course->id}}">{{$course->id}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
-         <label>Course Name</label>
-         <input type="text" name="coursename" class="form-control" required>
+          <label>Course Name</label>
+          <select class="form-control" required name="coursename" >
+            <option value="" selected>Select Course Name</option>
+            @foreach ($courses as $course)
+              <option value="{{$course->name}}">{{$course->name}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
          <label>Section</label>
@@ -161,7 +181,7 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action="/superadmin/instructorallocation/updateinstructor" method="post" id="editform">
+      <form action="/admin/instructorallocation/updateinstructor" method="post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -188,11 +208,11 @@
      </div>
     </div>
    </div>
-
+  
    <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action="/superadmin/instructorallocation/deleteinstructor" method="post" id="deleteform">
+      <form action="/admin/instructorallocation/deleteinstructor" method="post" id="deleteform">
        <div class="modal-header">
         <h4 class="modal-title">Delete Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

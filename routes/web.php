@@ -129,8 +129,6 @@ Route::post('/moderator/usermanagement/adduser', 'ModeratorController@adduser');
 Route::post('/moderator/usermanagement/updateuser/{id}', 'ModeratorController@updateuser');
 Route::post('/moderator/usermanagement/deleteuser/{id}', 'ModeratorController@deleteuser');
 
-
-
 Route::get('/moderator/useractivity', 'ModeratorController@useractivity');
 Route::get('/discussionforum', 'ModeratorController@discussionforum');
 
@@ -139,12 +137,10 @@ Route::post('/moderator/courseforstudent/addcourseforstudent', 'ModeratorControl
 Route::post('/moderator/courseforstudent/updatecourseforstudent/{id}', 'ModeratorController@updatecourseforstudent');
 Route::post('/moderator/courseforstudent/deletecourseforstudent/{id}', 'ModeratorController@deletecourseforstudent');
 
-
 Route::get('/moderator/instructorallocation', 'ModeratorController@instructorallocation')->name('Moderator.instructorallocation');
 Route::post('/moderator/instructorallocation/addinstructor', 'ModeratorController@addinstructor');
 Route::post('/moderator/instructorallocation/updateinstructor/{id}', 'ModeratorController@updateinstructor');
 Route::post('/moderator/instructorallocation/deleteinstructor/{id}', 'ModeratorController@deleteinstructor');
-
 
 Route::get('/moderator/profilesettings', 'ModeratorController@profilesettings')->name('Moderator.profilesettings');
 Route::post('/superadmin/profilesettings', 'ModeratorController@saveprofilesettings');
@@ -158,7 +154,12 @@ Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
 //instructor
 Route::get('/instructor', 'InstructorController@index')->name('Instructor.index');
 Route::get('/instructor/classes', 'InstructorController@classes');
-Route::get('/instructor/coursefile', 'InstructorController@coursefile');
+
+Route::get('/instructor/coursefile/{coursename}/{section}', 'InstructorController@coursefile')->name('Instructor.coursefile');
+Route::post('/instructor/coursefilenotes/{coursename}/{section}', 'InstructorController@coursefilenotes');
+Route::post('/instructor/coursefilevideos/{coursename}/{section}', 'InstructorController@coursefilevideos');
+Route::post('/instructor/coursefileassignments/{coursename}/{section}', 'InstructorController@coursefileassignments');
+
 Route::get('/instructor/coursegrades/{coursename}/{section}', 'InstructorController@coursegrades')->name('Instructor.coursegrades');
 Route::post('/instructor/coursegrades/updatecourseforstudent/{coursename}/{section}/{id}', 'InstructorController@updatecourseforstudent');
 Route::get('/instructor/grades', 'InstructorController@grades')->name('Instructor.grades');
@@ -176,7 +177,7 @@ Route::get('/instructor/discussionforum', 'InstructorController@discussionforum'
 //student
 Route::get('/student', 'StudentController@index')->name('Student.index');
 Route::get('/student/consultation', 'StudentController@consultation');
-Route::get('/student/coursefile', 'StudentController@coursefile');
+Route::get('/student/coursefile/{coursename}/{section}', 'StudentController@coursefile')->name('Student.coursefile');
 //Route::get('/discussionforum', 'StudentController@discussionforum');
 Route::get('/student/mycourse', 'StudentController@mycourse');
 Route::get('/student/mygrades', 'StudentController@mygrades');

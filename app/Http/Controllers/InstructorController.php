@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
-use App\Admin;
-use App\Moderator;
-use App\User;
 use App\Login;
-use App\Department;
 use App\Course;
 use App\CourseforStudent;
 use App\Instructorforcourses;
-use App\Announcement;
+use App\Note;
+use App\Video;
+use App\Assignment;
 
 class InstructorController extends Controller
 {
@@ -24,12 +22,99 @@ class InstructorController extends Controller
       $courselist = DB::table('instructorforcourses')->where('id', $request->session()->get('id'))->get();
       return view('Instructor.classes')->with('courselist', $courselist);
     }
-    function coursefile(){
-        return view('Instructor.coursefile');
+
+    function coursefile($coursename, $section){
+      $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+      $notelist = DB::table('notes')->get();
+      $videolist = DB::table('videos')->get();
+      $assignmentlist = DB::table('assignments')->get();
+      return view('Instructor.coursefile')->with(['courselist' => $courselist,
+                                                  'coursename' => $coursename,
+                                                  'section' => $section])
+                                          ->with('notelist', $notelist)
+                                          ->with('videolist', $videolist)
+                                          ->with('assignmentlist', $assignmentlist);
+
     }
-    function discussionforum(){
-        return view('forum');
+
+    public function coursefilenotes(Request $request, $coursename, $section){
+      if($request->hasFile('notes'))
+      {
+        $notes = $request->file('notes');
+        $filename = $notes->getClientOriginalName();
+        $request->file('notes')->storeAs('uploads', $filename, 'public');
+
+        $file = new Note();
+        $file->coursename   = $coursename;
+        $file->section      = $section;
+        $file->filename     = $filename;
+        $file->save();
+
+        $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+        $notelist = DB::table('notes')->get();
+        $videolist = DB::table('videos')->get();
+        $assignmentlist = DB::table('assignments')->get();
+        return view('Instructor.coursefile')->with(['courselist' => $courselist,
+                                                  'coursename' => $coursename,
+                                                  'section' => $section])
+                                          ->with('notelist', $notelist)
+                                          ->with('videolist', $videolist)
+                                          ->with('assignmentlist', $assignmentlist);
+      }
     }
+
+    public function coursefilevideos(Request $request, $coursename, $section){
+      if($request->hasFile('videos'))
+      {
+        $notes = $request->file('videos');
+        $filename = $notes->getClientOriginalName();
+        $request->file('videos')->storeAs('uploads', $filename, 'public');
+
+        $file = new Video();
+        $file->coursename   = $coursename;
+        $file->section      = $section;
+        $file->filename     = $filename;
+        $file->save();
+
+        $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+        $notelist = DB::table('notes')->get();
+        $videolist = DB::table('videos')->get();
+        $assignmentlist = DB::table('assignments')->get();
+        return view('Instructor.coursefile')->with(['courselist' => $courselist,
+                                                  'coursename' => $coursename,
+                                                  'section' => $section])
+                                          ->with('notelist', $notelist)
+                                          ->with('videolist', $videolist)
+                                          ->with('assignmentlist', $assignmentlist);
+      }
+    }
+
+    public function coursefileassignments(Request $request, $coursename, $section){
+      if($request->hasFile('assignments'))
+      {
+        $notes = $request->file('assignments');
+        $filename = $notes->getClientOriginalName();
+        $request->file('assignments')->storeAs('uploads', $filename, 'public');
+
+        $file = new Assignment();
+        $file->coursename   = $coursename;
+        $file->section      = $section;
+        $file->filename     = $filename;
+        $file->save();
+
+        $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
+        $notelist = DB::table('notes')->get();
+        $videolist = DB::table('videos')->get();
+        $assignmentlist = DB::table('assignments')->get();
+        return view('Instructor.coursefile')->with(['courselist' => $courselist,
+                                                  'coursename' => $coursename,
+                                                  'section' => $section])
+                                          ->with('notelist', $notelist)
+                                          ->with('videolist', $videolist)
+                                          ->with('assignmentlist', $assignmentlist);
+      }
+    }
+
     function coursegrades($coursename, $section){
       $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
       return view('Instructor.coursegrades')->with(['courselist' => $courselist,
@@ -49,6 +134,12 @@ class InstructorController extends Controller
       $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
       return redirect()->route('Instructor.coursegrades', ['coursename'=> $courselist[0]->coursename, 'section'=> $courselist[0]->section]);
     }
+
+    
+    function discussionforum(){
+      return view('forum');
+    }
+
     function studentlist(){
         return view('Instructor.studentlist');
     }
