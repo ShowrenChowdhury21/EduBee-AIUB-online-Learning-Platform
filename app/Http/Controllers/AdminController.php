@@ -98,23 +98,25 @@ class AdminController extends Controller
         'email' => 'required',
         'phone' => 'required',
         'type' => 'required',
+        'department' => 'required',
         'password' => 'required'
       ]);
-      $user = new User();
-      $user->id           = $request->id;
-      $user->name         = $request->name;
-      $user->email        = $request->email;
-      $user->phone        = $request->phone;
-      $user->type         = $request->type;
-      $user->save();
+        $user = new User();
+        $user->id           = $request->id;
+        $user->name         = $request->name;
+        $user->email        = $request->email;
+        $user->phone        = $request->phone;
+        $user->type         = $request->type;
+        $user->department        = $request->department;
+        $user->save();
 
-      $userlogin = new Login();
-      $userlogin->id           = $request->id;
-      $userlogin->name         = $request->name;
-      $userlogin->email         = $request->email;
-      $userlogin->password     = $request->password;
-      $userlogin->type         = $request->type;
-      $userlogin->save();
+        $userlogin = new Login();
+        $userlogin->id           = $request->id;
+        $userlogin->name         = $request->name;
+        $userlogin->email         = $request->email;
+        $userlogin->password     = $request->password;
+        $userlogin->type         = $request->type;
+        $userlogin->save();
 
       return redirect()->route('Admin.usermanagement');
     }
@@ -122,18 +124,19 @@ class AdminController extends Controller
       $request->validate([
         'name' => 'required',
         'email' => 'required',
-        'phone' => 'required'
+        'phone' => 'required',
+        'department' => 'required'
       ]);
-      $user = User::find($id);
-      $user->name         = $request->name;
-      $user->email        = $request->email;
-      $user->phone        = $request->phone;
-      $user->save();
+        $user = User::find($id);
+        $user->name         = $request->name;
+        $user->email        = $request->email;
+        $user->phone        = $request->phone;
+        $user->department        = $request->department;
+        $user->save();
 
-      $userlogin = Login::find($id);
-      $userlogin->name     = $request->name;
-      $userlogin->save();
-
+        $userlogin = Login::find($id);
+        $userlogin->name     = $request->name;
+        $userlogin->save();
       return redirect()->route('Admin.usermanagement');
     }
     public function deleteuser($id, Request $request){

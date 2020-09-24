@@ -96,6 +96,7 @@
                           <th>Name</th>
                           <th>Email</th>
                           <th>Phone</th>
+                          <th>Department</th>
                           <th>User Type</th>
                           <th>Actions</th>
                       </tr>
@@ -107,6 +108,7 @@
                       <td>{{$users[$i]->name}}</td>
                       <td>{{$users[$i]->email}}</td>
                       <td>{{$users[$i]->phone}}</td>
+                      <td>{{$users[$i]->department}}</td>
                       <td>{{$users[$i]->type}}</td>
                         <td>
                             <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -148,6 +150,11 @@
          <label>Phone</label>
          <input type="Phone" class="form-control" name="phone">
          <a>{{$errors->first('phone')}}</a>
+        </div>
+        <div class="form-group">
+         <label>Department</label>
+         <input type="text" class="form-control" name="Department">
+         <a>{{$errors->first('department')}}</a>
         </div>
         <div class="form-group">
          <label>Password</label>
@@ -195,6 +202,11 @@
          <label>Phone</label>
          <input type="text" name="phone" id="phone" class="form-control">
          <a>{{$errors->first('phone')}}</a>
+        </div>
+        <div class="form-group">
+         <label>Department</label>
+         <input type="text" name="department" id="department" class="form-control">
+         <a>{{$errors->first('department')}}</a>
         </div>
        </div>
        <div class="modal-footer">
@@ -277,6 +289,7 @@
         $('#name').val(editdata[1]);
         $('#email').val(editdata[2]);
         $('#phone').val(editdata[3]);
+        $('#department').val(editdata[4]);
 
         $('#editform').attr('action','/superadmin/usermanagement/updateuser/'+editdata[0]);
     });

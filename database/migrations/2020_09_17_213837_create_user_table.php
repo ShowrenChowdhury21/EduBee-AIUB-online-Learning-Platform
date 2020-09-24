@@ -19,6 +19,7 @@ class CreateUserTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('type');
+            $table->string('department');
         });
     }
 
