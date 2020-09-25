@@ -33,7 +33,7 @@
       </li>
       <li><i class="fa fa-window-restore" aria-hidden="true">&nbsp;&nbsp;</i><a href="#" class="down">Help</a>
         <ul class="side-nav-dropdown">
-          <li> &nbsp;<a href="/forum/post">Discussion Forum</a></li>
+          <li></i><a href="/forumposts">&nbsp;&nbsp;Discussion Forum</a></li>
           <li> &nbsp;<a href="/student/consultation">Consultation</a></li>
         </ul>
       </li>

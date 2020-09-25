@@ -32,6 +32,7 @@
           </ul>
         </li>
         <li></i><a href="/superadmin/announcements">&nbsp;&nbsp;Announcements</a></li>
+        <li></i><a href="/forumposts">&nbsp;&nbsp;Discussion Forum</a></li>
         <li></i><a href="" class="down">&nbsp;&nbsp;Settings</a>
           <ul class="side-nav-dropdown">
             <li> &nbsp;<a href="/superadmin/profilesettings">Profile Settings</a></li>
@@ -83,7 +84,7 @@
                 <input type="text" class="securtiy" name="current_password" placeholder="Enter Current password"><br>
                 <h4>{{$old_password_not_match}}</h4>
                 <input type="text" class="securtiy" name="new_password" placeholder="Enter New password"><br><br>
-                
+
                 <input type="text" class="securtiy" name="confirm_password" placeholder="Confirm New password"><br>
                 <h4>{{$password_does_not_match}}</h4>
                 <input type="submit" class="securitybtn" value="Update">

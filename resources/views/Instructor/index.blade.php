@@ -27,7 +27,7 @@
     <ul class="categories" style="margin-top: 60px;">
       <li></i><a href="/instructor/classes">&nbsp;&nbsp;Classes</a></li>
       <li></i><a href="/instructor/grades">&nbsp;&nbsp;Assign Grades</a></li>
-      <li></i><a href="/forum/post">&nbsp;&nbsp;Discussion Forum</a></li>
+      <li></i><a href="/forumposts">&nbsp;&nbsp;Discussion Forum</a></li>
       <li></i><a href="" class="down">&nbsp;&nbsp;Settings</a>
         <ul class="side-nav-dropdown">
           <li> &nbsp;<a href="/instructor/profilesettings">Profile Settings</a></li>

@@ -31,7 +31,7 @@
             <li> &nbsp;<a href="/moderator/instructorallocation">Intructor Allocation</a></li>
           </ul>
         </li>
-        <li></i><a href="/discussionforum">&nbsp;&nbsp;Discussion Forum</a></li>
+        <li></i><a href="/forumposts">&nbsp;&nbsp;Discussion Forum</a></li>
         <li></i><a href="" class="down">&nbsp;&nbsp;Settings</a>
           <ul class="side-nav-dropdown">
             <li> &nbsp;<a href="/moderator/profilesettings">Profile Settings</a></li>
@@ -77,7 +77,7 @@
               <div class="profiledata" style="margin-left: 120px;">
                 <img class="profilepic" style="margin-left: 40px;" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
                   <h3>{{Session::get('username')}}</h3>
-                  
+
               </div>
               <form method="POST" action="/moderator/security">
                 <input type="text" class="securtiy" name="current_password" placeholder="Enter Currenrt password"><br>
