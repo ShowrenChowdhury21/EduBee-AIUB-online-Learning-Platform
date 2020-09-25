@@ -85,6 +85,7 @@
           </div>
           <form method="POST" action="/student/profilesettings">
             <input type="text" class="profileupdate" name="email" placeholder="Enter New E-mail"><br><br>
+            <a>{{$errors->first('email')}}</a><br><br>
             <input type="submit" class="profileupdatebtn" value="Update">
           </form>
         </div>

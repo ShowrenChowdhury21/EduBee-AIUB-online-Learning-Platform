@@ -78,8 +78,8 @@
     <div id="main">
       <div id="course">
       <h1 class="filetitle" style="margin-top:60px;">Course Name: {{$coursename}}</h1>
-      <h1 class="filetitle" style="font-size: 15px;">Faculty Name: {{$faculty[0]}}</h1>
-        <h1 class="filetitle" style="font-size: 10px;">Section: {{$section}}</h1>
+      <h1 class="filetitle" style="font-size: 20px;">Faculty Name: {{$faculty[0]}}</h1>
+        <h1 class="filetitle" style="font-size: 20px;">Section: {{$section}}</h1>
         <div class="fileContainer">
           <div class="buttonContainer">
             <button class="filebutton" onclick="fileshowpanel(0,'#004981')">Notes</button>

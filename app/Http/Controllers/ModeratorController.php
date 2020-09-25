@@ -205,6 +205,9 @@ class ModeratorController extends Controller
     }
     function saveprofilesettings(Request $request){
       $user = Admin::find($request->session()->get('id'));
+      $request->validate([
+        'email' => 'required'
+      ]);
       //$user->name         = Session::get('username');
       $user->email        = $request->email;
       //$user->address      = $request->address;

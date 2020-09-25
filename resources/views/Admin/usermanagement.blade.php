@@ -146,15 +146,15 @@
      <a>{{$errors->first('email')}}</a>
     </div>
     <div class="form-group">
-     <label>Department</label>
-     <input type="text" class="form-control" name="department" >
-     <a>{{$errors->first('department')}}</a>
-    </div>
-    <div class="form-group">
      <label>Phone</label>
      <input type="Phone" class="form-control" name="phone" >
      <a>{{$errors->first('phone')}}</a>
     </div>
+    <div class="form-group">
+      <label>Department</label>
+      <input type="text" class="form-control" name="department" >
+      <a>{{$errors->first('department')}}</a>
+     </div>
     <div class="form-group">
      <label>Password</label>
      <input type="Password" class="form-control" name="password" >
@@ -198,15 +198,15 @@
      <a>{{$errors->first('email')}}</a>
     </div>
     <div class="form-group">
-     <label>Department</label>
-     <input type="text" name="department" id="department" class="form-control" >
-     <a>{{$errors->first('department')}}</a>
-    </div>
-    <div class="form-group">
      <label>Phone</label>
      <input type="text" name="phone" id="phone" class="form-control" >
      <a>{{$errors->first('phone')}}</a>
     </div>
+    <div class="form-group">
+      <label>Department</label>
+      <input type="text" name="department" id="department" class="form-control" >
+      <a>{{$errors->first('department')}}</a>
+     </div>
    </div>
    <div class="modal-footer">
     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

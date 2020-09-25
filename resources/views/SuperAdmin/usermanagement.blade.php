@@ -153,7 +153,7 @@
         </div>
         <div class="form-group">
          <label>Department</label>
-         <input type="text" class="form-control" name="Department">
+         <input type="text" class="form-control" name="department">
          <a>{{$errors->first('department')}}</a>
         </div>
         <div class="form-group">

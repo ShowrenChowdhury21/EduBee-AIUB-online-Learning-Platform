@@ -79,11 +79,11 @@
     <table>
     <div id="main">
       <div id="mygrades">
-        <h1 class="gradetitle">Course Grades</h1>
+        <h1 class="gradetitle" style="margin-left: -50px;">Course Grades</h1>
         <a style = "margin-left:1000px" href="/student/printmygrades" class="btn btn-success" data-toggle="modal"><i class="material-icons">arrow_drop_down_circle</i> <span>print</span></a>
         <hr style="width: 100%; border-top: 2px solid #005aa2;">
         @for($i=0; $i != count($courselist); $i++)
-          <div class="resultbox" style="width: 400px; height:160px; background:#005aa2; color: white; margin-left: 420px; margin-bottom: 20px; padding: 6px 20px;">
+          <div class="resultbox" style="width: 400px; height:180px; background:#005aa2; color: white; margin-left: 480px; margin-bottom: 20px; padding: 6px 20px;">
               <h1 style="font-size: 25px; color: white;">{{$courselist[$i]->coursename}}</h1>
               <h2 style="font-size: 18px; color: white;">Total Marks: {{$courselist[$i]->marks}}</h2>
               <h2 style="font-size: 18px; color: white;">Grade: {{$courselist[$i]->grades}}</h2>
