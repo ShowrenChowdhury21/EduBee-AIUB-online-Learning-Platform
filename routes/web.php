@@ -80,6 +80,8 @@ Route::middleware(['session_check'])->group(function(){
 
     Route::get('/superadmin/myaccount', 'SuperadminController@myaccount')->name('Superadmin.myaccount');
     Route::get('/superadmin/myinbox', 'SuperadminController@myinbox');
+    
+    route::  post('superadmin/addProfile','SuperadminController@store')->name('superadmin.addProfile');
   });
 
   //admin
@@ -127,6 +129,8 @@ Route::middleware(['session_check'])->group(function(){
     Route::get('/admin/myaccount', 'AdminController@myaccount')->name('Admin.myaccount');
 
     Route::get('/admin/myinbox', 'AdminController@myinbox');
+    
+    route::  post('admin/addProfile','AdminController@store')->name('admin.addProfile');
   });
 
   //moderator
@@ -161,6 +165,8 @@ Route::middleware(['session_check'])->group(function(){
 
     Route::get('/moderator/myaccount', 'ModeratorController@myaccount');
     Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
+    
+    route::  post('moderator/addProfile','ModeratorController@store')->name('moderator.addProfile');
   });
 
   //instructor
@@ -183,6 +189,8 @@ Route::middleware(['session_check'])->group(function(){
     Route::get('/instructor/myaccount', 'InstructorController@myaccount')->name('Instructor.myaccount');
     Route::get('/instructor/myinbox', 'InstructorController@myinbox');
     Route::get('/instructor/discussionforum', 'InstructorController@discussionforum');
+    
+    route::  post('instructor/addProfile','InstructorController@store')->name('instructor.addProfile');
   });
 
 
@@ -201,6 +209,8 @@ Route::middleware(['session_check'])->group(function(){
     Route::post('/student/security', 'StudentController@savesecurity');
     Route::get('/student/myaccount', 'StudentController@myaccount')->name('Student.myaccount');
     Route::get('/student/myinbox', 'StudentController@myinbox');
+    
+    route::  post('student/addProfile','StudentController@store')->name('student.addProfile');
   });
 
   //fourm
@@ -210,3 +220,4 @@ Route::middleware(['session_check'])->group(function(){
   Route::get('/forumpost/dashboard', 'forumController@dashboard');
 
 });
+
