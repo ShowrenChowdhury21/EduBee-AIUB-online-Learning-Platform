@@ -189,7 +189,7 @@ class SuperadminController extends Controller
         $user->email        = $request->email;
         $user->phone        = $request->phone;
         $user->type         = $request->type;
-        $user->department        = $request->department;
+        $user->department   = $request->department;
         $user->save();
 
         $userlogin = new Login();
@@ -214,7 +214,7 @@ class SuperadminController extends Controller
         $user->name         = $request->name;
         $user->email        = $request->email;
         $user->phone        = $request->phone;
-        $user->department        = $request->department;
+        $user->department   = $request->department;
         $user->save();
 
         $userlogin = Login::find($id);
@@ -474,10 +474,10 @@ class SuperadminController extends Controller
     }
     function saveprofilesettings(Request $request){
       $user = Admin::find($request->session()->get('id'));
-      //$user->name         = Session::get('username');
+      $request->validate([
+        'email' => 'required'
+      ]);
       $user->email        = $request->email;
-      //$user->address      = $request->address;
-      //$user->phone         = $request->phone;
       $user->save();
 
       $userlogin = Login::find($request->session()->get('id'));

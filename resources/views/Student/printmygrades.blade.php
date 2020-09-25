@@ -16,7 +16,7 @@
                       <div class="col-sm-6">
                         <h1 class="filetitle" style="margin-top:60px;">Student Name: {{$courselist[0]->name}}</h1>
                         <h1 class="filetitle" style="font-size: 15px;">CGPA: {{$courselist[0]->cgpa}}</h1>
-                        <h2>Student <b>List</b></h2>
+                        <h2>Grades by<b> Semester</b></h2>
                        </div>
                   </div>
               </div>

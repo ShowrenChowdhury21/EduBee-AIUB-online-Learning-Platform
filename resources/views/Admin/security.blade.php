@@ -87,7 +87,7 @@
             <h4>{{$old_password_not_match}}</h4>
             <input type="text" class="securtiy" name="new_password" placeholder="Enter New password"><br><br>
             <input type="text" class="securtiy" name="confirm_password" placeholder="Confirm New password"><br>
-            <h4>{{$password_does_not_match}}</h4>
+            <h4>{{$old_password_not_match}}</h4>
             <input type="submit" class="securitybtn" value="Update">
           </form>
         </div>

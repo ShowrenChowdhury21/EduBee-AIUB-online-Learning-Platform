@@ -25,9 +25,9 @@ class InstructorController extends Controller
 
     function coursefile($coursename, $section){
       $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
-      $notelist = DB::table('notes')->get();
-      $videolist = DB::table('videos')->get();
-      $assignmentlist = DB::table('assignments')->get();
+      $notelist = DB::table('notes')->where('coursename', $coursename)->where('section', $section)->get();
+      $videolist = DB::table('videos')->where('coursename', $coursename)->where('section', $section)->get();
+      $assignmentlist = DB::table('assignments')->where('coursename', $coursename)->where('section', $section)->get();
       return view('Instructor.coursefile')->with(['courselist' => $courselist,
                                                   'coursename' => $coursename,
                                                   'section' => $section])
@@ -50,9 +50,9 @@ class InstructorController extends Controller
         $file->save();
 
         $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
-        $notelist = DB::table('notes')->get();
-        $videolist = DB::table('videos')->get();
-        $assignmentlist = DB::table('assignments')->get();
+        $notelist = DB::table('notes')->where('coursename', $coursename)->where('section', $section)->get();
+        $videolist = DB::table('videos')->where('coursename', $coursename)->where('section', $section)->get();
+        $assignmentlist = DB::table('assignments')->where('coursename', $coursename)->where('section', $section)->get();
         return view('Instructor.coursefile')->with(['courselist' => $courselist,
                                                   'coursename' => $coursename,
                                                   'section' => $section])
@@ -76,9 +76,9 @@ class InstructorController extends Controller
         $file->save();
 
         $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
-        $notelist = DB::table('notes')->get();
-        $videolist = DB::table('videos')->get();
-        $assignmentlist = DB::table('assignments')->get();
+        $notelist = DB::table('notes')->where('coursename', $coursename)->where('section', $section)->get();
+        $videolist = DB::table('videos')->where('coursename', $coursename)->where('section', $section)->get();
+        $assignmentlist = DB::table('assignments')->where('coursename', $coursename)->where('section', $section)->get();
         return view('Instructor.coursefile')->with(['courselist' => $courselist,
                                                   'coursename' => $coursename,
                                                   'section' => $section])
@@ -102,9 +102,9 @@ class InstructorController extends Controller
         $file->save();
 
         $courselist = DB::table('courseforstudents')->where('coursename', $coursename)->where('section', $section)->get();
-        $notelist = DB::table('notes')->get();
-        $videolist = DB::table('videos')->get();
-        $assignmentlist = DB::table('assignments')->get();
+        $notelist = DB::table('notes')->where('coursename', $coursename)->where('section', $section)->get();
+        $videolist = DB::table('videos')->where('coursename', $coursename)->where('section', $section)->get();
+        $assignmentlist = DB::table('assignments')->where('coursename', $coursename)->where('section', $section)->get();
         return view('Instructor.coursefile')->with(['courselist' => $courselist,
                                                   'coursename' => $coursename,
                                                   'section' => $section])
@@ -153,10 +153,10 @@ class InstructorController extends Controller
     }
     function saveprofilesettings(Request $request){
       $user = User::find($request->session()->get('id'));
-      //$user->name         = Session::get('username');
+      $request->validate([
+        'email' => 'required'
+      ]);
       $user->email        = $request->email;
-      //$user->address      = $request->address;
-      //$user->phone         = $request->phone;
       $user->save();
 
       $userlogin = Login::find($request->session()->get('id'));
