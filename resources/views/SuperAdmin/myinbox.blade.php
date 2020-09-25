@@ -4,8 +4,11 @@
     <title>My Inbox</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src='http://code.jquery.com/jquery-latest.js'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('asset/css/crud.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/superadmin.css') }}">
     <script src="{{ asset('asset/js/superadmin.js') }}"></script>
   </head>
@@ -71,19 +74,95 @@
           </div>
         </div>
       </nav>
-      <form>
-        <div id="main">
-
-        </div>
-      </form>
-    </section>
-  </body>
-</html>
-        <div id="main">
-          <div id="myinbox">
-
+      <div id="main">
+        <div id="myinbox">
+            <div class="container">
+              <div class="table-wrapper">
+                  <div class="table-title">
+                      <div class="row">
+                          <div class="col-sm-6">
+                            <h2>My <b>Inbox</b></h2>
+                           </div>
+                           <div class="col-sm-6">
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Compose</span></a>
+                           </div>
+                      </div>
+                  </div>
+                  <table id = "table" class="table table-striped table-hover">
+                     <thead>
+                      <tr>
+                              <th>From</th>
+                              <th>Email Body</th>
+                              <th>Actions</th>
+                      </tr>
+                      </thead>
+                      <tbody id="tablebody">
+                          <tr>
+                            <td>sajid@edubee.com</td>
+                            <td>Hi. Mugdho. mara kha tui, Shala</td>
+                            <td>
+                                <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
           </div>
         </div>
+      </div>
+       <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+         <div class="modal-content">
+          <form action = "/superadmin/adminmanagement/composeemail" method = "post">
+           <div class="modal-header">
+            <h4 class="modal-title">Compose Email</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           </div>
+           <div class="modal-body">
+             <div class="form-group">
+              <label>To</label>
+              <select class="form-control" name="to" >
+                <option value="" selected>Select Reciever</option>
+                <option value="Sajid@edubee.com">sajid@edubee.com</option>
+              </select>
+             </div>
+            <div class="form-group">
+             <label>Subject</label>
+             <input type="text" name = "subject" class="form-control" >
+            </div>
+            <div class="form-group">
+             <label>Message Body</label>
+             <textarea name = "emailbody" class="form-control"  rows="8" cols="50" ></textarea>
+            </div>
+           </div>
+           <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" >
+            <input type="submit" class="btn btn-success" value="Send Email" >
+           </div>
+          </form>
+         </div>
+        </div>
+       </div>
+       <div id="deleteEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+         <div class="modal-content">
+          <form action="/admin/instructorallocation/deleteemail" method="post" id="deleteform">
+           <div class="modal-header">
+            <h4 class="modal-title">Delete Allocation</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           </div>
+           <div class="modal-body">
+            <p>Are you sure you want to delete these Records?</p>
+            <p class="text-warning"><small>This action cannot be undone.</small></p>
+           </div>
+           <div class="modal-footer">
+            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+            <button type="submit" id="delete_button" class="btn btn-danger" value="Delete">Delete</button>
+           </div>
+          </form>
+         </div>
+        </div>
+      </div>
     </section>
   </body>
 </html>
