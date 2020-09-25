@@ -78,8 +78,11 @@ Route::post('/superadmin/security', 'SuperadminController@savesecurity');
 Route::get('/superadmin/myaccount', 'SuperadminController@myaccount')->name('Superadmin.myaccount');
 Route::get('/superadmin/myinbox', 'SuperadminController@myinbox');
 
+// add profile
 
+route::  post('superadmin/addProfile','SuperadminController@store')->name('superadmin.addProfile');
 //admin
+
 Route::get('/admin', 'AdminController@index')->name('Admin.index');
 
 Route::get('/admin/moderatormanagement', 'AdminController@moderatormanagement')->name('Admin.moderatormanagement');
@@ -124,7 +127,9 @@ Route::get('/admin/myaccount', 'AdminController@myaccount')->name('Admin.myaccou
 
 Route::get('/admin/myinbox', 'AdminController@myinbox');
 
+// add profile
 
+route::  post('admin/addProfile','AdminController@store')->name('admin.addProfile');
 //moderator
 Route::get('/moderator', 'ModeratorController@index')->name('Moderator.index');
 Route::get('/moderator/usermanagement', 'ModeratorController@usermanagement')->name('Moderator.usermanagement');;
@@ -157,6 +162,9 @@ Route::post('/moderator/security', 'ModeratorController@savesecurity');
 Route::get('/moderator/myaccount', 'ModeratorController@myaccount');
 Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
 
+// ad profile
+
+route::  post('moderator/addProfile','ModeratorController@store')->name('moderator.addProfile');
 //instructor
 Route::get('/instructor', 'InstructorController@index')->name('Instructor.index');
 Route::get('/instructor/classes', 'InstructorController@classes');
@@ -177,7 +185,9 @@ Route::get('/instructor/myaccount', 'InstructorController@myaccount')->name('Ins
 Route::get('/instructor/myinbox', 'InstructorController@myinbox');
 Route::get('/instructor/discussionforum', 'InstructorController@discussionforum');
 
+// add profile
 
+route::  post('instructor/addProfile','InstructorController@store')->name('instructor.addProfile');
 
 //student
 Route::get('/student', 'StudentController@index')->name('Student.index');
@@ -193,7 +203,9 @@ Route::get('/student/security', 'StudentController@security')->name('Student.sec
 Route::post('/student/security', 'StudentController@savesecurity');
 Route::get('/student/myaccount', 'StudentController@myaccount')->name('Student.myaccount');
 Route::get('/student/myinbox', 'StudentController@myinbox');
+// add profile
 
+route::  post('student/addProfile','StudentController@store')->name('student.addProfile');
 //fourm
 Route::resource('forumposts','forumController');
 Route::resource('comments','commentController');

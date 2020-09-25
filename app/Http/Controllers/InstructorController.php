@@ -12,7 +12,8 @@ use App\Instructorforcourses;
 use App\Note;
 use App\Video;
 use App\Assignment;
-
+use App\profiles;
+use Image;
 class InstructorController extends Controller
 {
     function index(){
@@ -193,5 +194,26 @@ class InstructorController extends Controller
     }
     function myinbox(){
         return view('Instructor.myinbox');
+    }
+    public function store(Request $request)
+    {
+       $request->validate([
+        'avata' => 'required'
+      ]); 
+        $profiles = new profiles;
+        $profiles->id = $request->session()->get('id');
+ 
+        if ( $request->avata )
+        {
+            $image = $request->file('avata');
+            $img = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('upload/img/' . $img);
+            Image::make($image)->save($location);
+            $profiles->avata = $img; 
+            
+        }
+        $profiles->save();
+        
+        return redirect()->route('Instructor.index');
     }
 }

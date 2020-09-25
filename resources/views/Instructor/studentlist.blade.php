@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src='http://code.jquery.com/jquery-latest.js'></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{asset ('upload/img/' . Session::get('picture'))}}" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('asset/css/crud.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/css/instructor.css') }}">
     <script src="{{ asset('asset/js/instructor.js') }}"></script>

@@ -18,7 +18,17 @@ class LoginController extends Controller
                   ->where('name', $request->userid)
                   ->where('password', $request->password)
                   ->get();
+
     if(count($data) > 0 ){
+          $profile = DB::table('profiles')
+                  ->where('id', $data[0]->id)
+                  ->get();
+          if(count($profile) > 0){
+            $request->session()->put('picture', $profile[0]->avata);
+          }
+          else{
+            $request->session()->put('picture',"");
+          }
           $request->session()->put('id', $data[0]->id);
           $request->session()->put('username', $data[0]->name);
           $request->session()->put('email', $data[0]->email);

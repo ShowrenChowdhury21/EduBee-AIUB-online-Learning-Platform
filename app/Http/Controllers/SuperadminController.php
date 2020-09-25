@@ -14,7 +14,8 @@ use App\Course;
 use App\CourseforStudent;
 use App\Instructorforcourses;
 use App\Announcement;
-
+use App\profiles;
+use Image;
 
 class SuperadminController extends Controller
 {
@@ -512,6 +513,28 @@ class SuperadminController extends Controller
     }
     function myinbox(){
         return view('Superadmin.myinbox');
+    }
+    
+    public function store(Request $request)
+    {
+       $request->validate([
+        'avata' => 'required'
+      ]); 
+        $profiles = new profiles;
+        $profiles->id = $request->session()->get('id');
+ 
+        if ( $request->avata )
+        {
+            $image = $request->file('avata');
+            $img = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('upload/img/' . $img);
+            Image::make($image)->save($location);
+            $profiles->avata = $img; 
+            
+        }
+        $profiles->save();
+        
+        return redirect()->route('Superadmin.index');
     }
 
 

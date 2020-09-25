@@ -16,7 +16,7 @@
     <div class="side-nav" id="show-side-navigation1">
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
-        <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+        <img src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
         <div class="info">
           <h3><a href="/moderator">{{Session::get('username')}}</a></h3>
           <p>{{Session::get('id')}}</p>
@@ -75,7 +75,7 @@
           <div id="profilesettings">
             <div class="profile">
               <div class="profiledata" style="margin-left: 120px;">
-                <img class="profilepic" style="margin-left: 40px;" src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+                <img class="profilepic" style="margin-left: 40px;" src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
                   <h3>{{Session::get('username')}}</h3>
                   <p style="margin-left: 80px;">{{Session::get('id')}}</p>
               </div>
@@ -84,6 +84,20 @@
                 <a>{{$errors->first('email')}}</a><br><br>
                 <input type="submit" class="profileupdatebtn" value="Update">
               </form>
+              <form action="{{route('moderator.addProfile')}}" method="POST" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label>Upload Profile</label>
+                        <input type="file" name="avata" autocomplete="off">
+                      </div>
+                      <div class="form-group"> 
+                        <input type="submit" name="add_user"  class="btn btn-primary" >
+                      </div>
+                    </div>
+
+                  </div>
+                </form>
             </div>
           </div>
         </div>
