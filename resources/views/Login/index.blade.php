@@ -11,6 +11,7 @@
 			<h1>Login</h1>
 			<hr class="line">
 			<form action="" method="POST" onsubmit="return validate()">
+					<h3>{{session('msg')}}<h3>
 					<input type="text" name="userid" id="userid" placeholder="User Id" required>
 					<span id="err"></span>
 					<input type="password" name="password" id="password" placeholder="Password" required>
