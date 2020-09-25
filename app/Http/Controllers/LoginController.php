@@ -27,7 +27,7 @@ class LoginController extends Controller
             $request->session()->put('picture', $profile[0]->avata);
           }
           else{
-            $request->session()->put('picture',"");
+            $request->session()->put('picture',"l60Hf.jpg");
           }
           $request->session()->put('id', $data[0]->id);
           $request->session()->put('username', $data[0]->name);

@@ -18,7 +18,7 @@
   <div class="side-nav" id="show-side-navigation1">
     <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
     <div class="heading">
-      <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+      <img src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
       <div class="info">
         <h3><a href="/admin">{{Session::get('username')}}</a></h3>
         <p>{{Session::get('id')}}</p>
@@ -95,7 +95,7 @@
                   <label>Upload Profile</label>
                   <input type="file" name="avata" autocomplete="off">
                 </div>
-                <div class="form-group"> 
+                <div class="form-group">
                   <input type="submit" name="add_user"  class="btn btn-primary" >
                 </div>
               </div>

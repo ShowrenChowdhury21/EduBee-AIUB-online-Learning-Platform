@@ -96,6 +96,15 @@ class forumController extends Controller
 
     }
 
+    public function printshow($id)
+    {
+        $post = Post::find($id);
+
+        $pdf = PDF::loadView('forumposts.printshow', ['post' => $post]);
+
+        return $pdf->download('post.pdf');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
