@@ -31,7 +31,7 @@
           <li> &nbsp;<a href="/moderator/instructorallocation">Intructor Allocation</a></li>
         </ul>
       </li>
-      <li></i><a href="/discussionforum">&nbsp;&nbsp;Discussion Forum</a></li>
+      <li></i><a href="/forumposts">&nbsp;&nbsp;Discussion Forum</a></li>
       <li></i><a href="" class="down">&nbsp;&nbsp;Settings</a>
         <ul class="side-nav-dropdown">
           <li> &nbsp;<a href="/moderator/profilesettings">Profile Settings</a></li>
