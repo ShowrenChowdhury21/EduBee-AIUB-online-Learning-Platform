@@ -78,7 +78,7 @@
     <div id="main">
       <div id="course">
       <h1 class="filetitle" style="margin-top:60px;">Course Name: {{$coursename}}</h1>
-      <h1 class="filetitle" style="font-size: 20px;">Faculty Name: {{$faculty[0]}}</h1>
+      <h1 class="filetitle" style="font-size: 20px;">Faculty Name: {!! !empty($faculty[0]) ? $faculty[0] : 'TBA' !!}</h1>
         <h1 class="filetitle" style="font-size: 20px;">Section: {{$section}}</h1>
         <div class="fileContainer">
           <div class="buttonContainer">
