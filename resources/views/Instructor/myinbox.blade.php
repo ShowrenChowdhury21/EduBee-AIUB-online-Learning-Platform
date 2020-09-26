@@ -19,7 +19,7 @@
   <div class="side-nav" id="show-side-navigation1">
     <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
     <div class="heading">
-      <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+      <img src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
       <div class="info">
         <h3><a href="/instructor">{{Session::get('username')}}</a></h3>
         <p>{{Session::get('id')}}</p>
@@ -57,17 +57,7 @@
                 <li><a href="/login"><i class="fa fa-sign-out"></i> Log out</a></li>
               </ul>
             </li>
-            <li>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-comments"></i><span>22</span></a>
-              <ul class="dropdown-menu" style="margin-left: -150px;width: 200px;">
-                <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;">Showren</span><br><span class="notify">Hi. how r u?</span></a></li>
-                <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;">Sajid</span><br><span class="notify"> Hi. how r u?</span></a></li>
-              </ul>
-            </li>
           </ul>
-
- 
-
         </div>
       </div>
     </nav>
@@ -145,14 +135,17 @@
                             @endforeach
                           </select>
                          </div>
+                         <a>{{$errors->first('email')}}</a>
                         <div class="form-group">
                          <label>Subject</label>
                          <input type="text" name = "subject" class="form-control" >
                         </div>
+                        <a>{{$errors->first('subject')}}</a>
                         <div class="form-group">
                          <label>Message Body</label>
                          <textarea name = "email_body" class="form-control"  rows="8" cols="50" ></textarea>
                         </div>
+                        <a>{{$errors->first('email_body')}}</a>
                        </div>
                        <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" >
@@ -208,10 +201,12 @@
                           <label>Subject</label>
                           <input type="text" name = "subject" class="form-control" >
                          </div>
+                         <a>{{$errors->first('subject')}}</a>
                         <div class="form-group">
                          <label>Message Body</label>
                          <textarea name = "email_body" class="form-control"  rows="8" cols="50" ></textarea>
                         </div>
+                        <a>{{$errors->first('email_body')}}</a>
                        </div>
                        <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

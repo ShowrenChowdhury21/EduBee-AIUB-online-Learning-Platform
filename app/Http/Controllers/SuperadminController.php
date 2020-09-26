@@ -21,10 +21,6 @@ use App\profiles;
 use Image;
 
 
-
-
-
-
 class SuperadminController extends Controller
 {
     public function index(){
@@ -34,9 +30,12 @@ class SuperadminController extends Controller
 
     //adminmanagement
     public function adminmanagement(){
-        $admin = Http::get('http://localhost:3000/home/adminmanagement');
-        $users = $admin->json();
-        return view('Superadmin.adminmanagement')->with('users', $users);
+      $client = new \GuzzleHttp\Client();
+      $admin = $client->request('GET', 'http://localhost:3000/home/adminmanagement');
+      $users = (array)json_decode($admin->getBody()->getContents());
+      //$admin = Http::get('http://localhost:3000/home/adminmanagement');
+      //$users = $admin->json();      
+      return view('Superadmin.adminmanagement')->with('users', $users);
     }
 
     public function addadmin(Request $request){
@@ -108,8 +107,9 @@ class SuperadminController extends Controller
 
     //moderatormanagement
     function moderatormanagement(){
-      $moderator = Http::get('http://localhost:3000/home/moderatormanagement');
-      $users = $moderator->json();
+      $client = new \GuzzleHttp\Client();
+      $mod = $client->request('GET', 'http://localhost:3000/home/moderatormanagement');
+      $users = (array)json_decode($mod->getBody()->getContents());
       return view('Superadmin.moderatormanagement')->with('users', $users);
     }
 
@@ -180,8 +180,9 @@ class SuperadminController extends Controller
 
     //usermanagement
     function usermanagement(){
-      $userslist = Http::get('http://localhost:3000/home/usermanagement');
-      $users = $userslist->json();
+      $client = new \GuzzleHttp\Client();
+      $userlist = $client->request('GET', 'http://localhost:3000/home/usermanagement');
+      $users = (array)json_decode($userlist->getBody()->getContents());
       return view('Superadmin.usermanagement')->with('users', $users);
     }
 
@@ -519,11 +520,11 @@ class SuperadminController extends Controller
     public function storemail(Request $request)
     {
         $this->validate($request,[
+          'email'=>'required',
           'subject'=>'required',
           'email_body'=>'required'
 
         ]);
-
 
         $send = new Sender();
         $send->subject =$request->input('subject');

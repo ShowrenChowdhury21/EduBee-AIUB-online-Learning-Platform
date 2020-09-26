@@ -44,6 +44,9 @@ class InstructorController extends Controller
     }
 
     public function coursefilenotes(Request $request, $coursename, $section){
+      $request->validate([
+        'notes' => 'required'
+      ]);
       if($request->hasFile('notes'))
       {
         $notes = $request->file('notes');
@@ -70,6 +73,9 @@ class InstructorController extends Controller
     }
 
     public function coursefilevideos(Request $request, $coursename, $section){
+      $request->validate([
+        'videos' => 'required'
+      ]);
       if($request->hasFile('videos'))
       {
         $notes = $request->file('videos');
@@ -96,6 +102,9 @@ class InstructorController extends Controller
     }
 
     public function coursefileassignments(Request $request, $coursename, $section){
+      $request->validate([
+        'assignments' => 'required'
+      ]);
       if($request->hasFile('assignments'))
       {
         $notes = $request->file('assignments');

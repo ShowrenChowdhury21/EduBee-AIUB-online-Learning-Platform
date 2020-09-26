@@ -142,14 +142,17 @@
                             @endforeach
                           </select>
                          </div>
+                         <a>{{$errors->first('email')}}</a>
                         <div class="form-group">
                          <label>Subject</label>
                          <input type="text" name = "subject" class="form-control" >
                         </div>
+                        <a>{{$errors->first('subject')}}</a>
                         <div class="form-group">
                          <label>Message Body</label>
                          <textarea name = "email_body" class="form-control"  rows="8" cols="50" ></textarea>
                         </div>
+                        <a>{{$errors->first('email_body')}}</a>
                        </div>
                        <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" >
@@ -205,10 +208,12 @@
                           <label>Subject</label>
                           <input type="text" name = "subject" class="form-control" >
                          </div>
+                         <a>{{$errors->first('subject')}}</a>
                         <div class="form-group">
                          <label>Message Body</label>
                          <textarea name = "email_body" class="form-control"  rows="8" cols="50" ></textarea>
                         </div>
+                        <a>{{$errors->first('email_body')}}</a>
                        </div>
                        <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
