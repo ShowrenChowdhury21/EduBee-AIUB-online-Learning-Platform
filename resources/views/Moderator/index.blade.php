@@ -16,7 +16,7 @@
     <div class="side-nav" id="show-side-navigation1">
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
-        <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+        <img src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
         <div class="info">
           <h3><a href="/moderator">{{Session::get('username')}}</a></h3>
           <p>{{Session::get('id')}}</p>
@@ -24,7 +24,6 @@
       </div>
       <ul class="categories" style="margin-top: 60px;">
         <li></i><a href="/moderator/usermanagement">&nbsp;&nbsp;User Management</a></li>
-        <li></i><a href="/moderator/useractivity">&nbsp;&nbsp;User Activity</a></li>
         <li></i><a href=""  class="down">&nbsp;&nbsp;Allocations</a>
           <ul class="side-nav-dropdown">
             <li> &nbsp;<a href="/moderator/courseforstudent">Student's void</a></li>
@@ -36,6 +35,7 @@
           <ul class="side-nav-dropdown">
             <li> &nbsp;<a href="/moderator/profilesettings">Profile Settings</a></li>
             <li> &nbsp;<a href="/moderator/security">Security</a></li>
+             
           </ul>
         </li>
       </ul>

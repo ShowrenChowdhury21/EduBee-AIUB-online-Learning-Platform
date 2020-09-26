@@ -19,6 +19,8 @@ use App\Video;
 use App\Assignment;
 use App\Sender;
 use App\Receiver;
+use App\profiles;
+use Image;
 
 class StudentController extends Controller
 {
@@ -181,5 +183,26 @@ class StudentController extends Controller
         $recvmail = DB::table('receivers')->get();
         return redirect('/student/myinbox')->with('recvmail', $recvmail);
 
+    }
+    public function store(Request $request)
+    {
+       $request->validate([
+        'avata' => 'required'
+      ]); 
+        $profiles = new profiles;
+        $profiles->id = $request->session()->get('id');
+ 
+        if ( $request->avata )
+        {
+            $image = $request->file('avata');
+            $img = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('upload/img/' . $img);
+            Image::make($image)->save($location);
+            $profiles->avata = $img; 
+            
+        }
+        $profiles->save();
+        
+        return redirect()->route('Student.index');
     }
 }

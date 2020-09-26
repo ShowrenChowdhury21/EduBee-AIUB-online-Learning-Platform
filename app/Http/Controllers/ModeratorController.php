@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Admin;
 use App\Moderator;
@@ -16,6 +17,8 @@ use App\Instructorforcourses;
 use App\Announcement;
 use App\Sender;
 use App\Receiver;
+use App\profiles;
+use Image;
 
 
 class ModeratorController extends Controller
@@ -24,9 +27,9 @@ class ModeratorController extends Controller
         return view('Moderator.index');
     }
     function usermanagement(){
-        $users = DB::table('users')->get();
-        return view('Moderator.usermanagement')->with('users', $users);
-        //return view('Moderator.usermanagement');
+      $usershere = Http::get('http://localhost:3000/home/usermanagement');
+      $users = $usershere->json();
+      return view('Moderator.usermanagement')->with('users', $users);      
     }
     public function adduser(Request $request){
       $request->validate([
@@ -321,4 +324,27 @@ class ModeratorController extends Controller
         return redirect('/moderator/myinbox')->with('recvmail', $recvmail);
 
     }
+
+    public function store(Request $request)
+    {
+       $request->validate([
+        'avata' => 'required'
+      ]); 
+        $profiles = new profiles;
+        $profiles->id = $request->session()->get('id');
+ 
+        if ( $request->avata )
+        {
+            $image = $request->file('avata');
+            $img = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('upload/img/' . $img);
+            Image::make($image)->save($location);
+            $profiles->avata = $img; 
+            
+        }
+        $profiles->save();
+        
+        return redirect()->route('Moderator.index');
+    }
+
 }

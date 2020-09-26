@@ -16,7 +16,7 @@
     <div class="side-nav" id="show-side-navigation1">
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
-        <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+        <img src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
         <div class="info">
           <h3><a href="/moderator">{{Session::get('username')}}</a></h3>
           <p>{{Session::get('id')}}</p>
@@ -100,21 +100,20 @@
                       </tr>
                   </thead>
                   <tbody>
-                    @for($i=0; $i != count($users); $i++)
+                    @foreach ($users as $user)
                     <tr>
-                      <td>{{$users[$i]->id}}</td>
-                      <td>{{$users[$i]->name}}</td>
-                      <td>{{$users[$i]->email}}</td>
-                      <td>{{$users[$i]->phone}}</td>
-                      <td>{{$users[$i]->department}}</td>
-                      <td>{{$users[$i]->type}}</td>
+                      <td>{{$user['id']}}</td>
+                      <td>{{$user['name']}}</td>
+                      <td>{{$user['email']}}</td>
+                      <td>{{$user['phone']}}</td>
+                      <td>{{$user['department']}}</td>
+                      <td>{{$user['type']}}</td>
                         <td>
                             <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
-                 @endfor
-                      </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>

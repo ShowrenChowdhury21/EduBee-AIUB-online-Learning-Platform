@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Login;
 use App\Course;
@@ -12,8 +13,11 @@ use App\Instructorforcourses;
 use App\Note;
 use App\Video;
 use App\Assignment;
+
 use App\Sender;
 use App\Receiver;
+use App\profiles;
+use Image;
 
 class InstructorController extends Controller
 {
@@ -265,5 +269,26 @@ class InstructorController extends Controller
         $recvmail = DB::table('receivers')->get();
         return redirect('/instructor/myinbox')->with('recvmail', $recvmail);
 
+    }
+    public function store(Request $request)
+    {
+       $request->validate([
+        'avata' => 'required'
+      ]); 
+        $profiles = new profiles;
+        $profiles->id = $request->session()->get('id');
+ 
+        if ( $request->avata )
+        {
+            $image = $request->file('avata');
+            $img = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('upload/img/' . $img);
+            Image::make($image)->save($location);
+            $profiles->avata = $img; 
+            
+        }
+        $profiles->save();
+        
+        return redirect()->route('Instructor.index');
     }
 }

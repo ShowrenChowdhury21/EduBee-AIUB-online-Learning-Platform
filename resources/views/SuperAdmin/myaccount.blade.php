@@ -13,7 +13,7 @@
     <div class="side-nav" id="show-side-navigation1">
       <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
       <div class="heading">
-        <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+        <img src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
         <div class="info">
           <h3><a href="/superadmin">{{Session::get('username')}}</a></h3>
           <p>{{Session::get('id')}}</p>
@@ -61,13 +61,6 @@
                   <li><a href="/login"><i class="fa fa-sign-out"></i> Log out</a></li>
                 </ul>
               </li>
-              <li>
-                <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-comments"></i><span>22</span></a>
-                  <ul class="dropdown-menu" style="margin-left: -150px;width: 200px;">
-                    <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;"><%= uname %></span><br><span class="notify">Hi. how r u?</span></a></li>
-                      <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;">Sajid</span><br><span class="notify"> Hi. how r u?</span></a></li>
-                  </ul>
-              </li>
             </ul>
           </div>
         </div>
@@ -77,7 +70,7 @@
             <h1 class="name" style="font-size: 35px; margin-top: -70px; color: white;">{{Session::get('username')}}</h1>
             <h1 class="id" style="font-size: 25px; color: white;color: white;">{{Session::get('id')}}</h1>
             <div class="myaccountsub" style="margin-top: 20px; width: 350; height: 200; background: white">
-              <h1 class="department" style="margin-top: 20px; font-size: 20px; text-align: left;">Department: <span>Computer Science and Engineering</span></h1>
+              <h1 class="department" style="margin-top: 20px; font-size: 20px; text-align: left;">Department: <span>CSE</span></h1>
               <h1 class="email" style="margin-top: 20px; font-size: 20px; text-align: left;">E-mail: <span>{{Session::get('email')}}</span></h1>
             </div>
           </div>

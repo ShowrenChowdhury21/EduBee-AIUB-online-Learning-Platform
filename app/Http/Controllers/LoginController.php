@@ -14,11 +14,21 @@ class LoginController extends Controller
   }
 
   function verify(Request $request){
-      $data = DB::table('logins')
+    $data = DB::table('logins')
                   ->where('name', $request->userid)
                   ->where('password', $request->password)
                   ->get();
+
     if(count($data) > 0 ){
+          $profile = DB::table('profiles')
+                  ->where('id', $data[0]->id)
+                  ->get();
+          if(count($profile) > 0){
+            $request->session()->put('picture', $profile[0]->avata);
+          }
+          else{
+            $request->session()->put('picture',"l60Hf.jpg");
+          }
           $request->session()->put('id', $data[0]->id);
           $request->session()->put('username', $data[0]->name);
           $request->session()->put('email', $data[0]->email);
@@ -40,10 +50,10 @@ class LoginController extends Controller
           elseif($data[0]->type == "student"){
               return redirect()->route('Student.index');
           }
-          else{
-            $request->session()->flash('msg', 'invalid username/password');
-            return redirect('/login');
-          }
+        }
+    else{
+      $request->session()->flash('msg', 'invalid username/password');
+      return view('login.index');
         }
       }
 }

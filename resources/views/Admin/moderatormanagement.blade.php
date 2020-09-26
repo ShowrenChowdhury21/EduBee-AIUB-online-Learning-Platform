@@ -18,7 +18,7 @@
   <div class="side-nav" id="show-side-navigation1">
     <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
     <div class="heading">
-      <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+      <img src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
       <div class="info">
         <h3><a href="/admin">Showren Chowdhury</a></h3>
         <p>17-*****-2</p>
@@ -102,19 +102,19 @@
                       </tr>
                   </thead>
                   <tbody id="tablebody">
-                    @for($i=0; $i != count($users); $i++)
-                      <tr>
-                        <td>{{$users[$i]->id}}</td>
-                        <td>{{$users[$i]->name}}</td>
-                        <td>{{$users[$i]->email}}</td>
-                        <td>{{$users[$i]->address}}</td>
-                        <td>{{$users[$i]->phone}}</td>
-                          <td>
-                              <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                              <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                          </td>
-                      </tr>
-                   @endfor
+                    @foreach ($users as $user)
+                    <tr>
+                      <td>{{$user['id']}}</td>
+                      <td>{{$user['name']}}</td>
+                      <td>{{$user['email']}}</td>
+                      <td>{{$user['address']}}</td>
+                      <td>{{$user['phone']}}</td>
+                        <td>
+                            <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>

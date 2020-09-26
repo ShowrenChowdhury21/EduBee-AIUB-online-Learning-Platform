@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Admin;
 use App\Moderator;
@@ -16,6 +17,13 @@ use App\Instructorforcourses;
 use App\Announcement;
 use App\Sender;
 use App\Receiver;
+use App\profiles;
+use Image;
+
+
+
+
+
 
 class SuperadminController extends Controller
 {
@@ -26,7 +34,8 @@ class SuperadminController extends Controller
 
     //adminmanagement
     public function adminmanagement(){
-        $users = DB::table('admins')->get();
+        $admin = Http::get('http://localhost:3000/home/adminmanagement');
+        $users = $admin->json();
         return view('Superadmin.adminmanagement')->with('users', $users);
     }
 
@@ -99,8 +108,9 @@ class SuperadminController extends Controller
 
     //moderatormanagement
     function moderatormanagement(){
-        $users = DB::table('moderators')->get();
-        return view('Superadmin.moderatormanagement')->with('users', $users);
+      $moderator = Http::get('http://localhost:3000/home/moderatormanagement');
+      $users = $moderator->json();
+      return view('Superadmin.moderatormanagement')->with('users', $users);
     }
 
     public function addmoderator(Request $request){
@@ -170,8 +180,9 @@ class SuperadminController extends Controller
 
     //usermanagement
     function usermanagement(){
-        $users = DB::table('users')->get();
-        return view('Superadmin.usermanagement')->with('users', $users);
+      $userslist = Http::get('http://localhost:3000/home/usermanagement');
+      $users = $userslist->json();
+      return view('Superadmin.usermanagement')->with('users', $users);
     }
 
     public function adduser(Request $request){
@@ -582,6 +593,28 @@ class SuperadminController extends Controller
         $recvmail = DB::table('receivers')->get();
         return redirect('/superadmin/myinbox')->with('recvmail', $recvmail);
 
+    }
+    
+    public function store(Request $request)
+    {
+       $request->validate([
+        'avata' => 'required'
+      ]); 
+        $profiles = new profiles;
+        $profiles->id = $request->session()->get('id');
+ 
+        if ( $request->avata )
+        {
+            $image = $request->file('avata');
+            $img = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('upload/img/' . $img);
+            Image::make($image)->save($location);
+            $profiles->avata = $img; 
+            
+        }
+        $profiles->save();
+        
+        return redirect()->route('Superadmin.index');
     }
 
 
