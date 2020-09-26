@@ -17,6 +17,10 @@
   <!-- Custom styles for this template
   <link href="css/blog-home.css" rel="stylesheet"> -->
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -53,21 +57,11 @@
           <small><a class="btn btn-info" href="/forumposts/create"> <b>Post It!</b></a></small>
         </h1>
 
-        <table>
-          <tr>
-            <td>
-
-            </td>
-          </tr>
-        </table>
-
         <!-- Blog Post -->
-        <table>
+
         @include('forumposts.validationmessage')
           @if(count($posts)>0)
               @foreach($posts as $post)
-                <tr>
-                  <td>
 
                     <div class="card mb-4">
                       <!--<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">-->
@@ -89,10 +83,6 @@
                         <a href="#">{{$post->username}}</a>
                       </div>
                     </div>
-                  </td>
-                </tr>
-
-
 
           @endforeach
         @else
@@ -102,7 +92,6 @@
         <ul class="pagination justify-content-center mb-4">
           {{$posts->links()}}
         </ul>
-        </table>
       </div>
 
 
@@ -114,8 +103,20 @@
           <h5 class="card-header">Search</h5>
           <div class="card-body">
             <div class="input-group">
-              <input type="text" name="search" class="form-control" placeholder="Search for...">
+              <input type="text" name="search" id="search" class="form-control" placeholder="Search for...">
             </div>
+            <br>
+            <hr>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -146,5 +147,30 @@
   <script src="public/asset/customForum/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
+<script>
+
+$(document).ready(function(){
+
+ fetch_post_data();
+
+ function fetch_post_data(query = '')
+ {
+  $.ajax({
+   url:"{{ route('forumController.search') }}",
+   method:'GET',
+   data:{query:query},
+   dataType:'json',
+   success:function(data)
+   {
+    $('tbody').html(data.table_data);;
+   }
+  })
+ }
+ $(document).on('keyup', '#search', function(){
+  var query = $(this).val();
+  fetch_post_data(query);
+ });
+});
+
+</script>
