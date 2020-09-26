@@ -144,6 +144,7 @@
           <label>Instructor name</label>
           <select class="form-control" name="name" >
             <option value="" selected>Select Instructor Id</option>
+
             @foreach ($faculty as $fclty)
             <option value="{{$fclty->name}}">{{$fclty->name}}</option>
             @endforeach

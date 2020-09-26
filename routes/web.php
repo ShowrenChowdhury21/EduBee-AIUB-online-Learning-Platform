@@ -76,7 +76,11 @@ Route::get('/superadmin/security', 'SuperadminController@security')->name('Super
 Route::post('/superadmin/security', 'SuperadminController@savesecurity');
 
 Route::get('/superadmin/myaccount', 'SuperadminController@myaccount')->name('Superadmin.myaccount');
+
 Route::get('/superadmin/myinbox', 'SuperadminController@myinbox');
+Route::post('/superadmin/myinbox/storemail', 'SuperadminController@storemail')->name('Superadmin.storemail');
+Route::post('/superadmin/myinbox/storereply', 'SuperadminController@storereply')->name('Superadmin.storereply');
+Route::post('/superadmin/myinbox/deleteemail/{id}', 'SuperadminController@deleteemail')->name('Superadmin.deleteemail');
 
 
 //admin
@@ -123,7 +127,9 @@ Route::post('/admin/security', 'AdminController@savesecurity');
 Route::get('/admin/myaccount', 'AdminController@myaccount')->name('Admin.myaccount');
 
 Route::get('/admin/myinbox', 'AdminController@myinbox');
-
+Route::post('/admin/myinbox/storemail', 'AdminController@storemail')->name('Admin.storemail');
+Route::post('/admin/myinbox/storereply', 'AdminController@storereply')->name('Admin.storereply');
+Route::post('/admin/myinbox/deleteemail/{id}', 'AdminController@deleteemail')->name('Admin.deleteemail');
 
 //moderator
 Route::get('/moderator', 'ModeratorController@index')->name('Moderator.index');
@@ -155,7 +161,11 @@ Route::get('/moderator/security', 'ModeratorController@security')->name('Moderat
 Route::post('/moderator/security', 'ModeratorController@savesecurity');
 
 Route::get('/moderator/myaccount', 'ModeratorController@myaccount');
+
 Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
+Route::post('/moderator/myinbox/storemail', 'ModeratorController@storemail')->name('Moderator.storemail');
+Route::post('/moderator/myinbox/storereply', 'ModeratorController@storereply')->name('Moderator.storereply');
+Route::post('/moderator/myinbox/deleteemail/{id}', 'ModeratorController@deleteemail')->name('Moderator.deleteemail');
 
 //instructor
 Route::get('/instructor', 'InstructorController@index')->name('Instructor.index');
@@ -177,6 +187,11 @@ Route::get('/instructor/myaccount', 'InstructorController@myaccount')->name('Ins
 Route::get('/instructor/myinbox', 'InstructorController@myinbox');
 Route::get('/instructor/discussionforum', 'InstructorController@discussionforum');
 
+Route::get('/instructor/myinbox', 'InstructorController@myinbox');
+Route::post('/instructor/myinbox/storemail', 'InstructorController@storemail')->name('Instructor.storemail');
+Route::post('/instructor/myinbox/storereply', 'InstructorController@storereply')->name('Instructor.storereply');
+Route::post('/instructor/myinbox/deleteemail/{id}', 'InstructorController@deleteemail')->name('Instructor.deleteemail');
+
 
 
 //student
@@ -192,10 +207,17 @@ Route::post('/student/profilesettings', 'StudentController@saveprofilesettings')
 Route::get('/student/security', 'StudentController@security')->name('Student.security');
 Route::post('/student/security', 'StudentController@savesecurity');
 Route::get('/student/myaccount', 'StudentController@myaccount')->name('Student.myaccount');
+
 Route::get('/student/myinbox', 'StudentController@myinbox');
+Route::post('/student/myinbox/storemail', 'StudentController@storemail')->name('Student.storemail');
+Route::post('/student/myinbox/storereply', 'StudentController@storereply')->name('Student.storereply');
+Route::post('/student/myinbox/deleteemail/{id}', 'StudentController@deleteemail')->name('Student.deleteemail');
+
 
 //fourm
 Route::resource('forumposts','forumController');
 Route::resource('comments','commentController');
 Route::get('/comments/{id}/create', 'commentController@create');
 Route::get('/forumpost/dashboard', 'forumController@dashboard');
+
+Route::get('/forumpost/search', 'forumController@search')->name('forumController.search');
