@@ -181,7 +181,7 @@
    <div id="editEmployeeModal" class="modal fade">
     <div class="modal-dialog">
      <div class="modal-content">
-      <form action="/admin/instructorallocation/updateinstructor" method="post" id="editform">
+      <form action="/superadmin/instructorallocation/updateinstructor" method="post" id="editform">
        <div class="modal-header">
         <h4 class="modal-title">Edit Allocation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

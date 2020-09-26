@@ -210,6 +210,7 @@ class AdminController extends Controller
         'coursename' => 'required',
         'section' => 'required'
       ]);
+      
         $user = new CourseforStudent();
         $user->id           = $request->id;
         $user->name         = $request->name;

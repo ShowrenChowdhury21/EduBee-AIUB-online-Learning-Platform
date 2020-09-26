@@ -14,7 +14,9 @@ use App\Note;
 use App\Video;
 use App\Assignment;
 use App\profiles;
+use App\User;
 use Image;
+
 class InstructorController extends Controller
 {
     function index(){

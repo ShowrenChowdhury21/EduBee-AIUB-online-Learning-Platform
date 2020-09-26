@@ -70,7 +70,6 @@
             <h1 class="name" style="font-size: 35px; margin-top: -70px; color: white;">{{Session::get('username')}}</h1>
             <h1 class="id" style="font-size: 25px; color: white;color: white;">{{Session::get('id')}}</h1>
             <div class="myaccountsub" style="margin-top: 20px; width: 350; height: 200; background: white">
-              <h1 class="department" style="margin-top: 20px; font-size: 20px; text-align: left;">Department: <span>CSE</span></h1>
               <h1 class="email" style="margin-top: 20px; font-size: 20px; text-align: left;">E-mail: <span>{{Session::get('email')}}</span></h1>
             </div>
           </div>
