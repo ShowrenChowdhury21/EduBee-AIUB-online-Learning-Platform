@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Admin;
 use App\Moderator;
@@ -17,6 +18,10 @@ use App\Announcement;
 use App\profiles;
 use Image;
 
+
+
+
+
 class SuperadminController extends Controller
 {
     public function index(){
@@ -26,7 +31,8 @@ class SuperadminController extends Controller
 
     //adminmanagement
     public function adminmanagement(){
-        $users = DB::table('admins')->get();
+        $admin = Http::get('http://localhost:3000/home/adminmanagement');
+        $users = $admin->json();
         return view('Superadmin.adminmanagement')->with('users', $users);
     }
 
@@ -99,8 +105,9 @@ class SuperadminController extends Controller
 
     //moderatormanagement
     function moderatormanagement(){
-        $users = DB::table('moderators')->get();
-        return view('Superadmin.moderatormanagement')->with('users', $users);
+      $moderator = Http::get('http://localhost:3000/home/moderatormanagement');
+      $users = $moderator->json();
+      return view('Superadmin.moderatormanagement')->with('users', $users);
     }
 
     public function addmoderator(Request $request){
@@ -170,8 +177,9 @@ class SuperadminController extends Controller
 
     //usermanagement
     function usermanagement(){
-        $users = DB::table('users')->get();
-        return view('Superadmin.usermanagement')->with('users', $users);
+      $userslist = Http::get('http://localhost:3000/home/usermanagement');
+      $users = $userslist->json();
+      return view('Superadmin.usermanagement')->with('users', $users);
     }
 
     public function adduser(Request $request){

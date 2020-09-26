@@ -24,7 +24,6 @@
     </div>
     <ul class="categories" style="margin-top: 60px;">
       <li></i><a href="/moderator/usermanagement">&nbsp;&nbsp;User Management</a></li>
-      <li></i><a href="/moderator/useractivity">&nbsp;&nbsp;User Activity</a></li>
       <li></i><a href=""  class="down">&nbsp;&nbsp;Allocations</a>
         <ul class="side-nav-dropdown">
           <li> &nbsp;<a href="/moderator/courseforstudent">Student's void</a></li>

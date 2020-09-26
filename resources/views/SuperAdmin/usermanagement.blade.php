@@ -64,13 +64,6 @@
                   <li><a href="/login"><i class="fa fa-sign-out"></i> Log out</a></li>
                 </ul>
               </li>
-              <li>
-                <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-comments"></i><span>22</span></a>
-                  <ul class="dropdown-menu" style="margin-left: -150px;width: 200px;">
-                    <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;"><%= uname %></span><br><span class="notify">Hi. how r u?</span></a></li>
-                      <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;">Sajid</span><br><span class="notify"> Hi. how r u?</span></a></li>
-                  </ul>
-              </li>
             </ul>
           </div>
         </div>
@@ -103,21 +96,20 @@
                       </tr>
                   </thead>
                   <tbody>
-                    @for($i=0; $i != count($users); $i++)
+                    @foreach ($users as $user)
                     <tr>
-                      <td>{{$users[$i]->id}}</td>
-                      <td>{{$users[$i]->name}}</td>
-                      <td>{{$users[$i]->email}}</td>
-                      <td>{{$users[$i]->phone}}</td>
-                      <td>{{$users[$i]->department}}</td>
-                      <td>{{$users[$i]->type}}</td>
+                      <td>{{$user['id']}}</td>
+                      <td>{{$user['name']}}</td>
+                      <td>{{$user['email']}}</td>
+                      <td>{{$user['phone']}}</td>
+                      <td>{{$user['department']}}</td>
+                      <td>{{$user['type']}}</td>
                         <td>
                             <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>
-                 @endfor
-                      </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>

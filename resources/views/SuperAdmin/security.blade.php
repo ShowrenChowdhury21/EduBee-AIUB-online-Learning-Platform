@@ -61,13 +61,6 @@
                   <li><a href="/login"><i class="fa fa-sign-out"></i> Log out</a></li>
                 </ul>
               </li>
-              <li>
-                <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-comments"></i><span>22</span></a>
-                  <ul class="dropdown-menu" style="margin-left: -150px;width: 200px;">
-                    <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;"><%= uname %></span><br><span class="notify">Hi. how r u?</span></a></li>
-                      <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;">Sajid</span><br><span class="notify"> Hi. how r u?</span></a></li>
-                  </ul>
-              </li>
             </ul>
           </div>
         </div>
@@ -77,8 +70,8 @@
             <div class="profile">
               <div class="profiledata" style="margin-left: 120px;">
                 <img class="profilepic" style="margin-left: 40px;" src="{{asset ('upload/img/' . Session::get('picture'))}}" alt="">
-                  <h3>{{Session::get('username')}}</h3>
-                  <p style="margin-left: 80px;">{{Session::get('id')}}</p>
+                  <h3 style="margin-left: 60px; color: #048; font-size;25px; font-weight: bold;">{{Session::get('username')}}</h3>
+                  <p style="margin-left: 100px;font-size;25px;">{{Session::get('id')}}</p>
               </div>
               <form method="POST" action="/superadmin/security">
                 <input type="text" class="securtiy" name="current_password" placeholder="Enter Current password"><br>
