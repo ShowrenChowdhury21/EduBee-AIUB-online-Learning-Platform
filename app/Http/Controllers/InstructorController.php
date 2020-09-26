@@ -17,6 +17,7 @@ use App\Assignment;
 use App\Sender;
 use App\Receiver;
 use App\profiles;
+use App\User;
 use Image;
 
 class InstructorController extends Controller

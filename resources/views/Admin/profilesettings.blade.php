@@ -99,7 +99,6 @@
                   <input type="submit" name="add_user"  class="btn btn-primary" >
                 </div>
               </div>
-
             </div>
           </form>
         </div>

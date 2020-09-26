@@ -484,20 +484,7 @@ class SuperadminController extends Controller
     function profilesettings(){
         return view('Superadmin.profilesettings');
     }
-    function saveprofilesettings(Request $request){
-      $user = Admin::find($request->session()->get('id'));
-      $request->validate([
-        'email' => 'required'
-      ]);
-      $user->email        = $request->email;
-      $user->save();
-
-      $userlogin = Login::find($request->session()->get('id'));
-      $userlogin->email         = $request->email;
-      $userlogin->save();
-
-      return redirect()->route('Superadmin.myaccount');
-    }
+    
 
     function security(){
       return view('Superadmin.security')->with(['password_does_not_match' => '', 'old_password_not_match' => '']);
@@ -600,6 +587,7 @@ class SuperadminController extends Controller
        $request->validate([
         'avata' => 'required'
       ]); 
+      
         $profiles = new profiles;
         $profiles->id = $request->session()->get('id');
  

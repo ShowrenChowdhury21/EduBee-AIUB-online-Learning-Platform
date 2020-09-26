@@ -73,12 +73,6 @@
                   <h3 style="margin-left: 60px; color: #048; font-size;25px; font-weight: bold;">{{Session::get('username')}}</h3>
                   <p style="margin-left: 100px;font-size;25px;">{{Session::get('id')}}</p>
               </div>
-              <form method="POST" action="/superadmin/profilesettings/">
-                <input type="text" class="profileupdate" name='email' placeholder="Enter New E-mail"><br><br>
-                <a>{{$errors->first('email')}}</a><br><br>
-                <input type="submit" class="profileupdatebtn" value="Update">
-              </form>
-              <br><br>
               <form action="{{route('superadmin.addProfile')}}" method="POST" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-lg-12">
@@ -86,6 +80,7 @@
                         <label style="margin-left: 50px; font-size: 20px; color: #048">Upload Profile</label><br>
                         <input type="file" name="avata" autocomplete="off" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: -120px; ">
                       </div>
+                      <a>{{$errors->first('avata')}}</a><br><br>
                       <div class="form-group">
                         <input type="submit" name="add_user"  class="profileupdatebtn" >
                       </div>

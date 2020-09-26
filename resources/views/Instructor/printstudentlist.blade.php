@@ -36,7 +36,7 @@
                       <!-- <td></td> -->
                       <td>{{$courselist[$i]->name}}</td>
                       <td>{{$courselist[$i]->email}}</td>
-                      <td>{{$courselist[$i]->grades}}</td>
+                      <td>{{$courselist[$i]->cgpa}}</td>
                     </tr>
                   @endfor
                   </tbody>

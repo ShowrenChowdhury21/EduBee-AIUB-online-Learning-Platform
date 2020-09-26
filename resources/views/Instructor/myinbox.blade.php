@@ -280,17 +280,3 @@
               });
               });
             </script>
-
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <form>
-      <div id="main">
-
-      </div>
-    </form>
-  </section>
-</body>
-
-</html>
