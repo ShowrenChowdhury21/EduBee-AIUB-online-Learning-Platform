@@ -13,8 +13,12 @@ use App\Instructorforcourses;
 use App\Note;
 use App\Video;
 use App\Assignment;
+
+use App\Sender;
+use App\Receiver;
 use App\profiles;
 use Image;
+
 class InstructorController extends Controller
 {
     function index(){
@@ -193,8 +197,78 @@ class InstructorController extends Controller
     function myaccount(){
         return view('Instructor.myaccount');
     }
+  
     function myinbox(){
-        return view('Instructor.myinbox');
+      $users = DB::table('logins')->get();
+
+      $recvmail = DB::table('receivers')->get();
+      return view('Instructor.myinbox')->with(['recvmail'=>$recvmail,'users'=>$users]);
+
+    }
+    public function storemail(Request $request)
+    {
+        $this->validate($request,[
+          'subject'=>'required',
+          'email_body'=>'required'
+
+        ]);
+
+
+        $send = new Sender();
+        $send->subject =$request->input('subject');
+        $send->email_body =$request->input('email_body');
+        $send->sender_email = $request->session()->get('email');
+        $send->receiver_email = $request->input('to');
+        $send->save();
+
+        $rc = new Receiver();
+        $rc->subject =$request->input('subject');
+        $rc->email_body =$request->input('email_body');
+        $rc->sender_email = $request->session()->get('email');
+        $rc->receiver_email =$request->input('to');
+        $rc->save();
+
+        $recvmail = DB::table('receivers')->get();
+        return redirect('/instructor/myinbox')->with('recvmail', $recvmail);
+
+
+    }
+    public function storereply(Request $request)
+    {
+        $this->validate($request,[
+          'subject'=>'required',
+          'email_body'=>'required'
+
+        ]);
+
+
+        $send = new Sender();
+        $send->subject =$request->input('subject');
+        $send->email_body =$request->input('email_body');
+        $send->sender_email = $request->session()->get('email');
+        $send->receiver_email = $request->input('to');
+        $send->save();
+
+        $rc = new Receiver();
+        $rc->subject =$request->input('subject');
+        $rc->email_body =$request->input('email_body');
+        $rc->sender_email = $request->session()->get('email');
+        $rc->receiver_email =$request->input('to');
+        $rc->save();
+
+        $recvmail = DB::table('receivers')->get();
+        return redirect('/instructor/myinbox')->with('recvmail', $recvmail);
+
+
+    }
+
+    public function deleteemail($id)
+    {
+        $mail= DB::table('receivers')->where('email_body', $id)->get();
+        Receiver::destroy($mail[0]->id);
+        $recvmail = DB::table('receivers')->get();
+        return redirect('/instructor/myinbox')->with('recvmail', $recvmail);
+
     }
     public function store(Request $request)
     {

@@ -123,7 +123,7 @@
       <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
          <div class="modal-content">
-          <form action = "/superadmin/courseforstudent/addcourseforstudent" method = "post">
+          <form action = "/moderator/courseforstudent/addcourseforstudent" method = "post">
            <div class="modal-header">
             <h4 class="modal-title">New Allocation</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

@@ -80,6 +80,9 @@ Route::middleware(['session_check'])->group(function(){
 
     Route::get('/superadmin/myaccount', 'SuperadminController@myaccount')->name('Superadmin.myaccount');
     Route::get('/superadmin/myinbox', 'SuperadminController@myinbox');
+    Route::post('/superadmin/myinbox/storemail', 'SuperadminController@storemail')->name('Superadmin.storemail');
+    Route::post('/superadmin/myinbox/storereply', 'SuperadminController@storereply')->name('Superadmin.storereply');
+    Route::post('/superadmin/myinbox/deleteemail/{id}', 'SuperadminController@deleteemail')->name('Superadmin.deleteemail');
 
     route::  post('superadmin/addProfile','SuperadminController@store')->name('superadmin.addProfile');
   });
@@ -129,6 +132,9 @@ Route::middleware(['session_check'])->group(function(){
     Route::get('/admin/myaccount', 'AdminController@myaccount')->name('Admin.myaccount');
 
     Route::get('/admin/myinbox', 'AdminController@myinbox');
+    Route::post('/admin/myinbox/storemail', 'AdminController@storemail')->name('Admin.storemail');
+    Route::post('/admin/myinbox/storereply', 'AdminController@storereply')->name('Admin.storereply');
+    Route::post('/admin/myinbox/deleteemail/{id}', 'AdminController@deleteemail')->name('Admin.deleteemail');
 
     route::  post('admin/addProfile','AdminController@store')->name('admin.addProfile');
   });
@@ -165,6 +171,9 @@ Route::middleware(['session_check'])->group(function(){
 
     Route::get('/moderator/myaccount', 'ModeratorController@myaccount');
     Route::get('/moderator/myinbox', 'ModeratorController@myinbox');
+    Route::post('/moderator/myinbox/storemail', 'ModeratorController@storemail')->name('Moderator.storemail');
+    Route::post('/moderator/myinbox/storereply', 'ModeratorController@storereply')->name('Moderator.storereply');
+    Route::post('/moderator/myinbox/deleteemail/{id}', 'ModeratorController@deleteemail')->name('Moderator.deleteemail');
 
     route::  post('moderator/addProfile','ModeratorController@store')->name('moderator.addProfile');
   });
@@ -187,10 +196,15 @@ Route::middleware(['session_check'])->group(function(){
     Route::get('/instructor/security', 'InstructorController@security')->name('Instructor.security');
     Route::post('/instructor/security', 'InstructorController@savesecurity');
     Route::get('/instructor/myaccount', 'InstructorController@myaccount')->name('Instructor.myaccount');
-    Route::get('/instructor/myinbox', 'InstructorController@myinbox');
+    
     Route::get('/instructor/discussionforum', 'InstructorController@discussionforum');
 
     route::  post('instructor/addProfile','InstructorController@store')->name('instructor.addProfile');
+    
+    Route::get('/instructor/myinbox', 'InstructorController@myinbox');
+    Route::post('/instructor/myinbox/storemail', 'InstructorController@storemail')->name('Instructor.storemail');
+    Route::post('/instructor/myinbox/storereply', 'InstructorController@storereply')->name('Instructor.storereply');
+    Route::post('/instructor/myinbox/deleteemail/{id}', 'InstructorController@deleteemail')->name('Instructor.deleteemail');
   });
 
 
@@ -209,6 +223,9 @@ Route::middleware(['session_check'])->group(function(){
     Route::post('/student/security', 'StudentController@savesecurity');
     Route::get('/student/myaccount', 'StudentController@myaccount')->name('Student.myaccount');
     Route::get('/student/myinbox', 'StudentController@myinbox');
+    Route::post('/student/myinbox/storemail', 'StudentController@storemail')->name('Student.storemail');
+    Route::post('/student/myinbox/storereply', 'StudentController@storereply')->name('Student.storereply');
+    Route::post('/student/myinbox/deleteemail/{id}', 'StudentController@deleteemail')->name('Student.deleteemail');
 
     route::  post('student/addProfile','StudentController@store')->name('student.addProfile');
   });
@@ -220,4 +237,6 @@ Route::middleware(['session_check'])->group(function(){
   Route::get('/comments/{id}/create', 'commentController@create');
   Route::get('/forumpost/dashboard', 'forumController@dashboard');
 
+
 });
+
