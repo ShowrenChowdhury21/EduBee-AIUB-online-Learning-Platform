@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Admin;
 use App\Moderator;
@@ -24,9 +25,9 @@ class ModeratorController extends Controller
         return view('Moderator.index');
     }
     function usermanagement(){
-        $users = DB::table('users')->get();
-        return view('Moderator.usermanagement')->with('users', $users);
-        //return view('Moderator.usermanagement');
+      $usershere = Http::get('http://localhost:3000/home/usermanagement');
+      $users = $usershere->json();
+      return view('Moderator.usermanagement')->with('users', $users);      
     }
     public function adduser(Request $request){
       $request->validate([

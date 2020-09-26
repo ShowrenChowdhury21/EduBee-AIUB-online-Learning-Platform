@@ -64,13 +64,6 @@
                   <li><a href="/login"><i class="fa fa-sign-out"></i> Log out</a></li>
                 </ul>
               </li>
-              <li>
-                <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><i class="fa fa-comments"></i><span>22</span></a>
-                  <ul class="dropdown-menu" style="margin-left: -150px;width: 200px;">
-                    <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;"><%= uname %></span><br><span class="notify">Hi. how r u?</span></a></li>
-                      <li><a href="#" class="inboxmsg" class="notify"><span style="font-size: 20px;">Sajid</span><br><span class="notify"> Hi. how r u?</span></a></li>
-                  </ul>
-              </li>
             </ul>
           </div>
         </div>
@@ -102,19 +95,19 @@
                   </tr>
                   </thead>
                   <tbody id="tablebody">
-                    @for($i=0; $i != count($users); $i++)
-                      <tr>
-                        <td>{{$users[$i]->id}}</td>
-                        <td>{{$users[$i]->name}}</td>
-                        <td>{{$users[$i]->email}}</td>
-                        <td>{{$users[$i]->address}}</td>
-                        <td>{{$users[$i]->phone}}</td>
-                          <td>
-                              <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                              <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                          </td>
-                      </tr>
-                   @endfor
+                    @foreach ($users as $user)
+                    <tr>
+                      <td>{{$user['id']}}</td>
+                      <td>{{$user['name']}}</td>
+                      <td>{{$user['email']}}</td>
+                      <td>{{$user['address']}}</td>
+                      <td>{{$user['phone']}}</td>
+                        <td>
+                            <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>
