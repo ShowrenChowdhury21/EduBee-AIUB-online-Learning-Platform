@@ -196,11 +196,11 @@ Route::middleware(['session_check'])->group(function(){
     Route::get('/instructor/security', 'InstructorController@security')->name('Instructor.security');
     Route::post('/instructor/security', 'InstructorController@savesecurity');
     Route::get('/instructor/myaccount', 'InstructorController@myaccount')->name('Instructor.myaccount');
-    
+
     Route::get('/instructor/discussionforum', 'InstructorController@discussionforum');
 
     route::  post('instructor/addProfile','InstructorController@store')->name('instructor.addProfile');
-    
+
     Route::get('/instructor/myinbox', 'InstructorController@myinbox');
     Route::post('/instructor/myinbox/storemail', 'InstructorController@storemail')->name('Instructor.storemail');
     Route::post('/instructor/myinbox/storereply', 'InstructorController@storereply')->name('Instructor.storereply');
@@ -236,7 +236,7 @@ Route::middleware(['session_check'])->group(function(){
   Route::resource('comments','commentController');
   Route::get('/comments/{id}/create', 'commentController@create');
   Route::get('/forumpost/dashboard', 'forumController@dashboard');
-
+  
+  Route::get('/forumpost/search', 'forumController@search')->name('forumController.search');
 
 });
-
