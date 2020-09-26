@@ -47,7 +47,7 @@
         <!-- Title -->
         <br>
         <a href="/forumposts" class="btn btn-warning">back</a>
-        <a href="/forumposts/{{$post->id}}/printshow" class="btn btn-warning">print</a>
+        <a href="/forumposts/{{$post->id}}/printshow" class="btn btn-info" style="float:right;">print</a>
         <h1 class="mt-4">{{$post->title}}</h1>
 
         <!-- Author -->

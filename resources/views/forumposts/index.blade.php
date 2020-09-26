@@ -106,6 +106,7 @@
               <input type="text" name="search" id="search" class="form-control" placeholder="Search for...">
             </div>
             <br>
+            <hr>
             <table>
               <thead>
                 <tr>
