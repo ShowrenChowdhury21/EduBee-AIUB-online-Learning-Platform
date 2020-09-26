@@ -74,10 +74,9 @@
       <h1 class="logo">EduBee</h1>
       <div class="Intro">
         <h1 class="welcome">Welcome <span style="font-size: 30px; font-weight: 300;">{{Session::get('username')}}</span></h1>
-        <p style="text-align:center; font-size: 15px;">As an Admin you should follow proper rules while taking decisions.</p>
+        <p style="text-align:center; font-size: 15px;">As an Super Admin you should follow proper rules while taking decisions.</p>
       </div>
     </div>
   </section>
 </body>
-
 </html>

@@ -74,6 +74,7 @@
                     <input type="file" id="notes" name="notes" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
                     <input type="submit" name="notebtn" value="Upload" style="width: 150px; height:40px;color: white; background: #004981; border: 3px solid #004981; padding: 5px 15px; margin-top: -40px; margin-left: 550px;"/>
                   </form>
+                  <a>{{$errors->first('notes')}}</a>
                   <br><br><br>
                   <table id = "table" class="table table-striped table-hover">
                     <thead>
@@ -99,6 +100,7 @@
                     <input type="file" id="videos" name="videos" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
                     <input type="submit" name="videobtn" value="Upload" style="width: 150px; height:40px;color: white; background: #004981; border: 3px solid #004981; padding: 5px 15px; margin-top: -40px; margin-left: 550px;"/>
                   </form>
+                  <a>{{$errors->first('videos')}}</a>
                   <br><br><br>
                   <table id = "table" class="table table-striped table-hover">
                     <thead>
@@ -124,6 +126,7 @@
                     <input type="file" id="assignments" name="assignments" style="width: 500px; height:40px;color: #004981; background: white; border: 3px solid #004981; padding: 5px 15px;margin-left: 150px; ">
                     <input type="submit" name="assessmentbtn" value="Upload" style="width: 150px; height:40px;color: white; background: #004981; border: 3px solid #004981; padding: 5px 15px; margin-top: -40px; margin-left: 550px;"/>
                   </form>
+                  <a>{{$errors->first('assessmentbtn')}}</a>
                   <br><br><br>
                   <table id = "table" class="table table-striped table-hover">
                     <thead>

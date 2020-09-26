@@ -97,11 +97,11 @@
                   <tbody id="tablebody">
                     @foreach ($users as $user)
                     <tr>
-                      <td>{{$user['id']}}</td>
-                      <td>{{$user['name']}}</td>
-                      <td>{{$user['email']}}</td>
-                      <td>{{$user['address']}}</td>
-                      <td>{{$user['phone']}}</td>
+                      <td>{{$user->id}}</td>
+                      <td>{{$user->name}}</td>
+                      <td>{{$user->email}}</td>
+                      <td>{{$user->address}}</td>
+                      <td>{{$user->phone}}</td>
                         <td>
                             <a href = "#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                             <a href = "#deleteEmployeeModal" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
