@@ -1,60 +1,50 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## About EduBee
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+A website to serve online-based assistance to students of AIUB regarding their online course lectures, videos, assessments. Besides this project contains all those features which an online learning platform should have. For example file sharing, messenger, discussion forum, etc. This project was done with PHP on Laravel framework and it was completed as the final-term project of the course named "Advanced Programming in Web Technologie".
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Screenshots
+Home Page of EduBee
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(479).png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Login Page
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(480).png)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Admin's Home Page
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(481).png)
 
-## Learning Laravel
+SuperAdmin's Usermanagemet(CRUD)
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(490).png)
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(491).png)
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(492).png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+SuperAdmin's Inbox
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(493).png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Moderator's Home Page
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(499).png)
 
-## Laravel Sponsors
+Instructor's classes
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(494).png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Instructor's File Upload Regarding Classes
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(495).png)
 
-### Premium Partners
+Student's classes
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(500).png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+Student's File Download and Video Watch Regarding Classes
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(496).png)
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(497).png)
 
-## Contributing
+Student's Grades regarding Courses
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(501).png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Discussion Forum(Post regarding Problem and comment section for that post)
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(486).png)
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(487).png)
+![image](https://github.com/ShowrenChowdhury21/Images/blob/master/EduBee/Screenshot%20(489).png)
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
