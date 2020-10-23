@@ -1,6 +1,6 @@
 ## About EduBee
 
-A website to serve online-based assistance to students of AIUB regarding their online course lectures, videos, assessments. Besides this project contains all those features which an online learning platform should have. For example file sharing, messenger, discussion forum, etc. This project was done with PHP on Laravel framework and it was completed as the final-term project of the course named "Advanced Programming in Web Technologie".
+A website to serve online-based assistance to students of AIUB regarding their online course lectures, videos, assessments. Besides this project contains all those features which an online learning platform should have. For example file sharing, messenger, discussion forum, etc. This project was done with PHP on Laravel framework and it was completed as the final-term project of the course named "Advanced Programming in Web Technology".
 
 
 ## Screenshots
